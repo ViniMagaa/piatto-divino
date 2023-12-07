@@ -1,9 +1,128 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Poppins:wght@200;300;400;600;700;800;900&display=swap');
 /* Fonts: Italiana, Poppins */
 
+:root {
+  --black: #0e1116ff;
+  --white: #fff;
+  --off-white: #F1EEE6;
+  --light-gray: rgb(234, 227, 213);
+  --gray: rgb(154, 154, 154);
+  --naples-yellow: #f8e16cff;
+  --raw-umber: #9e643cff;
+  --jungle-green: #419d78ff;
+  --text-color: var(--black);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Italiana', 'Segoe UI', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--off-white);
+}
+
+h1 {
+  font-family: 'Italiana', 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 3.5rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+button {
+  padding: 0.4rem 0.8rem;
+  outline: none;
+  border: none;
+  color: var(--off-white);
+  background-color: var(--black);
+  cursor: pointer;
+  transition: background-color .15s;
+}
+
+button:hover {
+  background-color: var(--raw-umber);
+}
+
+header {
+  padding: 1rem;
+  background-color: var(--light-gray);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1px solid var(--gray);
+}
+
+header nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+header nav ul {
+  max-width: 800px;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+header nav ul li a.active,
+header nav ul li a:hover {
+  color: var(--raw-umber);
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+main>section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+main .container-recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.recipe-container {
+  background-color: var(--white);
+}
+
+.recipe-container .img img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recipe-container .description {
+  padding: 0 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.recipe-container .description h3 {
+  font-family: 'Italiana';
 }
