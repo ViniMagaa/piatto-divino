@@ -1,11 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+import logo from "../assets/logo.png";
+
 function Header() {
 	return (
 		<header>
 			<nav>
-				<h1>Piatto Divino</h1>
+				<img className="logo" src={logo} alt="Logo Piatto Divino" />
 				<ul>
 					<li>
 						<NavLink to="/" activeclassname="active">
@@ -13,8 +15,8 @@ function Header() {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/cardapio" activeclassname="active">
-							Cardápio
+						<NavLink to="/receitas" activeclassname="active">
+							Receitas
 						</NavLink>
 					</li>
 					<li>

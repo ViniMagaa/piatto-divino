@@ -4,7 +4,7 @@ function RecipeContainer({ name, img }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
 		const navLink = name.replaceAll(" ", "");
-		navigate(`/cardapio/${navLink}`);
+		navigate(`/receitas/${navLink}`);
 	};
 
 	return (
@@ -14,7 +14,7 @@ function RecipeContainer({ name, img }) {
 			</div>
 			<div className="description">
 				<h3>{name}</h3>
-				<button onClick={handleClick}>Ver mais</button>
+				<button onClick={handleClick}>Ver receita</button>
 			</div>
 		</div>
 	);

@@ -4,9 +4,12 @@ function Home() {
 	return (
 		<section>
 			<div>
-				<h2>Bem-vindo ao Piatto Divino</h2>
+				<h2>
+					Bem-vindo ao <span className="brand-name">Piatto Divino</span>
+				</h2>
 				<p>
-					O refúgio culinário que celebra a autenticidade da cozinha italiana.
+					O refúgio culinário que reúne a autenticidade da cozinha italiana em
+					um só lugar.
 				</p>
 			</div>
 			<MainRecipes />
