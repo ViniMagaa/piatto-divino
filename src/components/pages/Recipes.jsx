@@ -7,7 +7,7 @@ function Recipes() {
 
 	return (
 		<section>
-			<h2>Todas as receitas</h2>
+			<h1>Todas as receitas</h1>
 			<div className="recipes-container">
 				{recipes.map((recipe) => {
 					return (

@@ -4,6 +4,7 @@ import Home from "./components/pages/Home";
 import Recipe from "./components/pages/Recipe";
 import Recipes from "./components/pages/Recipes";
 import RecipesContextProvider from "./context/RecipesContextProvider";
+import About from "./components/pages/About";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/receitas" element={<Recipes />} />
 						<Route path="/receitas/:id" element={<Recipe />} />
+						<Route path="/sobre" element={<About />} />
 					</Routes>
 				</main>
 			</BrowserRouter>
