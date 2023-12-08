@@ -1,7 +1,7 @@
 {
 	"recipes": [
 		{
-			"id": 1,
+			"id": 0,
 			"name": "Spaghetti Carbonara",
 			"img": "https://cdn.urbano.com.br/uploads/espaguete-a-carbonara-800.jpg",
 			"description": "Um prato clássico romano, o Spaghetti Carbonara é feito com uma deliciosa mistura de espaguete cozido al dente, pancetta ou guanciale frito, ovos e queijo Pecorino Romano.",
@@ -21,7 +21,7 @@
 			]
 		},
 		{
-			"id": 2,
+			"id": 1,
 			"name": "Lasanha à Bolonhesa",
 			"img": "https://portal.lodivino.com.br/images/receitas/lasanha-a-bolonhesa.jpg",
 			"description": "A Lasanha à Bolonhesa é um prato italiano clássico que consiste em camadas de massa para lasanha intercaladas com um rico molho bolonhesa e queijo derretido.",
@@ -46,7 +46,7 @@
 			]
 		},
 		{
-			"id": 3,
+			"id": 2,
 			"name": "Pizza Margherita",
 			"img": "https://anamariabraga.globo.com/wp-content/uploads/2020/08/pizza-margherita.jpg",
 			"description": "A Pizza Margherita é uma pizza clássica italiana com uma base de massa fina, molho de tomate, queijo mozzarella derretido, folhas de manjericão fresco e um toque de azeite de oliva.",
@@ -68,7 +68,7 @@
 			]
 		},
 		{
-			"id": 4,
+			"id": 3,
 			"name": "Risoto de Funghi Porcini",
 			"img": "https://lapercussi.com/website/wp-content/uploads/2021/06/risottoaifunghiporcini-la-percussi.jpg",
 			"description": "O Risoto de Funghi Porcini é um prato italiano cremoso e reconfortante, preparado com arroz para risoto, cogumelos Porcini, vinho branco, caldo de legumes e queijo parmesão.",
@@ -94,7 +94,7 @@
 			]
 		},
 		{
-			"id": 5,
+			"id": 4,
 			"name": "Tiramisù",
 			"img": "https://cloudfront-us-east-1.images.arcpublishing.com/estadao/Q3SE72ZUZRGKHOJHHW33TBLP4A.jpg",
 			"description": "O Tiramisù é uma sobremesa italiana clássica, composta por camadas de biscoitos embebidos em café, creme de queijo mascarpone e finalizado com uma generosa pitada de cacau em pó.",
@@ -117,7 +117,7 @@
 			]
 		},
 		{
-			"id": 6,
+			"id": 5,
 			"name": "Osso Buco",
 			"img": "https://hips.hearstapps.com/hmg-prod/images/osso-bucco1-1646697959.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*",
 			"ingredients": [
@@ -148,7 +148,7 @@
 			]
 		},
 		{
-			"id": 7,
+			"id": 6,
 			"name": "Fettuccine Alfredo",
 			"img": "https://www.receiteria.com.br/wp-content/uploads/fettuccine-alfredo-07-730x548.jpeg.webp",
 			"ingredients": [
@@ -169,7 +169,7 @@
 			]
 		},
 		{
-			"id": 8,
+			"id": 7,
 			"name": "Minestrone",
 			"img": "https://i.panelinha.com.br/i1/64-bk-4550-5-mg-7015.webp",
 			"ingredients": [
@@ -197,7 +197,7 @@
 			]
 		},
 		{
-			"id": 9,
+			"id": 8,
 			"name": "Gnocchi alla Sorrentina",
 			"img": "https://www.davidezambelli.com/wp-content/uploads/2023/09/gnocchi-alla-sorrentina-2-1300x731.jpg",
 			"ingredients": [
@@ -218,7 +218,7 @@
 			]
 		},
 		{
-			"id": 10,
+			"id": 9,
 			"name": "Caponata",
 			"img": "https://www.receiteria.com.br/wp-content/uploads/caponata-de-berinjela.jpeg",
 			"ingredients": [

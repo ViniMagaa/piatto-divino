@@ -1,0 +1,29 @@
+import List from "./List";
+
+function ViewRecipe({ recipe }) {
+	return (
+		<div className="view-recipe">
+			{recipe && (
+				<>
+					<div className="img">
+						<img src={recipe.img} alt={recipe.name} />
+					</div>
+					<div className="view-recipe-description">
+						<div>
+							<h2>{recipe.name}</h2>
+							<p>{recipe.description}</p>
+						</div>
+						<List title="Ingredientes" list={recipe.ingredients} type="disc" />
+						<List
+							title="Modo de preparo"
+							list={recipe.instructions}
+							type="number"
+						/>
+					</div>
+				</>
+			)}
+		</div>
+	);
+}
+
+export default ViewRecipe;

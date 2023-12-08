@@ -136,7 +136,7 @@ main>section {
   overflow: hidden;
 }
 
-.recipe-container .img img {
+.img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -154,4 +154,41 @@ main>section {
 
 .recipe-container .description h3 {
   font-family: 'Italiana';
+}
+
+section.recipe .view-recipe {
+  background-color: var(--white);
+  display: flex;
+}
+
+@media (max-width: 1000px) {
+  section.recipe .view-recipe {
+    flex-direction: column;
+  }
+}
+
+section.recipe .view-recipe .img {
+  width: 100%;
+}
+
+section.recipe .view-recipe .view-recipe-description {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+section.recipe .view-recipe .view-recipe-description ul {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+ul.list-number {
+  list-style-type: decimal;
+  gap: 1rem;
+}
+
+ul.list-disc {
+  list-style-type: disc;
 }

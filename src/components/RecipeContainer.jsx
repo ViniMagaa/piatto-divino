@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-function RecipeContainer({ name, img }) {
+function RecipeContainer({ id, name, img }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
-		const navLink = name.replaceAll(" ", "");
-		navigate(`/receitas/${navLink}`);
+		navigate(`/receitas/${id}`);
 	};
 
 	return (
