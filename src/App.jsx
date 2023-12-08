@@ -5,6 +5,7 @@ import Recipe from "./components/pages/Recipe";
 import Recipes from "./components/pages/Recipes";
 import RecipesContextProvider from "./context/RecipesContextProvider";
 import About from "./components/pages/About";
+import Register from "./components/pages/Register";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 						<Route path="/receitas" element={<Recipes />} />
 						<Route path="/receitas/:id" element={<Recipe />} />
 						<Route path="/sobre" element={<About />} />
+						<Route path="/cadastro" element={<Register />} />
 					</Routes>
 				</main>
 			</BrowserRouter>

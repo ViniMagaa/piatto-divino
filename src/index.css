@@ -11,6 +11,7 @@
   --raw-umber: #9e643cff;
   --jungle-green: #419d78ff;
   --text-color: var(--black);
+  --box-shadow: 0 0 1rem #0e111633;
 }
 
 * {
@@ -127,7 +128,7 @@ main>section {
 }
 
 .recipe-container:hover {
-  box-shadow: 0 0 1rem #0e111633;
+  box-shadow: var(--box-shadow);
 }
 
 .recipe-container .img {
@@ -160,12 +161,6 @@ section.recipe .view-recipe {
   display: flex;
 }
 
-@media (max-width: 1000px) {
-  section.recipe .view-recipe {
-    flex-direction: column;
-  }
-}
-
 section.recipe .view-recipe .img {
   width: 100%;
 }
@@ -190,4 +185,66 @@ ul.list-number {
 
 ul.list-disc {
   list-style-type: disc;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.buttons-container button {
+  flex-grow: 1;
+}
+
+.form-container {
+  width: 100%;
+  margin: auto;
+  font-size: 1.1rem;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 1rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+form div {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+form div input {
+  font-size: 0.9rem;
+  padding: 1rem;
+  outline: none;
+  border: none;
+}
+
+form button {
+  width: 100%;
+  background-color: var(--raw-umber);
+}
+
+form button:hover {
+  background-color: var(--jungle-green);
+}
+
+
+
+
+/* Media Query */
+@media (max-width: 1000px) {
+  section.recipe .view-recipe {
+    flex-direction: column;
+  }
+
+  form div {
+    width: 100%;
+  }
 }

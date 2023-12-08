@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
+import Button from "../layout/Button";
+
 function About() {
+	const navigate = useNavigate();
+
 	return (
 		<section className="about">
 			<h1>Sobre nós</h1>
 			<p>
-				Bem-vindo ao{" "}
+				Bem-vindo ao
 				<strong>
 					<i>Piatto Divino</i>
 				</strong>
@@ -14,7 +20,7 @@ function About() {
 				ensolaradas paisagens da Itália.
 			</p>
 			<p>
-				No{" "}
+				No
 				<strong>
 					<i>Piatto Divino</i>
 				</strong>
@@ -34,24 +40,24 @@ function About() {
 				uma refeição excepcional em boa companhia.
 			</p>
 			<p>
-				No{" "}
+				No
 				<strong>
 					<i>Piatto Divino</i>
-				</strong>{" "}
-				cada refeição é uma celebração do prazer de comer bem. Explore as
+				</strong> cada refeição é uma celebração do prazer de comer bem. Explore as
 				páginas do nosso menu para descobrir os sabores autênticos da Itália, e
 				sinta-se em casa em nosso espaço dedicado a proporcionar momentos
 				deliciosos e memoráveis.
 			</p>
 			<h3>
-				Bem-vindo ao{" "}
-				<strong>
-					<i>Piatto Divino</i>
-				</strong>
-				ada prato conta uma história de sabor e tradição.{" "}
-				<span className="special-text">Buon appetito!</span>
+				Bem-vindo ao<strong><i>Piatto Divino</i></strong>, onde cada 
+				prato conta uma história de sabor e tradição.	<span className="special-text">Buon appetito!</span>
 			</h3>
-			<button onClick={() => (window.location.href = "/receitas")}>Ver receitas</button>
+			<div className="buttons-container">
+				<Button handleClick={() => navigate("/receitas")}>Ver receitas</Button>
+				<Button handleClick={() => navigate("/cadastro")}>
+					Quero contribuir
+				</Button>
+			</div>
 		</section>
 	);
 }

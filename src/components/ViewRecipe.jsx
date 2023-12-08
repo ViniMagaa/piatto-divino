@@ -10,7 +10,7 @@ function ViewRecipe({ recipe }) {
 					</div>
 					<div className="view-recipe-description">
 						<div>
-							<h2>{recipe.name}</h2>
+							<h1>{recipe.name}</h1>
 							<p>{recipe.description}</p>
 						</div>
 						<List title="Ingredientes" list={recipe.ingredients} type="disc" />
