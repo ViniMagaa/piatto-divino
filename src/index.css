@@ -28,7 +28,7 @@ body {
 
 h1 {
   font-family: 'Italiana', 'Poppins', 'Segoe UI', sans-serif;
-  font-size: 3.5rem;
+  font-size: 3.25rem;
 }
 
 h2 {
@@ -233,6 +233,11 @@ form button {
 
 form button:hover {
   background-color: var(--jungle-green);
+}
+
+.form-container a {
+  font-size: 0.8rem;
+  color: var(--white);
 }
 
 

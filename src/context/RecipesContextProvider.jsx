@@ -3,6 +3,7 @@ import RecipesContext from "./RecipesContext";
 
 function RecipesContextProvider({ children }) {
 	const [recipes, setRecipes] = useState([]);
+	const [isLoged, setIsLoged] = useState(false);
 
 	useEffect(() => {
 		fetch("http://localhost:5000/recipes", {
@@ -21,6 +22,8 @@ function RecipesContextProvider({ children }) {
 	const data = {
 		recipes,
 		setRecipes,
+		isLoged,
+		setIsLoged,
 	};
 
 	return (

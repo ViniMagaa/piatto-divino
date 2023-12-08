@@ -6,6 +6,8 @@ import Recipes from "./components/pages/Recipes";
 import RecipesContextProvider from "./context/RecipesContextProvider";
 import About from "./components/pages/About";
 import Register from "./components/pages/Register";
+import Login from "./components/pages/Login";
+import ChefHub from "./components/pages/ChefHub";
 
 function App() {
 	return (
@@ -18,7 +20,9 @@ function App() {
 						<Route path="/receitas" element={<Recipes />} />
 						<Route path="/receitas/:id" element={<Recipe />} />
 						<Route path="/sobre" element={<About />} />
-						<Route path="/cadastro" element={<Register />} />
+						<Route path="/chef" element={<ChefHub />} />
+						<Route path="/chef/cadastrar" element={<Register />} />
+						<Route path="/chef/entrar" element={<Login />} />
 					</Routes>
 				</main>
 			</BrowserRouter>

@@ -54,7 +54,7 @@ function About() {
 			</h3>
 			<div className="buttons-container">
 				<Button handleClick={() => navigate("/receitas")}>Ver receitas</Button>
-				<Button handleClick={() => navigate("/cadastro")}>
+				<Button handleClick={() => navigate("/chef")}>
 					Quero contribuir
 				</Button>
 			</div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Form from "../layout/form/Form";
+import { Link } from "react-router-dom";
 
 function Register() {
 	const [name, setName] = useState("");
@@ -43,16 +44,7 @@ function Register() {
 	];
 	return (
 		<section>
-			<h1>Contribua com receitas!</h1>
-			<p>
-				Você é um chef experiente e está disposto a{" "}
-				<strong>
-					contribuir com suas incríveis receitas para enriquecer nosso banco de
-					dados?
-				</strong>{" "}
-				Faça agora mesmo o seu cadastro e junte-se a nós nessa jornada
-				culinária!
-			</p>
+			<h1>Seja bem-vindo!</h1>
 			<p>
 				Sua expertise é fundamental para tornar a experiência gastronômica em
 				nosso site ainda mais especial.{" "}
@@ -64,6 +56,9 @@ function Register() {
 			<div className="form-container">
 				<h2>Cadastre-se</h2>
 				<Form formQuestions={registerForm} handleClick={() => {}} />
+				<Link to="/chef/entrar">
+					Já possui cadastro? Então entre em sua conta.
+				</Link>
 			</div>
 		</section>
 	);

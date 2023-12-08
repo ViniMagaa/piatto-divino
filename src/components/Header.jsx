@@ -25,7 +25,7 @@ function Header() {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/cadastro" activeclassname="active">
+						<NavLink to="/chef" activeclassname="active">
 							Sou um Chef
 						</NavLink>
 					</li>
