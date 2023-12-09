@@ -57,6 +57,11 @@ span.special-text {
   font-family: 'Italiana';
 }
 
+span.bold-italic {
+  font-weight: bold;
+  font-style: italic;
+}
+
 header {
   padding: 1rem;
   background-color: var(--light-gray);
@@ -240,7 +245,56 @@ form button:hover {
   color: var(--white);
 }
 
+div.flag-message {
+  position: fixed;
+  top: 15%;
+  right: 1%;
+  margin-inline: 1rem;
+  padding: 1rem;
+  background-color: var(--black);
+  color: var(--white);
+  box-shadow: var(--box-shadow);
+  animation: appear-from-right 5s ease;
+}
 
+div.flag-message::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: var(--jungle-green);
+  animation: fill-right 4s linear;
+}
+
+@keyframes appear-from-right {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  25% {
+    transform: translateX(0);
+  }
+
+  75% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes fill-right {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
 
 
 /* Media Query */

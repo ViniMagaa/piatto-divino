@@ -6,8 +6,9 @@ function InputLabel({input}) {
 				type={input.type}
 				name={input.id}
 				id={input.id}
+				value={input.value}
 				placeholder={input.placeholder}
-        onChange={input.handleChange}
+        onChange={(e) => input.handleChange(e.target.value)}
         autoComplete={input.autoComplete}
         required
 			/>

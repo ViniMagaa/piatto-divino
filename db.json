@@ -245,5 +245,13 @@
 				"Deixe esfriar, decore com folhas de manjericão fresco e sirva a Caponata como entrada ou acompanhamento."
 			]
 		}
+	],
+	"users": [
+		{
+			"id": 0,
+			"name": "Admin",
+			"email": "admin@gmail.com",
+			"password": "admin"
+		}
 	]
 }

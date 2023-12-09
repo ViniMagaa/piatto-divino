@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import Button from "./layout/Button";
 
 function RecipeContainer({ id, name, img }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
 		navigate(`/receitas/${id}`);
+		window.location.reload();
 	};
 
 	return (
@@ -13,7 +15,7 @@ function RecipeContainer({ id, name, img }) {
 			</div>
 			<div className="description">
 				<h3>{name}</h3>
-				<button onClick={handleClick}>Ver receita</button>
+				<Button handleClick={handleClick}>Ver receita</Button>
 			</div>
 		</div>
 	);

@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import RecipesContext from "./RecipesContext";
 
 function RecipesContextProvider({ children }) {
+	const [user, setUser] = useState({});
 	const [recipes, setRecipes] = useState([]);
-	const [isLoged, setIsLoged] = useState(false);
+	const [isConnected, setIsConnected] = useState(false);
+	const [flagMessage, setFlagMessage] = useState({
+		isVisible: false,
+		message: "",
+		subMessage: "",
+	});
 
 	useEffect(() => {
 		fetch("http://localhost:5000/recipes", {
@@ -20,10 +26,14 @@ function RecipesContextProvider({ children }) {
 	}, [setRecipes]);
 
 	const data = {
+		user,
+		setUser,
 		recipes,
 		setRecipes,
-		isLoged,
-		setIsLoged,
+		isConnected,
+		setIsConnected,
+		flagMessage,
+		setFlagMessage,
 	};
 
 	return (

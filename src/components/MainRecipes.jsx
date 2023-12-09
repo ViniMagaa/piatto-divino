@@ -1,20 +1,23 @@
 import { useContext } from "react";
-import RecipeContainer from "./RecipeContainer";
+import { useParams } from "react-router-dom";
+
 import RecipesContext from "../context/RecipesContext";
+import RecipeContainer from "./RecipeContainer";
 
 function MainRecipes() {
 	const { recipes } = useContext(RecipesContext);
+	const { id } = useParams();
 
-	function shuffleArray(array) {
-		const newArray = [...array]; // Create a copy
+	function shuffleArray(array, index) {
+		const newArray = array.filter((element) => element.id !== Number(index));
 		for (let i = 0; i < newArray.length - 1; i++) {
 			const j = Math.floor(Math.random() * (i + 1));
-			[newArray[i], newArray[j]] = [newArray[j], newArray[i]]; // Replace
+			[newArray[i], newArray[j]] = [newArray[j], newArray[i]];
 		}
 		return newArray;
 	}
 
-	const randomRecipes = shuffleArray(recipes);
+	const randomRecipes = shuffleArray(recipes, id);
 
 	return (
 		<section>

@@ -1,13 +1,13 @@
 import Button from "../Button";
 import InputLabel from "./InputLabel";
 
-function Form({ formQuestions, handleClick }) {
+function Form({ formQuestions, handleClick, submitText }) {
 	return (
-		<form>
+		<form onSubmit={(e) => e.preventDefault()}>
 			{formQuestions.map((question, index) => {
         return <InputLabel key={index} input={question} />
       })}
-			<Button type="submit" handleClick={handleClick}>Cadastrar</Button>
+			<Button type="submit" handleClick={handleClick}>{submitText}</Button>
 		</form>
 	);
 }
