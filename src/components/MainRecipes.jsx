@@ -1,12 +1,15 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import RecipesContext from "../context/RecipesContext";
 import RecipeContainer from "./RecipeContainer";
+import Button from "./layout/Button";
 
 function MainRecipes() {
 	const { recipes } = useContext(RecipesContext);
 	const { id } = useParams();
+
+	const navigate = useNavigate();
 
 	function shuffleArray(array, index) {
 		const newArray = array.filter((element) => element.id !== Number(index));
@@ -35,6 +38,9 @@ function MainRecipes() {
 						);
 					} else return undefined;
 				})}
+			</div>
+			<div className="buttons-container">
+				<Button handleClick={() => navigate("/receitas")}>Mais receitas</Button>
 			</div>
 		</section>
 	);

@@ -26,6 +26,10 @@ body {
   background-color: var(--off-white);
 }
 
+#root {
+  min-height: 100vh;
+}
+
 h1 {
   font-family: 'Italiana', 'Poppins', 'Segoe UI', sans-serif;
   font-size: 3.25rem;
@@ -114,10 +118,10 @@ main {
   flex-direction: column;
 }
 
-main>section {
+main section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .recipes-container {

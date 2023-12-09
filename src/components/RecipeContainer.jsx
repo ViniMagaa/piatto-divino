@@ -3,10 +3,6 @@ import Button from "./layout/Button";
 
 function RecipeContainer({ id, name, img }) {
 	const navigate = useNavigate();
-	const handleClick = () => {
-		navigate(`/receitas/${id}`);
-		window.location.reload();
-	};
 
 	return (
 		<div className="recipe-container">
@@ -15,7 +11,7 @@ function RecipeContainer({ id, name, img }) {
 			</div>
 			<div className="description">
 				<h3>{name}</h3>
-				<Button handleClick={handleClick}>Ver receita</Button>
+				<Button handleClick={() => navigate(`/receitas/${id}`)}>Ver receita</Button>
 			</div>
 		</div>
 	);
