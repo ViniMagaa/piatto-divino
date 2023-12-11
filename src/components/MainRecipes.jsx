@@ -11,8 +11,8 @@ function MainRecipes() {
 
 	const navigate = useNavigate();
 
-	function shuffleArray(array, index) {
-		const newArray = array.filter((element) => element.id !== Number(index));
+	function shuffleArray(array) {
+		const newArray = [...array];
 		for (let i = 0; i < newArray.length - 1; i++) {
 			const j = Math.floor(Math.random() * (i + 1));
 			[newArray[i], newArray[j]] = [newArray[j], newArray[i]];
@@ -20,25 +20,17 @@ function MainRecipes() {
 		return newArray;
 	}
 
-	const randomRecipes = shuffleArray(recipes, id);
+	const mainRecipes = shuffleArray(recipes)
+		.filter((element) => element.id !== Number(id))
+		.slice(0, 5);
 
 	return (
 		<section>
 			<h2>Principais receitas</h2>
 			<div className="recipes-container">
-				{randomRecipes.map((recipe, index) => {
-					if (index < 5) {
-						return (
-							<RecipeContainer
-								key={recipe.id}
-								id={recipe.id}
-								name={recipe.name}
-								author={recipe.author}
-								img={recipe.img}
-							/>
-						);
-					} else return undefined;
-				})}
+				{mainRecipes.map((recipe) => (
+					<RecipeContainer key={recipe.id} recipe={recipe} />
+				))}
 			</div>
 			<div className="buttons-container">
 				<Button handleClick={() => navigate("/receitas")}>Mais receitas</Button>

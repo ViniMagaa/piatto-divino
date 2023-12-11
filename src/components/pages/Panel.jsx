@@ -6,7 +6,7 @@ import Button from "../layout/Button";
 import ChefHub from "../ChefHub";
 
 function Panel() {
-	const { user, isConnected } = useContext(RecipesContext);
+	const { isConnected } = useContext(RecipesContext);
 	const navigate = useNavigate();
 
 	return (

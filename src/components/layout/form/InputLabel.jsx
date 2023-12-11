@@ -1,15 +1,17 @@
-function InputLabel({input}) {
-  return (
+function InputLabel({
+	input: { id, title, type, placeholder, autoComplete, handleChange, value},
+}) {
+	return (
 		<div>
-			<label htmlFor={input.id}>{input.title}</label>
+			<label htmlFor={id}>{title}</label>
 			<input
-				type={input.type}
-				name={input.id}
-				id={input.id}
-				value={input.value}
-				placeholder={input.placeholder}
-        onChange={(e) => input.handleChange(e.target.value)}
-        autoComplete={input.autoComplete}
+				type={type}
+				name={id}
+				id={id}
+				value={value}
+				placeholder={placeholder}
+        onChange={(e) => handleChange(e.target.value)}
+        autoComplete={autoComplete}
         required
 			/>
 		</div>

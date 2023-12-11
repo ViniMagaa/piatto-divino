@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
+import RecipesContext from "../context/RecipesContext";
 import Button from "./layout/Button";
 
-function RecipeContainer({ id, name, author, img }) {
+function RecipeContainer({ recipe: { id, name, author, img } }) {
+	const { user } = useContext(RecipesContext);
 	const navigate = useNavigate();
 
 	return (
@@ -12,9 +16,26 @@ function RecipeContainer({ id, name, author, img }) {
 			<div className="description">
 				<div>
 					<h3>{name}</h3>
-					<small>Por: <span className="bold-italic">{author.name}</span></small>
+					<small>
+						Por: <span className="bold-italic">{author.name}</span>
+					</small>
 				</div>
-				<Button handleClick={() => navigate(`/receitas/${id}`)}>Ver receita</Button>
+				<div className="buttons-container">
+					{user.id === author.id ? (
+						<>
+							<Button handleClick={() => navigate(`/receitas/${id}`)}>
+								Ver
+							</Button>
+							<Button handleClick={() => navigate(`/chef/editar/${id}`)}>
+								Editar
+							</Button>
+						</>
+					) : (
+						<Button handleClick={() => navigate(`/receitas/${id}`)}>
+							Ver receita
+						</Button>
+					)}
+				</div>
 			</div>
 		</div>
 	);

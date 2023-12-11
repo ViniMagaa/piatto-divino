@@ -15,13 +15,7 @@ function ChefHub() {
 				<h2>Suas receitas</h2>
 				<div className="recipes-container">
 					{userRecipes.map((recipe) => (
-						<RecipeContainer
-							key={recipe.id}
-							id={recipe.id}
-							name={recipe.name}
-							author={recipe.author}
-							img={recipe.img}
-						/>
+						<RecipeContainer key={recipe.id} recipe={recipe} />
 					))}
 				</div>
 			</section>

@@ -13,10 +13,7 @@ function Recipes() {
 					return (
 						<RecipeContainer
 							key={recipe.id}
-							id={recipe.id}
-							author={recipe.author}
-							name={recipe.name}
-							img={recipe.img}
+							recipe={recipe}
 						/>
 					);
 				})}
