@@ -19,6 +19,9 @@ function ViewRecipe({ recipe }) {
 							list={recipe.instructions}
 							type="number"
 						/>
+						<small>
+							Autor: <span className="bold-italic">{recipe.author.name}</span>
+						</small>
 					</div>
 				</>
 			)}

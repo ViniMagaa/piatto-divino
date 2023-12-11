@@ -18,7 +18,11 @@
 				"Em uma tigela, bata os ovos e adicione o queijo Pecorino Romano ralado. Misture bem.",
 				"Misture o espaguete escorrido na mistura de ovos e queijo, adicionando a pancetta ou guanciale frita. Mexa rapidamente para que os ovos cozinhem, mas sem formar grumos.",
 				"Tempere com pimenta preta moída na hora e sirva imediatamente."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 1,
@@ -43,7 +47,11 @@
 				"Repita as camadas e finalize com queijo parmesão ralado.",
 				"Asse no forno por 30-40 minutos, ou até que o queijo esteja derretido e dourado.",
 				"Decore com manjericão fresco antes de servir."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 2,
@@ -65,7 +73,11 @@
 				"Asse no forno por 12-15 minutos, ou até que a massa esteja dourada e o queijo derretido.",
 				"Retire do forno e coloque folhas de manjericão fresco por cima.",
 				"Regue com azeite de oliva extra virgem antes de servir."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 3,
@@ -91,7 +103,11 @@
 				"Adicione conchas do caldo de legumes gradualmente, mexendo constantemente até que o arroz esteja cozido.",
 				"Adicione os cogumelos Porcini hidratados e o líquido reservado. Cozinhe até que o arroz atinja uma consistência cremosa.",
 				"Misture o queijo parmesão ralado, tempere com sal e pimenta a gosto, e sirva imediatamente."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 4,
@@ -114,7 +130,11 @@
 				"Espalhe metade da mistura de mascarpone sobre os biscoitos.",
 				"Repita as camadas, finalizando com uma camada de mascarpone.",
 				"Polvilhe cacau em pó sobre a última camada e refrigere por pelo menos 4 horas antes de servir."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 5,
@@ -145,7 +165,11 @@
 				"Coloque os pedaços de ossobuco de volta na panela. Adicione tomate pelado, caldo de carne, folha de louro e raspas de limão.",
 				"Leve para ferver, reduza o fogo, tampe e cozinhe por 2 a 3 horas, até que a carne esteja macia e o molho esteja espesso.",
 				"Sirva o Osso Buco com salsa picada por cima."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 6,
@@ -166,7 +190,11 @@
 				"Cozinhe mexendo constantemente até o queijo derreter e o molho engrossar.",
 				"Adicione o fettuccine cozido ao molho e misture bem.",
 				"Tempere com pimenta-do-reino moída na hora e sirva imediatamente."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 7,
@@ -194,7 +222,11 @@
 				"Adicione os tomates pelados, caldo de legumes, macarrão, repolho, sal e pimenta.",
 				"Deixe ferver e reduza o fogo. Cozinhe até os legumes e macarrão ficarem macios.",
 				"Sirva o Minestrone decorado com folhas de manjericão fresco."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 8,
@@ -215,7 +247,11 @@
 				"Coloque os gnocchi sobre o molho, cubra com mais molho e queijo mozzarella.",
 				"Asse no forno a 200°C até que o queijo derreta e fique dourado.",
 				"Retire do forno, regue com azeite de oliva, tempere com sal, pimenta e decore com folhas de manjericão."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		},
 		{
 			"id": 9,
@@ -243,13 +279,17 @@
 				"Adicione a berinjela, pimentão, aipo, tomate cereja, azeitonas e alcaparras. Cozinhe até os vegetais ficarem macios.",
 				"Em uma tigela pequena, misture o vinagre de vinho tinto e o açúcar. Adicione à panela e cozinhe por mais alguns minutos.",
 				"Deixe esfriar, decore com folhas de manjericão fresco e sirva a Caponata como entrada ou acompanhamento."
-			]
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		}
 	],
 	"users": [
 		{
 			"id": 0,
-			"name": "Admin",
+			"name": "Piatto Divino Team",
 			"email": "admin@gmail.com",
 			"password": "admin"
 		}

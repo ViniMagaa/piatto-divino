@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./layout/Button";
 
-function RecipeContainer({ id, name, img }) {
+function RecipeContainer({ id, name, author, img }) {
 	const navigate = useNavigate();
 
 	return (
@@ -10,7 +10,10 @@ function RecipeContainer({ id, name, img }) {
 				<img src={img} alt={name} />
 			</div>
 			<div className="description">
-				<h3>{name}</h3>
+				<div>
+					<h3>{name}</h3>
+					<small>Por: <span className="bold-italic">{author.name}</span></small>
+				</div>
 				<Button handleClick={() => navigate(`/receitas/${id}`)}>Ver receita</Button>
 			</div>
 		</div>

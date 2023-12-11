@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import RecipesContext from "../../context/RecipesContext";
 import Button from "../layout/Button";
+import ChefHub from "../ChefHub";
 
-function ChefHub() {
+function Panel() {
 	const { user, isConnected } = useContext(RecipesContext);
 	const navigate = useNavigate();
 
@@ -23,12 +24,10 @@ function ChefHub() {
 					</div>
 				</>
 			) : (
-				<>
-					<h1>Olá, chef {user.name}!</h1>
-				</>
+				<ChefHub />
 			)}
 		</section>
 	);
 }
 
-export default ChefHub;
+export default Panel;

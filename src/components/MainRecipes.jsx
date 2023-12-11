@@ -33,6 +33,7 @@ function MainRecipes() {
 								key={recipe.id}
 								id={recipe.id}
 								name={recipe.name}
+								author={recipe.author}
 								img={recipe.img}
 							/>
 						);
