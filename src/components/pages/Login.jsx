@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import RecipesContext from "../../context/RecipesContext";
@@ -9,8 +9,8 @@ function Login() {
 	const { setUser, isConnected, setIsConnected, flagMessage, setFlagMessage } =
 		useContext(RecipesContext);
 	const [users, setUsers] = useState([]);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const emailRef = useRef();
+	const passwordRef = useRef();
 
 	const navigate = useNavigate();
 
@@ -21,8 +21,7 @@ function Login() {
 			type: "email",
 			autoComplete: "email",
 			placeholder: "Ex: user@exemplo.com",
-			value: email,
-			handleChange: setEmail,
+			ref: emailRef,
 		},
 		{
 			id: "password",
@@ -30,8 +29,7 @@ function Login() {
 			type: "password",
 			autoComplete: "off",
 			placeholder: "Sua senha",
-			value: password,
-			handleChange: setPassword,
+			ref: passwordRef,
 		},
 	];
 
@@ -50,7 +48,10 @@ function Login() {
 	}, [setUsers]);
 
 	const submitLogin = () => {
-		if(flagMessage.isVisible) return;
+		const email = emailRef.current.value;
+		const password = passwordRef.current.value;
+
+		if (flagMessage.isVisible) return;
 		if (email !== "" && password !== "") {
 			const userIndex = users.findIndex((user) => user.email === email);
 			if (userIndex !== -1) {
@@ -71,14 +72,12 @@ function Login() {
 						"Você digitou os dados corretos? Deseja fazer o cadastro?",
 				});
 			}
-
-			setTimeout(() => {
-				setFlagMessage({
-					isVisible: false,
-					message: "",
-					subMessage: "",
-				});
-			}, 4500);
+		} else {
+			setFlagMessage({
+				isVisible: true,
+				message: "Preencha todos os dados!",
+				subMessage: "Ainda existem informações faltando.",
+			});
 		}
 	};
 
@@ -95,7 +94,7 @@ function Login() {
 		setTimeout(() => {
 			navigate("/chef");
 		}, 2000);
-	}
+	};
 
 	return (
 		<section>
@@ -105,7 +104,10 @@ function Login() {
 					<p>
 						Agradecemos por voltar para nos auxiliar na construção de um refúgio
 						culinário que reúne a autenticidade da cozinha italiana em um só
-						lugar. <span className="bold-italic">Entre em sua conta para prosseguir!</span>
+						lugar.{" "}
+						<span className="bold-italic">
+							Entre em sua conta para prosseguir!
+						</span>
 					</p>
 					<div className="form-container">
 						<h2>Entrar</h2>

@@ -284,6 +284,41 @@
 				"id": 0,
 				"name": "Piatto Divino Team"
 			}
+		},
+		{
+			"id": 10,
+			"name": "Gato & Fritas",
+			"img": "https://placekitten.com/900",
+			"description": "Gato frito delicioso com batatas fritas",
+			"ingredients": ["gato", "azeite", "oleo", "batatas fritas"],
+			"instructions": [
+				"coloque o gato na panela",
+				"gratine com azeite e oleo",
+				"tempere como quiser",
+				"depois de 17 min estara pronto",
+				"enquanto não fica pronto prepare a batata frita"
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
+		},
+		{
+			"id": 11,
+			"name": "Gato Updated",
+			"img": "https://placekitten.com/800",
+			"description": "Gato cozido update do gato frito",
+			"ingredients": ["gato", "ovo", "batata", "arroz"],
+			"instructions": [
+				"faça o arroz",
+				"faça o ovo cozido junto com o gato (na mesma panela)",
+				"e cozinhe a batata com o arroz no final",
+				"por fim é só aproveitar"
+			],
+			"author": {
+				"id": 0,
+				"name": "Piatto Divino Team"
+			}
 		}
 	],
 	"users": [

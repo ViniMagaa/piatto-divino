@@ -19,7 +19,7 @@ function ViewRecipe({ recipeId }) {
 		return;
 	}
 
-	const { name, img, description, ingredients, instructions } = recipe;
+	const { name, img, description, ingredients, instructions, author } = recipe;
 
 	return (
 		<div className="view-recipe">
@@ -33,6 +33,9 @@ function ViewRecipe({ recipeId }) {
 				</div>
 				<List title="Ingredientes" list={ingredients} type="disc" />
 				<List title="Modo de preparo" list={instructions} type="number" />
+				<small>
+					Por: <span className="bold-italic">{author.name}</span>
+				</small>
 			</div>
 		</div>
 	);

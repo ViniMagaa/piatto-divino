@@ -1,5 +1,5 @@
 function InputLabel({
-	input: { id, title, type, placeholder, autoComplete, handleChange, value},
+	input: { id, title, type, autoComplete, placeholder, ref },
 }) {
 	return (
 		<div>
@@ -8,11 +8,10 @@ function InputLabel({
 				type={type}
 				name={id}
 				id={id}
-				value={value}
+				autoComplete={autoComplete}
 				placeholder={placeholder}
-        onChange={(e) => handleChange(e.target.value)}
-        autoComplete={autoComplete}
-        required
+				ref={ref}
+				required
 			/>
 		</div>
 	);

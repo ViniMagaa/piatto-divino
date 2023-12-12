@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import RecipesContext from "../../context/RecipesContext";
@@ -8,10 +8,10 @@ import Form from "../layout/form/Form";
 function Register() {
 	const { isConnected } = useContext(RecipesContext);
 
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+	const nameRef = useRef();
+	const emailRef = useRef();
+	const passwordRef = useRef();
+	const confirmPasswordRef = useRef();
 
 	const registerForm = [
 		{
@@ -20,8 +20,7 @@ function Register() {
 			type: "text",
 			autoComplete: "name",
 			placeholder: "Seu nome",
-			value: name,
-			handleChange: setName,
+			ref: nameRef,
 		},
 		{
 			id: "email",
@@ -29,8 +28,7 @@ function Register() {
 			type: "email",
 			autoComplete: "email",
 			placeholder: "Ex: user@exemplo.com",
-			value: email,
-			handleChange: setEmail,
+			value: emailRef,
 		},
 		{
 			id: "password",
@@ -38,8 +36,7 @@ function Register() {
 			type: "password",
 			autoComplete: "off",
 			placeholder: "Sua senha",
-			value: password,
-			handleChange: setPassword,
+			value: passwordRef,
 		},
 		{
 			id: "confirm-password",
@@ -47,8 +44,7 @@ function Register() {
 			type: "password",
 			autoComplete: "off",
 			placeholder: "Repita a senha",
-			value: confirmPassword,
-			handleChange: setConfirmPassword,
+			value: confirmPasswordRef,
 		},
 	];
 	return (
@@ -58,7 +54,11 @@ function Register() {
 					<h1>Seja bem-vindo!</h1>
 					<p>
 						Sua expertise é fundamental para tornar a experiência gastronômica
-						em nosso site ainda mais especial. <span className="bold-italic">Registre-se e compartilhe sua paixão pela culinária conosco</span>. Estamos ansiosos para receber suas deliciosas contribuições!
+						em nosso site ainda mais especial.{" "}
+						<span className="bold-italic">
+							Registre-se e compartilhe sua paixão pela culinária conosco
+						</span>
+						. Estamos ansiosos para receber suas deliciosas contribuições!
 					</p>
 					<div className="form-container">
 						<h2>Cadastre-se</h2>
