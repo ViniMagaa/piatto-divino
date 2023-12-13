@@ -25,6 +25,59 @@ function RecipesContextProvider({ children }) {
 			.catch((err) => console.log(err));
 	}, [setRecipes]);
 
+	const createRecipe = async (newRecipe) => {
+		setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+
+		try {
+			await fetch("http://localhost:5000/recipes", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newRecipe),
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const editRecipe = async (id, editedRecipe) => {
+		setRecipes((prevRecipes) =>
+			prevRecipes.map((prevRecipe) =>
+				prevRecipe.id === id ? editedRecipe : prevRecipe
+			)
+		);
+
+		try {
+			await fetch(`http://localhost:5000/recipes/${id}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(editedRecipe),
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const deleteRecipe = async (id) => {
+		setRecipes((prevRecipes) =>
+			prevRecipes.filter((prevRecipe) => prevRecipe.id !== id)
+		);
+
+		try {
+			await fetch(`http://localhost:5000/recipes/${id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const data = {
 		user,
 		setUser,
@@ -34,6 +87,9 @@ function RecipesContextProvider({ children }) {
 		setIsConnected,
 		flagMessage,
 		setFlagMessage,
+		createRecipe,
+		editRecipe,
+		deleteRecipe,
 	};
 
 	return (

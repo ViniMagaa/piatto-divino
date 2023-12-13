@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import About from "../components/pages/About";
 import CreateRecipe from "../components/pages/CreateRecipe";
+import EditRecipe from "../components/pages/EditRecipe";
 import Home from "../components/pages/Home";
 import Login from "../components/pages/Login";
 import Panel from "../components/pages/Panel";
@@ -20,6 +21,7 @@ function AppRoutes() {
 			<Route path="/chef/cadastrar" element={<Register />} />
 			<Route path="/chef/entrar" element={<Login />} />
 			<Route path="/chef/editar" element={<Panel />} />
+			<Route path="/chef/editar/:id" element={<EditRecipe />} />
 			<Route path="/chef/criar" element={<CreateRecipe />} />
 		</Routes>
 	);

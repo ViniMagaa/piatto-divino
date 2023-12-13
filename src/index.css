@@ -40,7 +40,10 @@ h2 {
 }
 
 button {
-  padding: 0.4rem 0.8rem;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--black);
   outline: none;
   border: none;

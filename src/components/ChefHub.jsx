@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import RecipesContext from "../context/RecipesContext";
@@ -7,12 +7,15 @@ import Button from "./layout/Button";
 
 function ChefHub() {
 	const { user, recipes } = useContext(RecipesContext);
-	
-	const userRecipes = recipes.filter((recipe) => {
-		return recipe.author && recipe.author.id === user.id;
-	});
-
+	const [userRecipes, setUserRecipes] = useState([]);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const updatedUserRecipes = recipes.filter(
+			(recipe) => recipe.author && recipe.author.id === user.id
+		);
+		setUserRecipes(updatedUserRecipes);
+	}, [recipes, user.id]);
 
 	return (
 		<>
@@ -23,9 +26,10 @@ function ChefHub() {
 			<section>
 				<h2>Suas receitas</h2>
 				<div className="recipes-container">
-					{userRecipes.map((recipe) => (
-						<RecipeContainer key={recipe.id} recipe={recipe} />
-					))}
+					{userRecipes &&
+						userRecipes.map((recipe) => (
+							<RecipeContainer key={recipe.id} recipe={recipe} />
+						))}
 				</div>
 			</section>
 		</>

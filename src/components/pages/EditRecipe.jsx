@@ -1,19 +1,29 @@
-import { useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import RecipesContext from "../../context/RecipesContext";
+import Button from "../layout/Button";
 import Form from "../layout/form/Form";
 
-function CreateRecipe() {
-	const { user, recipes, createRecipe, setFlagMessage } = useContext(RecipesContext);
+function EditRecipe() {
+	const { user, recipes, editRecipe, setFlagMessage } = useContext(RecipesContext);
 
+	const { id } = useParams();
 	const navigate = useNavigate();
 
-	const nameRef = useRef();
+  const nameRef = useRef();
 	const imgRef = useRef();
 	const descriptionRef = useRef();
 	const ingredientsRef = useRef();
 	const instructionsRef = useRef();
+
+  useEffect(() => {
+    nameRef.current.value = recipes[id].name;
+    imgRef.current.value = recipes[id].img;
+    descriptionRef.current.value = recipes[id].description;
+    ingredientsRef.current.value = recipes[id].ingredients;
+    instructionsRef.current.value = recipes[id].instructions;
+  }, [recipes, id])
 
 	const formQuestions = [
 		{
@@ -42,7 +52,7 @@ function CreateRecipe() {
 		},
 		{
 			id: "ingredients",
-			title: "Ingredientes (separe por \",\")",
+			title: 'Ingredientes (separe por ",")',
 			type: "text",
 			autoComplete: "off",
 			placeholder: "Separe-os por vírgulas",
@@ -50,7 +60,7 @@ function CreateRecipe() {
 		},
 		{
 			id: "instructions",
-			title: "Instruções (separe por \",\")",
+			title: 'Instruções (separe por ",")',
 			type: "text",
 			autoComplete: "off",
 			placeholder: "Separe-as por vírgulas",
@@ -58,8 +68,8 @@ function CreateRecipe() {
 		},
 	];
 
-	const submitForm = async () => {
-		const hasEmptyValues = formQuestions.some(
+  const submitForm = async () => {
+    const hasEmptyValues = formQuestions.some(
 			(question) => question.ref.current.value === ""
 		);
 
@@ -70,8 +80,8 @@ function CreateRecipe() {
 				subMessage: "Ainda existem informações faltando.",
 			});
 		} else {
-			const newRecipe = {
-				id: recipes.length,
+			const editedRecipe = {
+				id: id,
 				name: nameRef.current.value,
 				img: imgRef.current.value,
 				description: descriptionRef.current.value,
@@ -84,33 +94,42 @@ function CreateRecipe() {
 			};
 
 			try {
-				await createRecipe(newRecipe);
+				await editRecipe(Number(id), editedRecipe);
 			} catch (error) {
 				console.log(error);
 			}
 
 			setFlagMessage({
 				isVisible: true,
-				message: "Receita publicada!",
-				subMessage: "Agradecemos a sua contribuição. 😉",
+				message: "Receita editada!",
+				subMessage: "Agora todos tem a versão atualizada. 😉",
 			});
 
 			navigate("/chef");
 		}
-	};
+  }
 
 	return (
 		<section>
-			<h1>Publique sua receita</h1>
-			<div className="form-container">
-				<Form
-					formQuestions={formQuestions}
-					handleClick={submitForm}
-					submitText="Publicar"
-				/>
-			</div>
+			{recipes && recipes[id].author.id === user.id ? (
+				<>
+					<h1>Edite sua receita</h1>
+					<div className="form-container">
+            <Form
+              formQuestions={formQuestions}
+              handleClick={submitForm}
+              submitText="Editar"
+            />
+          </div>
+				</>
+			) : (
+				<>
+					<h1>Essa receita não pode ser editada!</h1>
+					<Button handleClick={() => navigate("/chef")}>Voltar</Button>
+				</>
+			)}
 		</section>
 	);
 }
 
-export default CreateRecipe;
+export default EditRecipe;
