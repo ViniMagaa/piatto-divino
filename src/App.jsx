@@ -6,12 +6,12 @@ import RecipesContextProvider from "./context/RecipesContextProvider";
 
 function App() {
 	return (
-		<RecipesContextProvider>
-			<BrowserRouter>
+		<BrowserRouter>
+			<RecipesContextProvider>
 				<Header />
 				<Main />
-			</BrowserRouter>
-		</RecipesContextProvider>
+			</RecipesContextProvider>
+		</BrowserRouter>
 	);
 }
 

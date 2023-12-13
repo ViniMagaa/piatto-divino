@@ -1,18 +1,15 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import RecipesContext from "../../context/RecipesContext";
 import Form from "../layout/form/Form";
 import SeePanel from "../SeePanel";
 
 function Login() {
-	const { setUser, isConnected, setIsConnected, flagMessage, setFlagMessage } =
+	const { isConnected, users, login, flagMessage, setFlagMessage } =
 		useContext(RecipesContext);
-	const [users, setUsers] = useState([]);
 	const emailRef = useRef();
 	const passwordRef = useRef();
-
-	const navigate = useNavigate();
 
 	const loginForm = [
 		{
@@ -33,67 +30,42 @@ function Login() {
 		},
 	];
 
-	useEffect(() => {
-		fetch("http://localhost:5000/users", {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((resp) => resp.json())
-			.then((data) => {
-				setUsers(data);
-			})
-			.catch((err) => console.log(err));
-	}, [setUsers]);
-
 	const submitLogin = () => {
+		if (flagMessage.isVisible) return;
+
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 
-		if (flagMessage.isVisible) return;
-		if (email !== "" && password !== "") {
-			const userIndex = users.findIndex((user) => user.email === email);
-			if (userIndex !== -1) {
-				if (users[userIndex].password !== password) {
-					setFlagMessage({
-						isVisible: true,
-						message: "Senha inválida!",
-						subMessage: "Tente novamente, coloque a senha correta.",
-					});
-				} else {
-					login(userIndex);
-				}
-			} else {
-				setFlagMessage({
-					isVisible: true,
-					message: "Conta não encontrada!",
-					subMessage:
-						"Você digitou os dados corretos? Deseja fazer o cadastro?",
-				});
-			}
-		} else {
+		if (email === "" && password === "") {
 			setFlagMessage({
 				isVisible: true,
 				message: "Preencha todos os dados!",
 				subMessage: "Ainda existem informações faltando.",
 			});
+			return;
 		}
-	};
 
-	const login = (userIndex) => {
-		setUser(users[userIndex]);
-		setIsConnected(true);
+		const userIndex = users.findIndex((user) => user.email === email);
+		
+		if (userIndex === -1) {
+			setFlagMessage({
+				isVisible: true,
+				message: "Conta não encontrada!",
+				subMessage: "Você digitou os dados corretos? Deseja fazer o cadastro?",
+			});
+			return;
+		}
 
-		setFlagMessage({
-			isVisible: true,
-			message: "Você se conectou!",
-			subMessage: "Redirecionando...",
-		});
+		if (users[userIndex].password !== password) {
+			setFlagMessage({
+				isVisible: true,
+				message: "Senha inválida!",
+				subMessage: "Tente novamente, coloque a senha correta.",
+			});
+			return;
+		} 
 
-		setTimeout(() => {
-			navigate("/chef");
-		}, 2000);
+		login(users[userIndex]);
 	};
 
 	return (

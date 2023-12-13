@@ -10,9 +10,9 @@ function Panel() {
 	const navigate = useNavigate();
 
 	return (
-		<section>
+		<>
 			{!isConnected ? (
-				<>
+				<section>
 					<h1>Contribua com receitas!</h1>
 					<p>
 						Você é um chef experiente e está disposto a <span className="bold-italic">contribuir com suas incríveis receitas</span> para enriquecer nosso banco de dados? Faça agora mesmo o seu
@@ -22,11 +22,11 @@ function Panel() {
 						<Button handleClick={() => navigate("/chef/cadastrar")}>Cadastrar</Button>
 						<Button handleClick={() => navigate("/chef/entrar")}>Entrar</Button>
 					</div>
-				</>
+				</section>
 			) : (
 				<ChefHub />
 			)}
-		</section>
+		</>
 	);
 }
 

@@ -7,31 +7,38 @@ import Button from "./layout/Button";
 
 function ChefHub() {
 	const { user, recipes } = useContext(RecipesContext);
+	
 	const [userRecipes, setUserRecipes] = useState([]);
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		if (!user) return;
 		const updatedUserRecipes = recipes.filter(
 			(recipe) => recipe.author && recipe.author.id === user.id
 		);
 		setUserRecipes(updatedUserRecipes);
-	}, [recipes, user.id]);
+	}, [recipes, user]);
 
 	return (
 		<>
-			<h1>Olá, chef {user.name}!</h1>
-			<Button handleClick={() => navigate("/chef/criar")}>
-				Publicar uma receita
-			</Button>
-			<section>
-				<h2>Suas receitas</h2>
-				<div className="recipes-container">
-					{userRecipes &&
-						userRecipes.map((recipe) => (
-							<RecipeContainer key={recipe.id} recipe={recipe} />
-						))}
-				</div>
-			</section>
+			{user && (
+				<section>
+					<h1>Olá, chef {user.name}!</h1>
+					<Button handleClick={() => navigate("/chef/criar")}>
+						Publicar uma receita
+					</Button>
+					<h2>Suas receitas</h2>
+					{userRecipes.length > 0 ? (
+						<div className="recipes-container">
+							{userRecipes.map((recipe) => (
+								<RecipeContainer key={recipe.id} recipe={recipe} />
+							))}
+						</div>
+					) : (
+						<p>Você não possui receitas. Comece publicando uma!</p>
+					)}
+				</section>
+			)}
 		</>
 	);
 }

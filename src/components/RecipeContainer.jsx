@@ -35,7 +35,7 @@ function RecipeContainer({ recipe: { id, name, author, img } }) {
 					</small>
 				</div>
 				<div className="buttons-container">
-					{user.id === author.id ? (
+					{user && user.id === author.id ? (
 						<>
 							<Button handleClick={() => navigate(`/receitas/${id}`)}>
 								<FaEye />
