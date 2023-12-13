@@ -1,17 +1,20 @@
-import React from "react";
+import { useState } from "react";
+import { BiMenuAltRight, BiX } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 
 function Header() {
+	const [isMenuActive, setIsMenuActive] = useState(false);
+
 	return (
 		<header>
 			<nav>
 				<img className="logo" src={logo} alt="Logo Piatto Divino" />
-				<ul>
+				<ul className={isMenuActive ? "active" : ""}>
 					<li>
 						<NavLink to="/" activeclassname="active">
-							Home
+							Início
 						</NavLink>
 					</li>
 					<li>
@@ -30,6 +33,12 @@ function Header() {
 						</NavLink>
 					</li>
 				</ul>
+				<span
+					className="hamburger"
+					onClick={() => setIsMenuActive(!isMenuActive)}
+				>
+					{!isMenuActive ? <BiMenuAltRight /> : <BiX />}
+				</span>
 			</nav>
 		</header>
 	);

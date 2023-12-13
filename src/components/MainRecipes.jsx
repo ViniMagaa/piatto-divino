@@ -22,7 +22,7 @@ function MainRecipes() {
 
 	const mainRecipes = shuffleArray(recipes)
 		.filter((element) => element.id !== Number(id))
-		.slice(0, 5);
+		.slice(0, 4);
 
 	return (
 		<section>
