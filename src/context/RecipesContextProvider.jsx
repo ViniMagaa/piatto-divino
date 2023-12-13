@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import RecipesContext from "./RecipesContext";
 
+const BASE_API_URL = "https://api-piatto-divino.vercel.app";
+
 function RecipesContextProvider({ children }) {
 	const [user, setUser] = useState({});
 	const [users, setUsers] = useState([]);
@@ -17,7 +19,7 @@ function RecipesContextProvider({ children }) {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch("http://localhost:5000/recipes", {
+		fetch(`${BASE_API_URL}/recipes`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -29,7 +31,7 @@ function RecipesContextProvider({ children }) {
 			})
 			.catch((err) => console.log(err));
 
-		fetch("http://localhost:5000/users", {
+		fetch(`${BASE_API_URL}/users`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -46,7 +48,7 @@ function RecipesContextProvider({ children }) {
 		setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
 
 		try {
-			await fetch("http://localhost:5000/recipes", {
+			await fetch(`${BASE_API_URL}/recipes`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -66,7 +68,7 @@ function RecipesContextProvider({ children }) {
 		);
 
 		try {
-			await fetch(`http://localhost:5000/recipes/${id}`, {
+			await fetch(`${BASE_API_URL}/recipes${id}`, {
 				method: "PATCH",
 				headers: {
 					"Content-Type": "application/json",
@@ -84,7 +86,7 @@ function RecipesContextProvider({ children }) {
 		);
 
 		try {
-			await fetch(`http://localhost:5000/recipes/${id}`, {
+			await fetch(`${BASE_API_URL}/recipes${id}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
@@ -99,7 +101,7 @@ function RecipesContextProvider({ children }) {
 		setUsers((prevUsers) => [...prevUsers, newUser]);
 
 		try {
-			await fetch("http://localhost:5000/users", {
+			await fetch(`${BASE_API_URL}/users`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
