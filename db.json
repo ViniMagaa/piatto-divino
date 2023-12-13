@@ -329,6 +329,27 @@
         "id": "0",
         "name": "Piatto Divino Team"
       }
+    },
+    {
+      "id": 12,
+      "name": "Chuchu ao molho branco",
+      "img": "https://img-global.cpcdn.com/recipes/e87fdfac424aff3c/1200x630cq70/photo.jpg",
+      "description": "É a verdura \"chuchu\" ao molho bechamel com queijos",
+      "ingredients": [
+        "Chuchu",
+        "Molho Branco",
+        "Queijos"
+      ],
+      "instructions": [
+        "Misture o chuchu no molho branco",
+        "Coloque os queijos",
+        " Coloque no forno à 180º até dourar",
+        "Retire após 15 minutos"
+      ],
+      "author": {
+        "id": "32966f1f-a559-4e81-839f-7dedceaf3589",
+        "name": "Vinícius Magalhães"
+      }
     }
   ],
   "users": [
@@ -343,6 +364,12 @@
       "name": "Vinícius Magalhães",
       "email": "vinisantos2008vs@gmail.com",
       "password": "2303"
+    },
+    {
+      "id": "0e685185-6704-411f-8d8c-e14df7cba19f",
+      "name": "Victoria Casarin",
+      "email": "vicasarin06@gmail.com",
+      "password": "bistequinha"
     }
   ]
 }

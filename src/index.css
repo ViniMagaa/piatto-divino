@@ -11,7 +11,7 @@
   --raw-umber: #9e643cff;
   --jungle-green: #419d78ff;
   --text-color: var(--black);
-  --box-shadow: 0 0 1rem #0e111633;
+  --box-shadow: 0 0 1rem #0e111655;
 }
 
 * {
@@ -32,7 +32,7 @@ body {
 
 h1 {
   font-family: 'Italiana', 'Poppins', 'Segoe UI', sans-serif;
-  font-size: 3.25rem;
+  font-size: 3.5rem;
 }
 
 h2 {
@@ -60,27 +60,23 @@ button:hover {
   letter-spacing: 3px;
 }
 
-span.special-text {
-  font-family: 'Italiana';
-}
-
 span.bold-italic {
   font-weight: bold;
   font-style: italic;
 }
 
 header {
-  position: relative;
   padding: 1rem;
   background-color: var(--light-gray);
   display: flex;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column-reverse;
   border-bottom: 1px solid var(--gray);
 }
 
 header nav {
-  width: 500px;
+  max-width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,7 +84,7 @@ header nav {
   gap: 1rem;
 }
 
-header nav .logo {
+header .logo {
   width: 200px;
 }
 
@@ -110,12 +106,53 @@ header nav ul li a {
 }
 
 header nav ul li a.active,
-header nav ul li a:hover {
+header nav c {
   color: var(--raw-umber);
 }
 
 header nav .hamburger {
   display: none;
+}
+
+header .user-menu {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+header .user-menu svg {
+  cursor: pointer;
+  scale: 2;
+}
+
+header .user-menu ul {
+  padding: 1rem;
+  background-color: var(--black);
+  color: var(--white);
+  list-style-type: none;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2rem;
+  box-shadow: var(--box-shadow);
+  transition: opacity 0.5s;
+}
+
+header .user-menu ul.active {
+  display: flex;
+}
+
+header .user-menu ul a {
+  color: var(--white);
+}
+
+header .user-menu ul li a:hover {
+  color: var(--naples-yellow);
 }
 
 main {
@@ -321,39 +358,50 @@ div.flag-message::after {
 }
 
 @media (max-width: 500px) {
-  header nav {
+  h1 {
+    font-size: 2.8rem;
+  }
+
+  header {
     flex-direction: row;
   }
 
-  header nav .logo {
+  header .logo {
     width: 150px;
   }
-  
+
   header nav ul {
-    transition: left 0.5s;
+    transition: right 0.5s;
     position: fixed;
     top: 0;
-    left: 150%;
-  }
-  
-  header nav ul {
-    padding: 5rem 1.5rem;
+    right: 150%;
+    padding: 6rem 1.5rem;
     height: 100vh;
     background-color: var(--light-gray);
     flex-direction: column;
     justify-content: flex-start;
-    align-items: baseline;
-    box-shadow: 0 0 5rem var(--black);
+    align-items: end;
+    font-size: 1.3rem;
+    box-shadow: 0 0 5em #0e111677;
   }
 
   header nav ul.active {
-    left: 30%;
+    right: 25%;
   }
 
   header nav .hamburger {
+    scale: 2.5;
     z-index: 999;
     display: block;
-    scale: 3;
     cursor: pointer;
+  }
+
+  header .user-menu {
+    position: static;
+  }
+
+  header .user-menu ul {
+    position: absolute;
+    top: 5.5rem;
   }
 }

@@ -40,8 +40,9 @@ function About() {
 			</p>
 			<h3>
 				Bem-vindo ao <span className="bold-italic">Piatto Divino</span>, onde
-				cada prato conta uma história de sabor e tradição. <span className="special-text">Buon appetito!</span>
+				cada prato conta uma história de sabor e tradição.
 			</h3>
+			<h1>Buon appetito!</h1>
 			<div className="buttons-container">
 				<Button handleClick={() => navigate("/receitas")}>Ver receitas</Button>
 				<Button handleClick={() => navigate("/chef")}>Quero contribuir</Button>

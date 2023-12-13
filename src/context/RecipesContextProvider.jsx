@@ -134,6 +134,12 @@ function RecipesContextProvider({ children }) {
 		setIsConnected(true);
 	};
 
+	const disconnectUser = () => {
+		localStorage.removeItem("u");
+		navigate("/");
+		window.location.reload();
+	}
+
 	useEffect(() => {
 		const storedUserLogin = localStorage.getItem("u");
 		if (storedUserLogin) {
@@ -157,6 +163,7 @@ function RecipesContextProvider({ children }) {
 		deleteRecipe,
 		register,
 		login,
+		disconnectUser,
 	};
 
 	return (
