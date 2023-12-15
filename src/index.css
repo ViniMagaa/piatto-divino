@@ -157,8 +157,9 @@ header .user-menu ul li a:hover {
 
 main {
   max-width: 1200px;
+  min-height: 50vh;
   margin: auto;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 3rem;
   display: flex;
   flex-direction: column;
 }
@@ -317,6 +318,64 @@ div.flag-message::before {
   animation: fill-right 4s linear;
 }
 
+footer {
+  background-color: var(--light-gray);
+  border-top: 1px solid var(--gray);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer section {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+footer section .logo {
+  width: 100%;
+}
+
+footer section .logo img {
+  width: 250px;
+}
+
+footer section .about-creator {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: justify;
+}
+
+.about-creator .social-links a {
+  color: var(--black);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.3rem;
+}
+
+.social-links a {
+  scale: 1.5;
+  color: var(--raw-umber);
+  transition: scale 0.2s;
+  display: flex;
+}
+
+.social-links a:hover {
+  scale: 1.7;
+}
+
+footer section.bottom-footer {
+  width: 100%;
+  border-top: 1px solid var(--gray);
+}
+
 @keyframes appear-from-right {
   0% {
     transform: translateX(100vw);
@@ -354,6 +413,19 @@ div.flag-message::before {
 
   form div {
     width: 100%;
+  }
+
+  footer section {
+    flex-direction: column-reverse;
+  }
+
+  footer section .logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  footer section .logo img {
+    width: 150px;
   }
 }
 
