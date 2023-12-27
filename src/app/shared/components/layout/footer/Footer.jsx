@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 
 import logo from "../../../assets/img/logo.png";
+import { SocialLink } from "./SocialLink";
 
 export const Footer = () => {
 	return (
@@ -28,24 +29,9 @@ export const Footer = () => {
 						</p>
 					</div>
 					<div className="social-links">
-						<a
-							href="https://github.com/vinimagaa"
-							target="_blank"
-							rel="noreferrer"
-						>
-							<FaGithub />
-						</a>
-						<a href="https://linkedin.com/" target="_blank" rel="noreferrer">
-							<FaLinkedinIn />
-						</a>
-
-						<a
-							href="https://twitter.com/vini_magaa"
-							target="_blank"
-							rel="noreferrer"
-						>
-							<FaTwitter />
-						</a>
+						<SocialLink linkTo="https://github.com/vinimagaa" placeHolder={<FaGithub />} />
+						<SocialLink linkTo="https://linkedin.com/" placeHolder={<FaLinkedinIn />} />
+						<SocialLink linkTo="https://twitter.com/vini_magaa" placeHolder={<FaTwitter />} />
 					</div>
 				</div>
 			</section>
@@ -55,21 +41,11 @@ export const Footer = () => {
 					os direitos reservados
 				</div>
 				<div className="social-links">
-					<a href="https://twitter.com/" target="_blank" rel="noreferrer">
-						<FaTwitter />
-					</a>
-					<a href="https://facebook.com/" target="_blank" rel="noreferrer">
-						<FaFacebookF />
-					</a>
-					<a href="https://instagram.com/" target="_blank" rel="noreferrer">
-						<FaInstagram />
-					</a>
-					<a href="https://linkedin.com/" target="_blank" rel="noreferrer">
-						<FaLinkedinIn />
-					</a>
-					<a href="https://github.com/" target="_blank" rel="noreferrer">
-						<FaGithub />
-					</a>
+					<SocialLink linkTo="https://twitter.com/" placeHolder={<FaTwitter />} />
+					<SocialLink linkTo="https://facebook.com/" placeHolder={<FaFacebookF />} />
+					<SocialLink linkTo="https://instagram.com/" placeHolder={<FaInstagram />} />
+					<SocialLink linkTo="https://linkedin.com/" placeHolder={<FaLinkedinIn />} />
+					<SocialLink linkTo="https://github.com/" placeHolder={<FaGithub />} />
 				</div>
 			</section>
 		</footer>
