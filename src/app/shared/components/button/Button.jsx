@@ -1,3 +1,5 @@
+import "./Button.css";
+
 export const Button = ({
 	children,
 	type = "button",

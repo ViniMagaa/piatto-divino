@@ -1,7 +1,9 @@
-import { NavBar } from "./NavBar";
-import { UserMenu } from "./UserMenu";
+import { NavBar } from "./navBar/NavBar";
+import { UserMenu } from "./userMenu/UserMenu";
 
 import logo from "../../../assets/img/logo.png";
+
+import "./Header.css";
 
 export const Header = () => {
 	return (

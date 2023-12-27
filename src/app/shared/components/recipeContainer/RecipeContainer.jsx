@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { FaEye, FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import RecipesContext from "../contexts/RecipesContext";
-import { Button } from "./";
+import RecipesContext from "../../contexts/RecipesContext";
+import { Button } from "..";
+
+import "./RecipeContainer.css";
 
 export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
 	const { user, flagMessage, setFlagMessage, deleteRecipe } =
@@ -24,7 +26,7 @@ export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
 
 	return (
 		<div className="recipe-container">
-			<div className="img">
+			<div className="image-container">
 				<img src={img} alt={name} />
 			</div>
 			<div className="description">

@@ -1,3 +1,5 @@
+import "./List.css";
+
 export const List = ({ title, list, type }) => {
 	return (
 		<div>

@@ -1,0 +1,12 @@
+.list-number {
+  list-style-type: decimal;
+  gap: 1rem;
+}
+
+.list-number ::marker {
+  font-weight: 800;
+}
+
+.list-disc {
+  list-style-type: disc;
+}

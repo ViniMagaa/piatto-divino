@@ -7,7 +7,7 @@ export const Recipe = () => {
 	const { id } = useParams();
 
 	return (
-		<section className="recipe">
+		<section>
 			<ViewRecipe recipeId={id} />
 			<MainRecipes />
 		</section>

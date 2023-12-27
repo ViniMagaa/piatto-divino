@@ -2,6 +2,8 @@ import { useState } from "react";
 import { BiMenuAltLeft, BiX } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 
+import "./NavBar.css";
+
 export const NavBar = () => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
 

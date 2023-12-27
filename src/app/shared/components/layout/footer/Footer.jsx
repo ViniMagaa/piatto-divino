@@ -9,6 +9,8 @@ import {
 import logo from "../../../assets/img/logo.png";
 import { SocialLink } from "./SocialLink";
 
+import "./Footer.css";
+
 export const Footer = () => {
 	return (
 		<footer>
@@ -29,9 +31,18 @@ export const Footer = () => {
 						</p>
 					</div>
 					<div className="social-links">
-						<SocialLink linkTo="https://github.com/vinimagaa" placeHolder={<FaGithub />} />
-						<SocialLink linkTo="https://linkedin.com/" placeHolder={<FaLinkedinIn />} />
-						<SocialLink linkTo="https://twitter.com/vini_magaa" placeHolder={<FaTwitter />} />
+						<SocialLink
+							linkTo="https://github.com/vinimagaa"
+							placeHolder={<FaGithub />}
+						/>
+						<SocialLink
+							linkTo="https://linkedin.com/"
+							placeHolder={<FaLinkedinIn />}
+						/>
+						<SocialLink
+							linkTo="https://twitter.com/vini_magaa"
+							placeHolder={<FaTwitter />}
+						/>
 					</div>
 				</div>
 			</section>
@@ -41,10 +52,22 @@ export const Footer = () => {
 					os direitos reservados
 				</div>
 				<div className="social-links">
-					<SocialLink linkTo="https://twitter.com/" placeHolder={<FaTwitter />} />
-					<SocialLink linkTo="https://facebook.com/" placeHolder={<FaFacebookF />} />
-					<SocialLink linkTo="https://instagram.com/" placeHolder={<FaInstagram />} />
-					<SocialLink linkTo="https://linkedin.com/" placeHolder={<FaLinkedinIn />} />
+					<SocialLink
+						linkTo="https://twitter.com/"
+						placeHolder={<FaTwitter />}
+					/>
+					<SocialLink
+						linkTo="https://facebook.com/"
+						placeHolder={<FaFacebookF />}
+					/>
+					<SocialLink
+						linkTo="https://instagram.com/"
+						placeHolder={<FaInstagram />}
+					/>
+					<SocialLink
+						linkTo="https://linkedin.com/"
+						placeHolder={<FaLinkedinIn />}
+					/>
 					<SocialLink linkTo="https://github.com/" placeHolder={<FaGithub />} />
 				</div>
 			</section>

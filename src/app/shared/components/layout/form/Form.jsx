@@ -1,6 +1,8 @@
 import { Button } from "../../";
 import { InputLabel } from "./InputLabel";
 
+import "./Form.css";
+
 export const Form = ({ formQuestions, handleClick, submitText }) => {
 	return (
 		<form onSubmit={(e) => e.preventDefault()}>

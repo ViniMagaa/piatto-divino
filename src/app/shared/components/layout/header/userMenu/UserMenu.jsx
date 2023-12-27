@@ -2,7 +2,9 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiCook } from "react-icons/gi";
 
-import RecipesContext from "../../../contexts/RecipesContext";
+import RecipesContext from "../../../../contexts/RecipesContext";
+
+import "./UserMenu.css";
 
 export const UserMenu = () => {
 	const { isConnected, user, disconnectUser } = useContext(RecipesContext);

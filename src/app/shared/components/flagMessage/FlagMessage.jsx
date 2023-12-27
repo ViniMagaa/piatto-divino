@@ -1,6 +1,8 @@
 import { useContext, useEffect } from "react";
 
-import RecipesContext from "../contexts/RecipesContext";
+import RecipesContext from "../../contexts/RecipesContext";
+
+import "./FlagMessage.css";
 
 export const FlagMessage = () => {
 	const { flagMessage, setFlagMessage } = useContext(RecipesContext);

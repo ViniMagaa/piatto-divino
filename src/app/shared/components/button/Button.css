@@ -1,0 +1,28 @@
+button {
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--black);
+  outline: none;
+  border: none;
+  color: var(--off-white);
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .15s;
+}
+
+button:hover {
+  background-color: var(--raw-umber);
+  letter-spacing: 3px;
+}
+
+.buttons-container button {
+  flex: 1 1;
+}
+
+.buttons-container button:hover {
+  flex: 1 5%;
+}

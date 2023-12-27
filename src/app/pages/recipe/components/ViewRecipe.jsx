@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { List } from "../../../shared/components";
 import RecipesContext from "../../../shared/contexts/RecipesContext";
 
+import "./ViewRecipe.css";
+
 export const ViewRecipe = ({ recipeId }) => {
 	const { recipes } = useContext(RecipesContext);
 	const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ export const ViewRecipe = ({ recipeId }) => {
 
 	return (
 		<div className="view-recipe">
-			<div className="img">
+			<div className="image-container">
 				<img src={img} alt={name} />
 			</div>
 			<div className="view-recipe-description">
