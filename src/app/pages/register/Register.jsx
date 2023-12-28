@@ -102,34 +102,28 @@ export const Register = () => {
 		login(newUser);
 	};
 
-	return (
+	return !isConnected ? (
 		<section>
-			{!isConnected ? (
-				<>
-					<h1>Seja bem-vindo!</h1>
-					<p>
-						Sua expertise é fundamental para tornar a experiência gastronômica
-						em nosso site ainda mais especial.{" "}
-						<span className="bold-italic">
-							Registre-se e compartilhe sua paixão pela culinária conosco
-						</span>
-						. Estamos ansiosos para receber suas deliciosas contribuições!
-					</p>
-					<div className="form-container">
-						<h2>Cadastre-se</h2>
-						<Form
-							formQuestions={registerForm}
-							handleClick={submitForm}
-							submitText="Cadastrar"
-						/>
-						<Link to="/entrar">
-							Já possui cadastro? Então entre em sua conta.
-						</Link>
-					</div>
-				</>
-			) : (
-				<SeePanel />
-			)}
+			<h1>Seja bem-vindo!</h1>
+			<p>
+				Sua expertise é fundamental para tornar a experiência gastronômica em
+				nosso site ainda mais especial.{" "}
+				<span className="bold-italic">
+					Registre-se e compartilhe sua paixão pela culinária conosco
+				</span>
+				. Estamos ansiosos para receber suas deliciosas contribuições!
+			</p>
+			<div className="form-container">
+				<h2>Cadastre-se</h2>
+				<Form
+					formQuestions={registerForm}
+					handleClick={submitForm}
+					submitText="Cadastrar"
+				/>
+				<Link to="/entrar">Já possui cadastro? Então entre em sua conta.</Link>
+			</div>
 		</section>
+	) : (
+		<SeePanel />
 	);
 };

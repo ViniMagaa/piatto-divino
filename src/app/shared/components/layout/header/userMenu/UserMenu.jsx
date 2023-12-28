@@ -11,25 +11,24 @@ export const UserMenu = () => {
 	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
 
 	return (
-		<>
-			{isConnected && user && (
-				<div className="user-menu">
-					<GiCook onClick={() => setIsUserMenuActive(!isUserMenuActive)} />
-					<ul className={isUserMenuActive ? "active" : ""}>
-						<li>
-							<span className="bold-italic">{user.name}</span>
-						</li>
-						<li>
-							<Link to="/chef">Meu painel</Link>
-						</li>
-						<li>
-							<Link to="/" onClick={disconnectUser}>
-								Desconectar
-							</Link>
-						</li>
-					</ul>
-				</div>
-			)}
-		</>
+		isConnected &&
+		user && (
+			<div className="user-menu">
+				<GiCook onClick={() => setIsUserMenuActive(!isUserMenuActive)} />
+				<ul className={isUserMenuActive ? "active" : ""}>
+					<li>
+						<span className="bold-italic">{user.name}</span>
+					</li>
+					<li>
+						<Link to="/chef">Meu painel</Link>
+					</li>
+					<li>
+						<Link to="/" onClick={disconnectUser}>
+							Desconectar
+						</Link>
+					</li>
+				</ul>
+			</div>
+		)
 	);
 };

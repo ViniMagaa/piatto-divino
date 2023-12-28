@@ -110,25 +110,21 @@ export const EditRecipe = () => {
 		}
 	};
 
-	return (
+	return recipes && recipes[id].author.id === user.id ? (
 		<section>
-			{recipes && recipes[id].author.id === user.id ? (
-				<>
-					<h1>Edite sua receita</h1>
-					<div className="form-container">
-						<Form
-							formQuestions={formQuestions}
-							handleClick={submitForm}
-							submitText="Editar"
-						/>
-					</div>
-				</>
-			) : (
-				<>
-					<h1>Essa receita não pode ser editada!</h1>
-					<Button handleClick={() => navigate("/chef")}>Voltar</Button>
-				</>
-			)}
+			<h1>Edite sua receita</h1>
+			<div className="form-container">
+				<Form
+					formQuestions={formQuestions}
+					handleClick={submitForm}
+					submitText="Editar"
+				/>
+			</div>
+		</section>
+	) : (
+		<section>
+			<h1>Essa receita não pode ser editada!</h1>
+			<Button handleClick={() => navigate("/chef")}>Voltar</Button>
 		</section>
 	);
 };

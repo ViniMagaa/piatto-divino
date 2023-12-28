@@ -149,26 +149,28 @@ export const RecipesContextProvider = ({ children }) => {
 		}
 	});
 
-	const data = {
-		user,
-		loginUser,
-		users,
-		setUsers,
-		recipes,
-		setRecipes,
-		isConnected,
-		setIsConnected,
-		flagMessage,
-		setFlagMessage,
-		createRecipe,
-		editRecipe,
-		deleteRecipe,
-		register,
-		login,
-		disconnectUser,
-	};
-
 	return (
-		<RecipesContext.Provider value={data}>{children}</RecipesContext.Provider>
+		<RecipesContext.Provider
+			value={{
+				user,
+				loginUser,
+				users,
+				setUsers,
+				recipes,
+				setRecipes,
+				isConnected,
+				setIsConnected,
+				flagMessage,
+				setFlagMessage,
+				createRecipe,
+				editRecipe,
+				deleteRecipe,
+				register,
+				login,
+				disconnectUser,
+			}}
+		>
+			{children}
+		</RecipesContext.Provider>
 	);
 };

@@ -37,11 +37,11 @@ export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
 					</small>
 				</div>
 				<div className="buttons-container">
-					{user && user.id === author.id ? (
+					<Button handleClick={() => navigate(`/receitas/${id}`)}>
+						{user && user.id === author.id ? <FaEye /> : "Ver receita"}
+					</Button>
+					{user && user.id === author.id && (
 						<>
-							<Button handleClick={() => navigate(`/receitas/${id}`)}>
-								<FaEye />
-							</Button>
 							<Button handleClick={() => navigate(`/chef/editar/${id}`)}>
 								<FaPencilAlt />
 							</Button>
@@ -49,10 +49,6 @@ export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
 								<FaTrashAlt />
 							</Button>
 						</>
-					) : (
-						<Button handleClick={() => navigate(`/receitas/${id}`)}>
-							Ver receita
-						</Button>
 					)}
 				</div>
 			</div>

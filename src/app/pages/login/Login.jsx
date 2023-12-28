@@ -68,34 +68,27 @@ export const Login = () => {
 		login(users[userIndex]);
 	};
 
-	return (
+	return !isConnected ? (
 		<section>
-			{!isConnected ? (
-				<>
-					<h1>Bem-vindo de volta!</h1>
-					<p>
-						Agradecemos por voltar para nos auxiliar na construção de um refúgio
-						culinário que reúne a autenticidade da cozinha italiana em um só
-						lugar.{" "}
-						<span className="bold-italic">
-							Entre em sua conta para prosseguir!
-						</span>
-					</p>
-					<div className="form-container">
-						<h2>Entrar</h2>
-						<Form
-							formQuestions={loginForm}
-							handleClick={submitLogin}
-							submitText="Entrar"
-						/>
-						<Link to="/cadastrar">
-							Ainda não possui uma conta? Então cadastre-se.
-						</Link>
-					</div>
-				</>
-			) : (
-				<SeePanel />
-			)}
+			<h1>Bem-vindo de volta!</h1>
+			<p>
+				Agradecemos por voltar para nos auxiliar na construção de um refúgio
+				culinário que reúne a autenticidade da cozinha italiana em um só lugar.{" "}
+				<span className="bold-italic">Entre em sua conta para prosseguir!</span>
+			</p>
+			<div className="form-container">
+				<h2>Entrar</h2>
+				<Form
+					formQuestions={loginForm}
+					handleClick={submitLogin}
+					submitText="Entrar"
+				/>
+				<Link to="/cadastrar">
+					Ainda não possui uma conta? Então cadastre-se.
+				</Link>
+			</div>
 		</section>
+	) : (
+		<SeePanel />
 	);
 };

@@ -22,13 +22,11 @@ export const FlagMessage = () => {
 	}, [flagMessage.isVisible, setFlagMessage]);
 
 	return (
-		<>
-			{flagMessage.isVisible && (
-				<div className="flag-message">
-					<h2>{flagMessage.message}</h2>
-					<p>{flagMessage.subMessage}</p>
-				</div>
-			)}
-		</>
+		flagMessage.isVisible && (
+			<div className="flag-message">
+				<h2>{flagMessage.message}</h2>
+				<p>{flagMessage.subMessage}</p>
+			</div>
+		)
 	);
 };
