@@ -1,2 +1,2 @@
 export * from "./ApiException";
-export * from "./recipes/RecipesService";
+export * from "./recipes/Recipes.service";

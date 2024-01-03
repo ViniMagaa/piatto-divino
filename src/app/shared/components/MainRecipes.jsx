@@ -1,27 +1,39 @@
-import { useContext } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import RecipesContext from "../contexts/RecipesContext";
+import { ApiException } from "../services/api";
+import { RecipesService } from "../services/api/recipes/Recipes.service";
 import { Button, RecipeContainer } from "./";
 
 export const MainRecipes = () => {
-	const { recipes } = useContext(RecipesContext);
-	const { id } = useParams();
+	const { setFlagMessage } = useContext(RecipesContext);
+	const [recipes, setRecipes] = useState([]);
 
+	const { id } = useParams();
 	const navigate = useNavigate();
 
-	function shuffleArray(array) {
-		const newArray = [...array];
-		for (let i = 0; i < newArray.length - 1; i++) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-		}
-		return newArray;
-	}
+	useEffect(() => {
+		RecipesService.getAll()
+			.then((response) => {
+				if (response instanceof ApiException) {
+					setFlagMessage({
+						isVisible: true,
+						message: "Erro ao buscar receitas!",
+						subMessage: "Ocorreu algo inesperado.",
+					});
+				} else {
+					setRecipes(response);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [setFlagMessage]);
 
-	const mainRecipes = shuffleArray(recipes)
-		.filter((element) => element.id !== Number(id))
-		.slice(0, 4);
+	const mainRecipes = useMemo(() => {
+		return recipes.filter((element) => element.id !== Number(id)).slice(0, 4);
+	}, [recipes, id]);
 
 	return (
 		<section>

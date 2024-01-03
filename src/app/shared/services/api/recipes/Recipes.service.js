@@ -1,14 +1,14 @@
-import { Api } from "../ApiConfig"
+import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
 
 const getAll = async () => {
-  try {
-    const {data} = await Api().get("/recipes");
-    return data;
-  } catch(error) {
-    return new ApiException("Erro ao buscar as receitas")
-  }
-}
+	try {
+		const { data } = await Api().get("/recipes");
+		return data;
+	} catch (error) {
+		return new ApiException("Erro ao buscar as receitas");
+	}
+};
 
 const getById = async (id) => {
 	try {
@@ -17,7 +17,18 @@ const getById = async (id) => {
 	} catch (error) {
 		return new ApiException("Erro ao buscar a receita");
 	}
-}
+};
+
+const getAllByUserId = async (userId) => {
+	try {
+		const { data } = await Api().get("/recipes");
+		return data.filter(
+			(recipe) => recipe.author && recipe.author.id === userId
+		);
+	} catch (error) {
+		return new ApiException("Erro ao buscar a receita");
+	}
+};
 
 const create = async (recipeToCreate) => {
 	try {
@@ -26,7 +37,7 @@ const create = async (recipeToCreate) => {
 	} catch (error) {
 		return new ApiException("Erro ao criar a receita");
 	}
-}
+};
 
 const updateById = async (id, recipeToUpdate) => {
 	try {
@@ -35,7 +46,7 @@ const updateById = async (id, recipeToUpdate) => {
 	} catch (error) {
 		return new ApiException("Erro ao atualizar a receita");
 	}
-}
+};
 
 const deleteById = async (id) => {
 	try {
@@ -44,12 +55,13 @@ const deleteById = async (id) => {
 	} catch (error) {
 		return new ApiException("Erro ao excluir a receita");
 	}
-}
+};
 
 export const RecipesService = {
-  getAll,
-  getById,
-  create,
-  updateById,
-  deleteById,
-}
+	getAll,
+	getById,
+	getAllByUserId,
+	create,
+	updateById,
+	deleteById,
+};

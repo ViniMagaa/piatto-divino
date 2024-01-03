@@ -8,7 +8,6 @@ const BASE_API_URL = "https://api-piatto-divino.vercel.app";
 export const RecipesContextProvider = ({ children }) => {
 	const [user, setUser] = useState({});
 	const [users, setUsers] = useState([]);
-	const [recipes, setRecipes] = useState([]);
 	const [isConnected, setIsConnected] = useState(false);
 	const [flagMessage, setFlagMessage] = useState({
 		isVisible: false,
@@ -19,18 +18,6 @@ export const RecipesContextProvider = ({ children }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch(`${BASE_API_URL}/recipes`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((resp) => resp.json())
-			.then((data) => {
-				setRecipes(data);
-			})
-			.catch((err) => console.log(err));
-
 		fetch(`${BASE_API_URL}/users`, {
 			method: "GET",
 			headers: {
@@ -43,59 +30,6 @@ export const RecipesContextProvider = ({ children }) => {
 			})
 			.catch((err) => console.log(err));
 	}, []);
-
-	const createRecipe = async (newRecipe) => {
-		setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-
-		try {
-			await fetch(`${BASE_API_URL}/recipes`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(newRecipe),
-			});
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-	const editRecipe = async (id, editedRecipe) => {
-		setRecipes((prevRecipes) =>
-			prevRecipes.map((prevRecipe) =>
-				prevRecipe.id === id ? editedRecipe : prevRecipe
-			)
-		);
-
-		try {
-			await fetch(`${BASE_API_URL}/recipes${id}`, {
-				method: "PATCH",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(editedRecipe),
-			});
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-	const deleteRecipe = async (id) => {
-		setRecipes((prevRecipes) =>
-			prevRecipes.filter((prevRecipe) => prevRecipe.id !== id)
-		);
-
-		try {
-			await fetch(`${BASE_API_URL}/recipes${id}`, {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-		} catch (error) {
-			console.error(error);
-		}
-	};
 
 	const register = async (newUser) => {
 		setUsers((prevUsers) => [...prevUsers, newUser]);
@@ -156,15 +90,10 @@ export const RecipesContextProvider = ({ children }) => {
 				loginUser,
 				users,
 				setUsers,
-				recipes,
-				setRecipes,
 				isConnected,
 				setIsConnected,
 				flagMessage,
 				setFlagMessage,
-				createRecipe,
-				editRecipe,
-				deleteRecipe,
 				register,
 				login,
 				disconnectUser,

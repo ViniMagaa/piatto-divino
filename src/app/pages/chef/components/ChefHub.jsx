@@ -3,20 +3,32 @@ import { useNavigate } from "react-router-dom";
 
 import RecipesContext from "../../../shared/contexts/RecipesContext";
 import { Button, RecipeContainer } from "../../../shared/components";
+import { ApiException, RecipesService } from "../../../shared/services/api";
 
 export const ChefHub = () => {
-	const { user, recipes } = useContext(RecipesContext);
+	const { user, setFlagMessage } = useContext(RecipesContext);
 
 	const [userRecipes, setUserRecipes] = useState([]);
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!user) return;
-		const updatedUserRecipes = recipes.filter(
-			(recipe) => recipe.author && recipe.author.id === user.id
-		);
-		setUserRecipes(updatedUserRecipes);
-	}, [recipes, user]);
+		RecipesService.getAllByUserId(user.id)
+			.then((response) => {
+				if (response instanceof ApiException) {
+					setFlagMessage({
+						isVisible: true,
+						message: "Erro ao buscar receitas!",
+						subMessage: "Ocorreu algo inesperado.",
+					});
+				} else {
+					setUserRecipes(response);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [user, setFlagMessage]);
 
 	return (
 		user && (

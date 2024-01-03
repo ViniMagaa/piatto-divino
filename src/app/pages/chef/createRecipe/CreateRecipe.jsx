@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import { Form } from "../../../shared/components/layout";
 import RecipesContext from "../../../shared/contexts/RecipesContext";
+import { RecipesService } from "../../../shared/services/api/recipes/Recipes.service";
+import { ApiException } from "../../../shared/services/api/ApiException";
 
 export const CreateRecipe = () => {
-	const { user, recipes, createRecipe, setFlagMessage } =
-		useContext(RecipesContext);
+	const { user, setFlagMessage } = useContext(RecipesContext);
 
 	const navigate = useNavigate();
 
@@ -72,7 +73,6 @@ export const CreateRecipe = () => {
 			});
 		} else {
 			const newRecipe = {
-				id: recipes.length,
 				name: nameRef.current.value,
 				img: imgRef.current.value,
 				description: descriptionRef.current.value,
@@ -84,18 +84,20 @@ export const CreateRecipe = () => {
 				},
 			};
 
-			try {
-				await createRecipe(newRecipe);
-			} catch (error) {
-				console.log(error);
+			const response = await RecipesService.create(newRecipe);
+			if (response instanceof ApiException) {
+				setFlagMessage({
+					isVisible: true,
+					message: "Erro ao publicar receita!",
+					subMessage: "Ocorreu um erro, tente novamente.",
+				});
+			} else {
+				setFlagMessage({
+					isVisible: true,
+					message: "Receita publicada!",
+					subMessage: "Agradecemos a sua contribuição. 😉",
+				});
 			}
-
-			setFlagMessage({
-				isVisible: true,
-				message: "Receita publicada!",
-				subMessage: "Agradecemos a sua contribuição. 😉",
-			});
-
 			navigate("/chef");
 		}
 	};

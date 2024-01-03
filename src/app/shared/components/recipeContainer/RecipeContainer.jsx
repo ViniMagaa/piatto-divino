@@ -6,22 +6,30 @@ import RecipesContext from "../../contexts/RecipesContext";
 import { Button } from "..";
 
 import "./RecipeContainer.css";
+import { RecipesService } from "../../services/api/recipes/Recipes.service";
+import { ApiException } from "../../services/api/ApiException";
 
 export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
-	const { user, flagMessage, setFlagMessage, deleteRecipe } =
-		useContext(RecipesContext);
+	const { user, flagMessage, setFlagMessage } = useContext(RecipesContext);
 	const navigate = useNavigate();
 
-	const handleRemoveRecipe = () => {
+	const handleRemoveRecipe = async () => {
 		if (flagMessage.isVisible) return;
 
-		deleteRecipe(id);
-
-		setFlagMessage({
-			isVisible: true,
-			message: "Receita excluída com sucesso!",
-			subMessage: "Que pena... mas sabemos que você publicará melhores. 😋",
-		});
+		const response = await RecipesService.deleteById(id);
+		if (response instanceof ApiException) {
+			setFlagMessage({
+				isVisible: true,
+				message: "Erro ao excluir a receita!",
+				subMessage: "Ocorreu algo inesperado ao tentar apagá-la.",
+			});
+		} else {
+			setFlagMessage({
+				isVisible: true,
+				message: "Receita excluída com sucesso!",
+				subMessage: "Que pena... mas sabemos que você publicará melhores. 😋",
+			});
+		}
 	};
 
 	return (

@@ -1,13 +1,15 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "../../../shared/components";
 import { Form } from "../../../shared/components/layout";
 import RecipesContext from "../../../shared/contexts/RecipesContext";
+import { ApiException } from "../../../shared/services/api/ApiException";
+import { RecipesService } from "../../../shared/services/api/recipes/Recipes.service";
 
 export const EditRecipe = () => {
-	const { user, recipes, editRecipe, setFlagMessage } =
-		useContext(RecipesContext);
+	const { user, setFlagMessage } = useContext(RecipesContext);
+	const [recipe, setRecipe] = useState({});
 
 	const { id } = useParams();
 	const navigate = useNavigate();
@@ -19,12 +21,34 @@ export const EditRecipe = () => {
 	const instructionsRef = useRef();
 
 	useEffect(() => {
-		nameRef.current.value = recipes[id].name;
-		imgRef.current.value = recipes[id].img;
-		descriptionRef.current.value = recipes[id].description;
-		ingredientsRef.current.value = recipes[id].ingredients;
-		instructionsRef.current.value = recipes[id].instructions;
-	}, [recipes, id]);
+		RecipesService.getById(id)
+			.then((response) => {
+				if (response instanceof ApiException) {
+					setFlagMessage({
+						isVisible: true,
+						message: "Erro ao encontrar a receita!",
+						subMessage: "Talvez ela não exista.",
+					});
+					navigate("/chef");
+				} else {
+					setRecipe(response);
+
+					if (response) {
+						if (nameRef.current) nameRef.current.value = response.name;
+						if (imgRef.current) imgRef.current.value = response.img;
+						if (descriptionRef.current)
+							descriptionRef.current.value = response.description;
+						if (ingredientsRef.current)
+							ingredientsRef.current.value = response.ingredients.join(",");
+						if (instructionsRef.current)
+							instructionsRef.current.value = response.instructions.join(",");
+					}
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [id, navigate, setFlagMessage]);
 
 	const formQuestions = [
 		{
@@ -94,23 +118,25 @@ export const EditRecipe = () => {
 				},
 			};
 
-			try {
-				await editRecipe(Number(id), editedRecipe);
-			} catch (error) {
-				console.log(error);
+			const response = await RecipesService.updateById(id, editedRecipe);
+			if (response instanceof ApiException) {
+				setFlagMessage({
+					isVisible: true,
+					message: "Erro ao editar receita!",
+					subMessage: "Ocorreu algo inesperado ao tentar atualizá-la.",
+				});
+			} else {
+				setFlagMessage({
+					isVisible: true,
+					message: "Receita editada!",
+					subMessage: "Agora todos tem a versão atualizada. 😉",
+				});
 			}
-
-			setFlagMessage({
-				isVisible: true,
-				message: "Receita editada!",
-				subMessage: "Agora todos tem a versão atualizada. 😉",
-			});
-
 			navigate("/chef");
 		}
 	};
 
-	return recipes && recipes[id].author.id === user.id ? (
+	return user && recipe.author && recipe.author.id === user.id ? (
 		<section>
 			<h1>Edite sua receita</h1>
 			<div className="form-container">
