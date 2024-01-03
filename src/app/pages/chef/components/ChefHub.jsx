@@ -33,7 +33,7 @@ export const ChefHub = () => {
 	return (
 		user && (
 			<section>
-				<h1>Olá, chef {user.name}!</h1>
+				<h1>Olá, chef {user.displayName}!</h1>
 				<Button handleClick={() => navigate("/chef/criar")}>
 					Publicar uma receita
 				</Button>

@@ -1,15 +1,17 @@
 import { useContext, useRef } from "react";
-import { Link } from "react-router-dom";
-
-import { v4 as uuid } from "uuid";
+import { Link, useNavigate } from "react-router-dom";
 
 import { SeePanel } from "../../shared/components";
 import { Form } from "../../shared/components/layout";
 import RecipesContext from "../../shared/contexts/RecipesContext";
+import { ApiException, AuthServices } from "../../shared/services/api";
+import { handleFirebaseErrors, validateEmail } from "../../shared/utils";
 
 export const Register = () => {
-	const { users, isConnected, flagMessage, setFlagMessage, register, login } =
+	const { isConnected, flagMessage, setFlagMessage, setIsConnected, setUser } =
 		useContext(RecipesContext);
+
+	const navigate = useNavigate();
 
 	const nameRef = useRef();
 	const emailRef = useRef();
@@ -59,12 +61,7 @@ export const Register = () => {
 		const password = passwordRef.current.value;
 		const confirmPassword = confirmPasswordRef.current.value;
 
-		if (
-			name === "" ||
-			email === "" ||
-			password === "" ||
-			confirmPassword === ""
-		) {
+		if (!name || !email || !password || !confirmPassword) {
 			setFlagMessage({
 				isVisible: true,
 				message: "Preencha todos os dados!",
@@ -73,11 +70,11 @@ export const Register = () => {
 			return;
 		}
 
-		if (users.some((user) => user.email === email)) {
+		if (!validateEmail(email)) {
 			setFlagMessage({
 				isVisible: true,
-				message: "Esse email já está cadastrado!",
-				subMessage: "Você está tentando fazer o login?",
+				message: "Erro no campo Email!",
+				subMessage: "Digite um email válido.",
 			});
 			return;
 		}
@@ -91,15 +88,35 @@ export const Register = () => {
 			return;
 		}
 
-		const newUser = {
-			id: uuid(),
-			name: name,
-			email: email,
-			password: password,
-		};
+		if (password.length < 6) {
+			setFlagMessage({
+				isVisible: true,
+				message: "Senha fraca!",
+				subMessage: "Deve ter no mínimo 6 caracteres.",
+			});
+			return;
+		}
 
-		register(newUser);
-		login(newUser);
+		AuthServices.register(email, password).then((response) => {
+			if (response instanceof ApiException) {
+				const subMessage = handleFirebaseErrors(response);
+				setFlagMessage({
+					isVisible: true,
+					message: "Erro ao tentar se cadastrar!",
+					subMessage,
+				});
+			} else {
+				AuthServices.updateProfile({ displayName: name });
+				setUser(response.user);
+				setIsConnected(true);
+				navigate("/chef");
+				setFlagMessage({
+					isVisible: true,
+					message: "Você se registrou!",
+					subMessage: "Seja bem-vindo chef. 👨‍🍳",
+				});
+			}
+		});
 	};
 
 	return !isConnected ? (

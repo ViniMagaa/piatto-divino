@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { GiCook } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 import RecipesContext from "../../../../contexts/RecipesContext";
+import { AuthServices } from "../../../../services/api";
 
 import "./UserMenu.css";
 
 export const UserMenu = () => {
-	const { isConnected, user, disconnectUser } = useContext(RecipesContext);
+	const { isConnected, user } = useContext(RecipesContext);
 	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
 
 	return (
@@ -17,13 +18,13 @@ export const UserMenu = () => {
 				<GiCook onClick={() => setIsUserMenuActive(!isUserMenuActive)} />
 				<ul className={isUserMenuActive ? "active" : ""}>
 					<li>
-						<span className="bold-italic">{user.name}</span>
+						<span className="bold-italic">{user.displayName}</span>
 					</li>
 					<li>
 						<Link to="/chef">Meu painel</Link>
 					</li>
 					<li>
-						<Link to="/" onClick={disconnectUser}>
+						<Link to="/" onClick={AuthServices.logout}>
 							Desconectar
 						</Link>
 					</li>

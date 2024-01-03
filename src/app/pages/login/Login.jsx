@@ -1,13 +1,18 @@
 import { useContext, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { SeePanel } from "../../shared/components";
 import { Form } from "../../shared/components/layout";
 import RecipesContext from "../../shared/contexts/RecipesContext";
+import { ApiException, AuthServices } from "../../shared/services/api";
+import { handleFirebaseErrors, validateEmail } from "../../shared/utils/";
 
 export const Login = () => {
-	const { isConnected, users, login, flagMessage, setFlagMessage } =
+	const { isConnected, setIsConnected, setUser, flagMessage, setFlagMessage } =
 		useContext(RecipesContext);
+
+	const navigate = useNavigate();
+
 	const emailRef = useRef();
 	const passwordRef = useRef();
 
@@ -36,7 +41,7 @@ export const Login = () => {
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 
-		if (email === "" && password === "") {
+		if (!email || !password) {
 			setFlagMessage({
 				isVisible: true,
 				message: "Preencha todos os dados!",
@@ -45,27 +50,34 @@ export const Login = () => {
 			return;
 		}
 
-		const userIndex = users.findIndex((user) => user.email === email);
-
-		if (userIndex === -1) {
+		if (!validateEmail(email)) {
 			setFlagMessage({
 				isVisible: true,
-				message: "Conta não encontrada!",
-				subMessage: "Você digitou os dados corretos? Deseja fazer o cadastro?",
+				message: "Erro no campo Email!",
+				subMessage: "Digite um email válido.",
 			});
 			return;
 		}
 
-		if (users[userIndex].password !== password) {
-			setFlagMessage({
-				isVisible: true,
-				message: "Senha inválida!",
-				subMessage: "Tente novamente, coloque a senha correta.",
-			});
-			return;
-		}
-
-		login(users[userIndex]);
+		AuthServices.login(email, password).then((response) => {
+			if (response instanceof ApiException) {
+				const subMessage = handleFirebaseErrors(response);
+				setFlagMessage({
+					isVisible: true,
+					message: "Erro ao fazer login!",
+					subMessage,
+				});
+			} else {
+				setUser(response.user);
+				setIsConnected(true);
+				navigate("/chef");
+				setFlagMessage({
+					isVisible: true,
+					message: "Você se conectou!",
+					subMessage: "Bem-vindo de volta. 🤝",
+				});
+			}
+		});
 	};
 
 	return !isConnected ? (
