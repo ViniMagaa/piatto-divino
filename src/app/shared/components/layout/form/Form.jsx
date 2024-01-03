@@ -9,7 +9,7 @@ export const Form = ({ formQuestions, handleClick, submitText }) => {
 			{formQuestions.map((question, index) => {
 				return <InputLabel key={index} input={question} />;
 			})}
-			<Button type="submit" handleClick={handleClick} scroll={false}>
+			<Button type="submit" handleClick={handleClick}>
 				{submitText}
 			</Button>
 		</form>

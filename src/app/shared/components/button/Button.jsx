@@ -1,18 +1,13 @@
 import "./Button.css";
 
-export const Button = ({
-	children,
-	type = "button",
-	handleClick,
-	scroll = true,
-}) => {
+export const Button = ({ children, type, handleClick }) => {
 	const handleOnClick = () => {
 		handleClick();
-		if (scroll) window.scrollTo({ top: 0, behavior: "smooth" });
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 
 	return (
-		<button type={type} onClick={handleOnClick}>
+		<button type={type || "button"} onClick={handleOnClick}>
 			{children}
 		</button>
 	);
