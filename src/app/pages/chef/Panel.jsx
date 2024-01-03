@@ -4,7 +4,9 @@ import RecipesContext from "../../shared/contexts/RecipesContext";
 import { ChefHub, ContributeRecipes } from "./components";
 
 export const Panel = () => {
-	const { isConnected } = useContext(RecipesContext);
+	const { isConnected, isLoadingConnectedUser } = useContext(RecipesContext);
 
-	return !isConnected ? <ContributeRecipes /> : <ChefHub />;
+	if (!isLoadingConnectedUser) {
+		return !isConnected ? <ContributeRecipes /> : <ChefHub />;
+	} else return undefined;
 };

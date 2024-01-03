@@ -21,14 +21,20 @@ const updateProfile = (dataToUpdate) => {
 };
 
 const logout = () => {
-	return firebaseAuth
-		.signOut()
-		.catch((error) => new ApiException(error));
+	return firebaseAuth.signOut().catch((error) => new ApiException(error));
+};
+
+const getLoggedUser = () => {
+	return new Promise((resolve) => {
+		firebaseAuth
+			.onAuthStateChanged(auth, (user) => resolve(user))
+	});
 };
 
 export const AuthServices = {
 	login,
 	register,
 	updateProfile,
-  logout,
+	logout,
+	getLoggedUser,
 };
