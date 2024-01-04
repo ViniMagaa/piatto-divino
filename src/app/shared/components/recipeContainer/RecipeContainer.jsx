@@ -10,7 +10,8 @@ import { RecipesService } from "../../services/api/recipes/Recipes.service";
 import { ApiException } from "../../services/api/ApiException";
 
 export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
-	const { user, flagMessage, setFlagMessage } = useContext(RecipesContext);
+	const { user, isConnected, flagMessage, setFlagMessage } =
+		useContext(RecipesContext);
 	const navigate = useNavigate();
 
 	const handleRemoveRecipe = async () => {
@@ -42,13 +43,18 @@ export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
 					<h3>{name}</h3>
 					<small>
 						Por: <span className="bold-italic">{author.name}</span>
+						Por: <span className="bold-italic">{author.displayName}</span>
 					</small>
 				</div>
 				<div className="buttons-container">
 					<Button handleClick={() => navigate(`/receitas/${id}`)}>
-						{user && user.id === author.id ? <FaEye /> : "Ver receita"}
+						{isConnected && user && user.uid === author.uid ? (
+							<FaEye />
+						) : (
+							"Ver receita"
+						)}
 					</Button>
-					{user && user.id === author.id && (
+					{isConnected && user && user.uid === author.uid && (
 						<>
 							<Button handleClick={() => navigate(`/chef/editar/${id}`)}>
 								<FaPencilAlt />

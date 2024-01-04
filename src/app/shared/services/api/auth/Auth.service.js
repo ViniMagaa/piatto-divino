@@ -21,7 +21,7 @@ const updateProfile = (dataToUpdate) => {
 };
 
 const logout = () => {
-	return firebaseAuth.signOut().catch((error) => new ApiException(error));
+	return firebaseAuth.signOut(auth).catch((error) => new ApiException(error));
 };
 
 const getLoggedUser = () => {

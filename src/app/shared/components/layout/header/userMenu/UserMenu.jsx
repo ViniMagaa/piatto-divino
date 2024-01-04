@@ -3,13 +3,34 @@ import { GiCook } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
 import RecipesContext from "../../../../contexts/RecipesContext";
-import { AuthServices } from "../../../../services/api";
+import { ApiException, AuthServices } from "../../../../services/api";
 
 import "./UserMenu.css";
 
 export const UserMenu = () => {
-	const { isConnected, user } = useContext(RecipesContext);
+	const { isConnected, setIsConnected, setFlagMessage, user, setUser } =
+		useContext(RecipesContext);
 	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
+
+	const handleLogout = () => {
+		AuthServices.logout().then((response) => {
+			if (response instanceof ApiException) {
+				setFlagMessage({
+					isVisible: true,
+					message: "Erro ao desconectar!",
+					subMessage: "Ocorreu um erro, tente novamente.",
+				});
+			} else {
+				setFlagMessage({
+					isVisible: true,
+					message: "Até mais!",
+					subMessage: "Mas volte logo. 👋",
+				});
+				setUser({});
+				setIsConnected(false);
+			}
+		});
+	};
 
 	return (
 		isConnected &&
@@ -24,7 +45,7 @@ export const UserMenu = () => {
 						<Link to="/chef">Meu painel</Link>
 					</li>
 					<li>
-						<Link to="/" onClick={AuthServices.logout}>
+						<Link to="/" onClick={handleLogout}>
 							Desconectar
 						</Link>
 					</li>
