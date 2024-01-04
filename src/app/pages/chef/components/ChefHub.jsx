@@ -13,7 +13,7 @@ export const ChefHub = () => {
 
 	useEffect(() => {
 		if (!user) return;
-		RecipesService.getAllByUserId(user.id)
+		RecipesService.getAllByUserId(user.uid)
 			.then((response) => {
 				if (response instanceof ApiException) {
 					setFlagMessage({

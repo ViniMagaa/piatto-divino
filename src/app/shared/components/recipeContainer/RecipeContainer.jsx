@@ -42,7 +42,6 @@ export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
 				<div>
 					<h3>{name}</h3>
 					<small>
-						Por: <span className="bold-italic">{author.name}</span>
 						Por: <span className="bold-italic">{author.displayName}</span>
 					</small>
 				</div>

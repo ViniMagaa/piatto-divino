@@ -32,7 +32,7 @@ export const MainRecipes = () => {
 	}, [setFlagMessage]);
 
 	const mainRecipes = useMemo(() => {
-		return recipes.filter((element) => element.id !== Number(id)).slice(0, 4);
+		return recipes.filter((element) => element.id !== id).slice(0, 4);
 	}, [recipes, id]);
 
 	return (

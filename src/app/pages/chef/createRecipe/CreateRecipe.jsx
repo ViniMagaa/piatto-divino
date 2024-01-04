@@ -79,9 +79,11 @@ export const CreateRecipe = () => {
 				ingredients: ingredientsRef.current.value.split(","),
 				instructions: instructionsRef.current.value.split(","),
 				author: {
-					id: user.id,
-					name: user.name,
+					uid: user.uid,
+					displayName: user.displayName,
 				},
+				createdAt: new Date(),
+				lastUpdate: new Date(),
 			};
 
 			const response = await RecipesService.create(newRecipe);
