@@ -21,7 +21,3 @@
   justify-content: space-between;
   gap: 1rem;
 }
-
-.recipe-container .description h3 {
-  font-family: 'Italiana';
-}

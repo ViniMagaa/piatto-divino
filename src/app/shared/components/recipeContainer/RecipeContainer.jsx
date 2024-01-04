@@ -8,8 +8,11 @@ import { Button } from "..";
 import "./RecipeContainer.css";
 import { RecipesService } from "../../services/api/recipes/Recipes.service";
 import { ApiException } from "../../services/api/ApiException";
+import { convertTimestampToLocaleString } from "../../utils";
 
-export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
+export const RecipeContainer = ({
+	recipe: { id, name, author, img, lastUpdate },
+}) => {
 	const { user, isConnected, flagMessage, setFlagMessage } =
 		useContext(RecipesContext);
 	const navigate = useNavigate();
@@ -33,17 +36,22 @@ export const RecipeContainer = ({ recipe: { id, name, author, img } }) => {
 		}
 	};
 
+	const newLastUpdate = convertTimestampToLocaleString(lastUpdate, "pt-br");
+
 	return (
 		<div className="recipe-container">
 			<div className="image-container">
 				<img src={img} alt={name} />
 			</div>
 			<div className="description">
-				<div>
+				<div className="information">
 					<h3>{name}</h3>
-					<small>
+					<span className="small">
 						Por: <span className="bold-italic">{author.displayName}</span>
-					</small>
+					</span>
+					<span className="small">
+						Última edição: <span className="bold-italic">{newLastUpdate}</span>
+					</span>
 				</div>
 				<div className="buttons-container">
 					<Button handleClick={() => navigate(`/receitas/${id}`)}>

@@ -56,6 +56,20 @@ span.bold-italic {
   object-fit: cover;
 }
 
+.information {
+  display: flex;
+  flex-direction: column;
+}
+
+.information h3 {
+  font-family: 'Italiana';
+  margin-bottom: 0.5rem;
+}
+
+.information .small {
+  font-size: 0.85rem;
+}
+
 .buttons-container {
   display: flex;
   gap: 1rem;

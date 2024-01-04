@@ -6,6 +6,7 @@ import RecipesContext from "../../../shared/contexts/RecipesContext";
 import { ApiException, RecipesService } from "../../../shared/services/api";
 
 import "./ViewRecipe.css";
+import { convertTimestampToLocaleString } from "../../../shared/utils";
 
 export const ViewRecipe = ({ recipeId }) => {
 	const { setFlagMessage } = useContext(RecipesContext);
@@ -30,7 +31,19 @@ export const ViewRecipe = ({ recipeId }) => {
 
 	if (Object.keys(recipe).length === 0) return;
 
-	const { name, img, description, ingredients, instructions, author } = recipe;
+	const {
+		name,
+		img,
+		description,
+		ingredients,
+		instructions,
+		author,
+		lastUpdate,
+		createdAt,
+	} = recipe;
+
+	const newCreatedAt = convertTimestampToLocaleString(createdAt, "pt-br");
+	const newLastUpdate = convertTimestampToLocaleString(lastUpdate, "pt-br");
 
 	return (
 		recipe && (
@@ -45,9 +58,20 @@ export const ViewRecipe = ({ recipeId }) => {
 					</div>
 					<List title="Ingredientes" list={ingredients} type="disc" />
 					<List title="Modo de preparo" list={instructions} type="number" />
-					<small>
-						Por: <span className="bold-italic">{author.displayName}</span>
-					</small>
+					<div className="information">
+						<h3>{name}</h3>
+						<span className="small">
+							Por: <span className="bold-italic">{author.displayName}</span>
+						</span>
+						<span className="small">
+							Data de criação:{" "}
+							<span className="bold-italic">{newCreatedAt}</span>
+						</span>
+						<span className="small">
+							Última edição:{" "}
+							<span className="bold-italic">{newLastUpdate}</span>
+						</span>
+					</div>
 				</div>
 			</div>
 		)
