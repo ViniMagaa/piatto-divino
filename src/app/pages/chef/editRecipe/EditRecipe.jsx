@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "../../../shared/components";
@@ -14,11 +14,11 @@ export const EditRecipe = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
-	const nameRef = useRef();
-	const imgRef = useRef();
-	const descriptionRef = useRef();
-	const ingredientsRef = useRef();
-	const instructionsRef = useRef();
+	const nameRef = useRef(null);
+	const imgRef = useRef(null);
+	const descriptionRef = useRef(null);
+	const ingredientsRef = useRef(null);
+	const instructionsRef = useRef(null);
 
 	useEffect(() => {
 		RecipesService.getById(id)
@@ -32,17 +32,6 @@ export const EditRecipe = () => {
 					navigate("/chef");
 				} else {
 					setRecipe(response);
-
-					if (response) {
-						if (nameRef.current) nameRef.current.value = response.name;
-						if (imgRef.current) imgRef.current.value = response.img;
-						if (descriptionRef.current)
-							descriptionRef.current.value = response.description;
-						if (ingredientsRef.current)
-							ingredientsRef.current.value = response.ingredients.join(",");
-						if (instructionsRef.current)
-							instructionsRef.current.value = response.instructions.join(",");
-					}
 				}
 			})
 			.catch((error) => {
@@ -50,48 +39,59 @@ export const EditRecipe = () => {
 			});
 	}, [id, navigate, setFlagMessage]);
 
-	const formQuestions = [
-		{
-			id: "name",
-			title: "Nome da receita",
-			type: "text",
-			autoComplete: "off",
-			placeholder: "Ex: Macarrão ao molho Presto",
-			ref: nameRef,
-		},
-		{
-			id: "img",
-			title: "Imagem",
-			type: "text",
-			autoComplete: "off",
-			placeholder: "Cole o link de uma imagem",
-			ref: imgRef,
-		},
-		{
-			id: "description",
-			title: "Descrição",
-			type: "text",
-			autoComplete: "off",
-			placeholder: "Escreva o que é a receita",
-			ref: descriptionRef,
-		},
-		{
-			id: "ingredients",
-			title: 'Ingredientes (separe por ",")',
-			type: "text",
-			autoComplete: "off",
-			placeholder: "Separe-os por vírgulas",
-			ref: ingredientsRef,
-		},
-		{
-			id: "instructions",
-			title: 'Instruções (separe por ",")',
-			type: "text",
-			autoComplete: "off",
-			placeholder: "Separe-as por vírgulas",
-			ref: instructionsRef,
-		},
-	];
+	const formQuestions = useMemo(() => {
+		return [
+			{
+				id: "name",
+				title: "Nome da receita",
+				type: "text",
+				autoComplete: "off",
+				placeholder: "Ex: Macarrão ao molho Presto",
+				ref: nameRef,
+			},
+			{
+				id: "img",
+				title: "Imagem",
+				type: "text",
+				autoComplete: "off",
+				placeholder: "Cole o link de uma imagem",
+				ref: imgRef,
+			},
+			{
+				id: "description",
+				title: "Descrição",
+				type: "text",
+				autoComplete: "off",
+				placeholder: "Escreva o que é a receita",
+				ref: descriptionRef,
+			},
+			{
+				id: "ingredients",
+				title: 'Ingredientes (separe por ",")',
+				type: "text",
+				autoComplete: "off",
+				placeholder: "Separe-os por vírgulas",
+				ref: ingredientsRef,
+			},
+			{
+				id: "instructions",
+				title: 'Instruções (separe por ",")',
+				type: "text",
+				autoComplete: "off",
+				placeholder: "Separe-as por vírgulas",
+				ref: instructionsRef,
+			},
+		];
+	}, [])
+
+	useEffect(() => {
+		if (formQuestions.some(question => !question.ref.current)) return;
+		nameRef.current.value = recipe.name;
+		imgRef.current.value = recipe.img;
+		descriptionRef.current.value = recipe.description;
+		ingredientsRef.current.value = recipe.ingredients.join(",");
+		instructionsRef.current.value = recipe.instructions.join(",");
+	}, [recipe, formQuestions]);
 
 	const submitForm = async () => {
 		const hasEmptyValues = formQuestions.some(
