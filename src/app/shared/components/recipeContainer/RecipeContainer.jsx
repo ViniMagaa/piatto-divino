@@ -30,9 +30,10 @@ export const RecipeContainer = ({
 		} else {
 			setFlagMessage({
 				isVisible: true,
-				message: "Receita excluída com sucesso!",
+				message: "Receita excluída!",
 				subMessage: "Que pena... mas sabemos que você publicará melhores. 😋",
 			});
+			navigate("/");
 		}
 	};
 

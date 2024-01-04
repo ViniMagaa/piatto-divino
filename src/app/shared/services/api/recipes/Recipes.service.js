@@ -43,14 +43,6 @@ const getAllByUserId = (userId) => {
 			(error) =>
 				new ApiException("Erro ao buscar as receitas do usuário:", error)
 		);
-	// try {
-	// 	const { data } = await Api().get("/recipes");
-	// 	return data.filter(
-	// 		(recipe) => recipe.author && recipe.author.id === userId
-	// 	);
-	// } catch (error) {
-	// 	return new ApiException("Erro ao buscar a receita");
-	// }
 };
 
 const create = (recipeToCreate) => {
@@ -59,12 +51,6 @@ const create = (recipeToCreate) => {
 			return response;
 		})
 		.catch((error) => new ApiException("Erro ao criar a receita:", error));
-	// try {
-	// 	const { data } = await Api().post("recipes", recipeToCreate);
-	// 	return data;
-	// } catch (error) {
-	// 	return new ApiException("Erro ao criar a receita");
-	// }
 };
 
 const updateById = (id, recipeToUpdate) => {
@@ -73,12 +59,6 @@ const updateById = (id, recipeToUpdate) => {
 			return response;
 		})
 		.catch((error) => new ApiException("Erro ao atualizar a receita:", error));
-	// try {
-	// 	const { data } = await Api().put(`/recipes/${id}`, recipeToUpdate);
-	// 	return data;
-	// } catch (error) {
-	// 	return new ApiException("Erro ao atualizar a receita");
-	// }
 };
 
 const deleteById = (id) => {
@@ -87,12 +67,6 @@ const deleteById = (id) => {
 			return response;
 		})
 		.catch((error) => new ApiException("Erro ao apagar a receita:", error));
-	// try {
-	// 	await Api().delete(`/recipes/${id}`);
-	// 	return undefined;
-	// } catch (error) {
-	// 	return new ApiException("Erro ao excluir a receita");
-	// }
 };
 
 export const RecipesService = {

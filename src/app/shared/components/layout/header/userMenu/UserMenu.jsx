@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { GiCook } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import RecipesContext from "../../../../contexts/RecipesContext";
 import { ApiException, AuthServices } from "../../../../services/api";
@@ -11,6 +11,7 @@ export const UserMenu = () => {
 	const { isConnected, setIsConnected, setFlagMessage, user, setUser } =
 		useContext(RecipesContext);
 	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
+	const navigate = useNavigate();
 
 	const handleLogout = () => {
 		AuthServices.logout().then((response) => {
@@ -28,6 +29,7 @@ export const UserMenu = () => {
 				});
 				setUser({});
 				setIsConnected(false);
+				navigate("/");
 			}
 		});
 	};
