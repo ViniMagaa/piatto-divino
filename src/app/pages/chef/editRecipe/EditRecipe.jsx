@@ -1,14 +1,14 @@
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "../../../shared/components";
 import { Form } from "../../../shared/components/layout";
-import RecipesContext from "../../../shared/contexts/RecipesContext";
+import { useAppContext } from "../../../shared/hooks";
 import { ApiException } from "../../../shared/services/api/ApiException";
 import { RecipesService } from "../../../shared/services/api/recipes/Recipes.service";
 
 export const EditRecipe = () => {
-	const { user, setFlagMessage } = useContext(RecipesContext);
+	const { user, setFlagMessage } = useAppContext();
 	const [recipe, setRecipe] = useState({});
 
 	const { id } = useParams();
@@ -82,10 +82,10 @@ export const EditRecipe = () => {
 				ref: instructionsRef,
 			},
 		];
-	}, [])
+	}, []);
 
 	useEffect(() => {
-		if (formQuestions.some(question => !question.ref.current)) return;
+		if (formQuestions.some((question) => !question.ref.current)) return;
 		nameRef.current.value = recipe.name;
 		imgRef.current.value = recipe.img;
 		descriptionRef.current.value = recipe.description;

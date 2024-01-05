@@ -1,16 +1,16 @@
 import { BrowserRouter } from "react-router-dom";
 
 import { Header, Main, Footer } from "./shared/components/layout";
-import { RecipesContextProvider } from "./shared/contexts/RecipesContextProvider";
+import { AppContextProvider } from "./shared/contexts";
 
 export default function App() {
 	return (
 		<BrowserRouter>
-			<RecipesContextProvider>
+			<AppContextProvider>
 				<Header />
 				<Main />
 				<Footer />
-			</RecipesContextProvider>
+			</AppContextProvider>
 		</BrowserRouter>
 	);
-};
+}

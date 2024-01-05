@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { About, Home, Login, Panel, Recipe, Recipes, Register } from "../pages";
 import { CreateRecipe, EditRecipe } from "../pages/chef";
-import RecipesContext from "../shared/contexts/RecipesContext";
+import { useAppContext } from "../shared/hooks";
 
 export const AppRoutes = () => {
-	const { isConnected } = useContext(RecipesContext);
+	const { isConnected } = useAppContext();
 
 	return (
 		<Routes>

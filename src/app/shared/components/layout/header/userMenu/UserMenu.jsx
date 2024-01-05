@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { GiCook } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 
-import RecipesContext from "../../../../contexts/RecipesContext";
 import { ApiException, AuthServices } from "../../../../services/api";
+import { useAppContext } from "../../../../hooks";
 
 import "./UserMenu.css";
 
 export const UserMenu = () => {
 	const { isConnected, setIsConnected, setFlagMessage, user, setUser } =
-		useContext(RecipesContext);
+		useAppContext();
 	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
 	const navigate = useNavigate();
 

@@ -1,13 +1,13 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Form } from "../../../shared/components/layout";
-import RecipesContext from "../../../shared/contexts/RecipesContext";
 import { RecipesService } from "../../../shared/services/api/recipes/Recipes.service";
 import { ApiException } from "../../../shared/services/api/ApiException";
+import { useAppContext } from "../../../shared/hooks";
 
 export const CreateRecipe = () => {
-	const { user, setFlagMessage } = useContext(RecipesContext);
+	const { user, setFlagMessage } = useAppContext();
 
 	const navigate = useNavigate();
 

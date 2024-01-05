@@ -1,20 +1,18 @@
-import { useContext } from "react";
 import { FaEye, FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import RecipesContext from "../../contexts/RecipesContext";
 import { Button } from "..";
+import { useAppContext } from "../../hooks";
+import { ApiException } from "../../services/api/ApiException";
+import { RecipesService } from "../../services/api/recipes/Recipes.service";
+import { convertTimestampToLocaleString } from "../../utils";
 
 import "./RecipeContainer.css";
-import { RecipesService } from "../../services/api/recipes/Recipes.service";
-import { ApiException } from "../../services/api/ApiException";
-import { convertTimestampToLocaleString } from "../../utils";
 
 export const RecipeContainer = ({
 	recipe: { id, name, author, img, lastUpdate },
 }) => {
-	const { user, isConnected, flagMessage, setFlagMessage } =
-		useContext(RecipesContext);
+	const { user, isConnected, flagMessage, setFlagMessage } = useAppContext();
 	const navigate = useNavigate();
 
 	const handleRemoveRecipe = async () => {

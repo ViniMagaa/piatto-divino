@@ -1,13 +1,13 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import RecipesContext from "../contexts/RecipesContext";
+import { useAppContext } from "../hooks";
 import { ApiException } from "../services/api";
 import { RecipesService } from "../services/api/recipes/Recipes.service";
 import { Button, RecipeContainer } from "./";
 
 export const MainRecipes = () => {
-	const { setFlagMessage } = useContext(RecipesContext);
+	const { setFlagMessage } = useAppContext();
 	const [recipes, setRecipes] = useState([]);
 
 	const { id } = useParams();

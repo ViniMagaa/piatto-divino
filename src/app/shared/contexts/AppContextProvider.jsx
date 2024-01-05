@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 import { AuthServices } from "../services/api";
-import RecipesContext from "./RecipesContext";
+import AppContext from "./AppContext";
 
-export const RecipesContextProvider = ({ children }) => {
+export const AppContextProvider = ({ children }) => {
 	const [user, setUser] = useState({});
 	const [isLoadingConnectedUser, setIsLoadingConnectedUser] = useState(true);
 	const [isConnected, setIsConnected] = useState(false);
@@ -25,7 +25,7 @@ export const RecipesContextProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<RecipesContext.Provider
+		<AppContext.Provider
 			value={{
 				user,
 				setUser,
@@ -37,6 +37,6 @@ export const RecipesContextProvider = ({ children }) => {
 			}}
 		>
 			{children}
-		</RecipesContext.Provider>
+		</AppContext.Provider>
 	);
 };

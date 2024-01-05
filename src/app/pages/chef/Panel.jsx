@@ -1,10 +1,8 @@
-import { useContext } from "react";
-
-import RecipesContext from "../../shared/contexts/RecipesContext";
+import { useAppContext } from "../../shared/hooks";
 import { ChefHub, ContributeRecipes } from "./components";
 
 export const Panel = () => {
-	const { isConnected, isLoadingConnectedUser } = useContext(RecipesContext);
+	const { isConnected, isLoadingConnectedUser } = useAppContext();
 
 	if (!isLoadingConnectedUser) {
 		return !isConnected ? <ContributeRecipes /> : <ChefHub />;

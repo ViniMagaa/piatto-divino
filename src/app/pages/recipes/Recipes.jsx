@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { RecipeContainer } from "../../shared/components";
-import RecipesContext from "../../shared/contexts/RecipesContext";
 import { ApiException, RecipesService } from "../../shared/services/api";
+import { useAppContext } from "../../shared/hooks";
 
 export const Recipes = () => {
-	const { setFlagMessage } = useContext(RecipesContext);
+	const { setFlagMessage } = useAppContext();
 	const [recipes, setRecipes] = useState([]);
 
 	useEffect(() => {

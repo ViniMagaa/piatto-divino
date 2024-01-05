@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
-import RecipesContext from "../../contexts/RecipesContext";
+import { useAppContext } from "../../hooks";
 
 import "./FlagMessage.css";
 
 export const FlagMessage = () => {
-	const { flagMessage, setFlagMessage } = useContext(RecipesContext);
+	const { flagMessage, setFlagMessage } = useAppContext();
 
 	useEffect(() => {
 		if (!flagMessage.isVisible) return;

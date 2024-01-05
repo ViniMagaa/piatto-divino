@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { List } from "../../../shared/components";
-import RecipesContext from "../../../shared/contexts/RecipesContext";
+import { useAppContext } from "../../../shared/hooks";
 import { ApiException, RecipesService } from "../../../shared/services/api";
-
-import "./ViewRecipe.css";
 import { convertTimestampToLocaleString } from "../../../shared/utils";
 
+import "./ViewRecipe.css";
+
 export const ViewRecipe = ({ recipeId }) => {
-	const { setFlagMessage } = useContext(RecipesContext);
+	const { setFlagMessage } = useAppContext();
 	const [recipe, setRecipe] = useState({});
 
 	const navigate = useNavigate();

@@ -1,15 +1,15 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { SeePanel } from "../../shared/components";
 import { Form } from "../../shared/components/layout";
-import RecipesContext from "../../shared/contexts/RecipesContext";
 import { ApiException, AuthServices } from "../../shared/services/api";
 import { handleFirebaseErrors, validateEmail } from "../../shared/utils";
+import { useAppContext } from "../../shared/hooks";
 
 export const Register = () => {
 	const { isConnected, flagMessage, setFlagMessage, setIsConnected, setUser } =
-		useContext(RecipesContext);
+		useAppContext();
 
 	const navigate = useNavigate();
 
