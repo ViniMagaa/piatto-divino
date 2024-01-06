@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Button } from "../../../shared/components";
+import { Button, LoadingPan } from "../../../shared/components";
 import { Form } from "../../../shared/components/layout";
 import { useAppContext } from "../../../shared/hooks";
 import { ApiException } from "../../../shared/services/api/ApiException";
@@ -138,21 +138,25 @@ export const EditRecipe = () => {
 		}
 	};
 
-	return user && recipe.author && recipe.author.id === user.id ? (
-		<section>
-			<h1>Edite sua receita</h1>
-			<div className="form-container">
-				<Form
-					formQuestions={formQuestions}
-					handleClick={submitForm}
-					submitText="Editar"
-				/>
-			</div>
-		</section>
+	return user && recipe.author ? (
+		recipe.author.uid === user.uid ? (
+			<section>
+				<h1>Edite sua receita</h1>
+				<div className="form-container">
+					<Form
+						formQuestions={formQuestions}
+						handleClick={submitForm}
+						submitText="Editar"
+					/>
+				</div>
+			</section>
+		) : (
+			<section>
+				<h1>Essa receita não pode ser editada!</h1>
+				<Button handleClick={() => navigate("/chef")}>Voltar</Button>
+			</section>
+		)
 	) : (
-		<section>
-			<h1>Essa receita não pode ser editada!</h1>
-			<Button handleClick={() => navigate("/chef")}>Voltar</Button>
-		</section>
+		<LoadingPan />
 	);
 };

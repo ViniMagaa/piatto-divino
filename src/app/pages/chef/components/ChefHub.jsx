@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button, RecipeContainer } from "../../../shared/components";
+import {
+	Button,
+	LoadingRecipesContainer,
+	RecipeContainer,
+} from "../../../shared/components";
 import { useAppContext } from "../../../shared/hooks";
 import { ApiException, RecipesService } from "../../../shared/services/api";
 
@@ -38,7 +42,11 @@ export const ChefHub = () => {
 					Publicar uma receita
 				</Button>
 				<h2>Suas receitas</h2>
-				{userRecipes.length > 0 ? (
+				{!userRecipes.length ? (
+					<div className="recipes-container">
+						<LoadingRecipesContainer amount={4} />
+					</div>
+				) : userRecipes.length > 0 ? (
 					<div className="recipes-container">
 						{userRecipes.map((recipe) => (
 							<RecipeContainer key={recipe.id} recipe={recipe} />

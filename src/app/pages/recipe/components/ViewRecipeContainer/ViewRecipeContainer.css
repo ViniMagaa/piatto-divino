@@ -25,4 +25,8 @@
   .view-recipe {
     flex-direction: column;
   }
+
+  .view-recipe .image-container {
+    width: 100%;
+  }
 }

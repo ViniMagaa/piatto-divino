@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { RecipeContainer } from "../../shared/components";
-import { ApiException, RecipesService } from "../../shared/services/api";
+import {
+	LoadingRecipesContainer,
+	RecipeContainer,
+} from "../../shared/components";
 import { useAppContext } from "../../shared/hooks";
+import { ApiException, RecipesService } from "../../shared/services/api";
 
 export const Recipes = () => {
 	const { setFlagMessage } = useAppContext();
@@ -29,9 +32,13 @@ export const Recipes = () => {
 		<section>
 			<h1>Todas as receitas</h1>
 			<div className="recipes-container">
-				{recipes.map((recipe) => {
-					return <RecipeContainer key={recipe.id} recipe={recipe} />;
-				})}
+				{recipes.length === 0 ? (
+					<LoadingRecipesContainer amount={8} />
+				) : (
+					recipes.map((recipe) => (
+						<RecipeContainer key={recipe.id} recipe={recipe} />
+					))
+				)}
 			</div>
 		</section>
 	);

@@ -1,0 +1,47 @@
+.loading-mock .view-recipe {
+  background-color: var(--white);
+  display: flex;
+}
+
+.loading-mock .view-recipe .image-container {
+  width: 50%;
+}
+
+.loading-mock .view-recipe .view-recipe-description {
+  width: 50%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.loading-mock .view-recipe .image-container {
+  width: 50%;
+  height: inherit;
+}
+
+.loading-mock .view-recipe .image-container .loading-content {
+  height: 100%;
+}
+
+.loading-mock .view-recipe .view-recipe-description>div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Media Query */
+@media (max-width: 900px) {
+  .view-recipe {
+    flex-direction: column;
+  }
+
+  .loading-mock .view-recipe .image-container {
+    width: 100%;
+    height: 50vw;
+  }
+
+  .loading-mock .view-recipe .view-recipe-description {
+    width: 100%;
+  }
+}

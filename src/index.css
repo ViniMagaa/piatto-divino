@@ -99,3 +99,73 @@ span.bold-italic {
     flex-direction: column;
   }
 }
+
+/* Loading Components */
+.loading-mock {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-mock .loading-content {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: inherit;
+}
+
+.loading-mock .information {
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.h1.loading-content {
+  width: 80%;
+  height: 3rem;
+}
+
+.h2.loading-content {
+  width: 60%;
+  height: 2rem;
+}
+
+.h3.loading-content {
+  width: 40%;
+  height: 1.5rem;
+}
+
+.small.loading-content,
+.p.loading-content {
+  height: 1rem;
+}
+
+.buttons-container.loading-content {
+  height: 2.5rem;
+}
+
+.loading-mock .loading-content::after {
+  content: "";
+  position: absolute;
+  width: 125%;
+  height: inherit;
+  background: linear-gradient(to right,
+      rgba(245, 245, 245, 0.2),
+      rgba(234, 227, 213, 0.5),
+      rgba(223, 214, 197, 0.5),
+      rgba(234, 227, 213, 0.5),
+      rgba(245, 245, 245, 0.2));
+  animation: back-shine 2s infinite ease;
+}
+
+@keyframes back-shine {
+  0% {
+    left: -40%;
+  }
+
+  50% {
+    left: 40%;
+  }
+
+  100% {
+    left: -40%;
+  }
+}

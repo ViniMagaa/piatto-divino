@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAppContext } from "../hooks";
 import { ApiException } from "../services/api";
 import { RecipesService } from "../services/api/recipes/Recipes.service";
-import { Button, RecipeContainer } from "./";
+import { Button, LoadingRecipesContainer, RecipeContainer } from "./";
 
 export const MainRecipes = () => {
 	const { setFlagMessage } = useAppContext();
@@ -39,9 +39,13 @@ export const MainRecipes = () => {
 		<section>
 			<h2>Principais receitas</h2>
 			<div className="recipes-container">
-				{mainRecipes.map((recipe) => (
-					<RecipeContainer key={recipe.id} recipe={recipe} />
-				))}
+				{recipes.length === 0 ? (
+					<LoadingRecipesContainer amount={4} />
+				) : (
+					mainRecipes.map((recipe) => (
+						<RecipeContainer key={recipe.id} recipe={recipe} />
+					))
+				)}
 			</div>
 			<div className="buttons-container">
 				<Button handleClick={() => navigate("/receitas")}>Mais receitas</Button>

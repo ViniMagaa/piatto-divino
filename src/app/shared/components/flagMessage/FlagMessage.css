@@ -8,6 +8,7 @@
   color: var(--white);
   box-shadow: var(--box-shadow);
   animation: appear-from-right 5s ease;
+  z-index: 10;
 }
 
 .flag-message::before {
