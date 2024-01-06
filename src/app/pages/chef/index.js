@@ -1,2 +1,2 @@
-export * from "./createRecipe/CreateRecipe";
-export * from "./editRecipe/EditRecipe";
+export * from "./CreateRecipe/CreateRecipe";
+export * from "./EditRecipe/EditRecipe";

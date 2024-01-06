@@ -1,9 +1,8 @@
 export * from "./LoadingPan/LoadingPan";
-export * from "./MainRecipes";
-export * from "./SeePanel";
-export * from "./button/Button";
-export * from "./flagMessage/FlagMessage";
-export * from "./list/List";
-export * from "./loadingRecipesContainer/LoadingRecipesContainer";
-export * from "./recipeContainer/RecipeContainer";
-
+export * from "./MainRecipes/MainRecipes";
+export * from "./SeePanel/SeePanel";
+export * from "./Button/Button";
+export * from "./FlagMessage/FlagMessage";
+export * from "./List/List";
+export * from "./LoadingRecipesContainer/LoadingRecipesContainer";
+export * from "./RecipeContainer/RecipeContainer";

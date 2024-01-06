@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useAppContext } from "../hooks";
-import { ApiException } from "../services/api";
-import { RecipesService } from "../services/api/recipes/Recipes.service";
-import { Button, LoadingRecipesContainer, RecipeContainer } from "./";
+import { useAppContext } from "../../hooks";
+import { ApiException } from "../../services/api";
+import { RecipesService } from "../../services/api/recipes/Recipes.service";
+import { Button, LoadingRecipesContainer, RecipeContainer } from "..";
 
 export const MainRecipes = () => {
 	const { setFlagMessage } = useAppContext();

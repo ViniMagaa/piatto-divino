@@ -1,5 +1,5 @@
-import { NavBar } from "./navBar/NavBar";
-import { UserMenu } from "./userMenu/UserMenu";
+import { NavBar } from "./NavBar/NavBar";
+import { UserMenu } from "./UserMenu/UserMenu";
 
 import logo from "../../../assets/img/logo.png";
 

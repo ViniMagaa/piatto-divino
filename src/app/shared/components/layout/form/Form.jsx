@@ -1,4 +1,4 @@
-import { Button } from "../../";
+import { Button } from "../..";
 import { InputLabel } from "./InputLabel";
 
 import "./Form.css";
