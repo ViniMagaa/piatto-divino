@@ -1,0 +1,4 @@
+.page-not-found-container {
+  width: clamp(200px, 400px, 100%);
+  margin: auto;
+}

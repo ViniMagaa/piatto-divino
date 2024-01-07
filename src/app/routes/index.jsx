@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { About, Home, Login, Panel, Recipe, Recipes, Register } from "../pages";
 import { CreateRecipe, EditRecipe } from "../pages/chef";
 import { useAppContext } from "../shared/hooks";
+import { PageNotFound } from "../shared/components";
 
 export const AppRoutes = () => {
 	const { isConnected } = useAppContext();
@@ -25,6 +26,7 @@ export const AppRoutes = () => {
 					<Route path="/chef/criar" element={<CreateRecipe />} />
 				</>
 			)}
+			<Route path="*" element={<PageNotFound />} />
 		</Routes>
 	);
 };
