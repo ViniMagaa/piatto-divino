@@ -1,4 +1,4 @@
-import { FlagMessage, LoadingPan } from "../../";
+import { FlagMessage, LoadingPan } from "../..";
 import { AppRoutes } from "../../../../routes";
 import { useAppContext } from "../../../hooks";
 

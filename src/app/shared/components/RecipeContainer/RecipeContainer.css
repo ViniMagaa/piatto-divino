@@ -1,0 +1,23 @@
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  transition: box-shadow .25s;
+}
+
+.recipe-container:hover {
+  box-shadow: var(--box-shadow);
+}
+
+.recipe-container .image-container {
+  height: 150px;
+}
+
+.recipe-container .description {
+  flex-grow: 1;
+  padding: 0.5rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
