@@ -1,7 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { SeePanel } from "../../shared/components";
+import { Button, LoadingPan, SeePanel } from "../../shared/components";
 import { Form } from "../../shared/components/layout";
 import { ApiException, AuthServices } from "../../shared/services/api";
 import { handleFirebaseErrors, validateEmail } from "../../shared/utils/";
@@ -35,32 +35,69 @@ export const Login = () => {
 		},
 	];
 
+	const isEmailValid = (email) => {
+		return email && validateEmail(email);
+	};
+
+	const recoverPassword = () => {
+		if (flagMessage.isVisible) return;
+
+		const email = emailRef.current.value;
+
+		if (!isEmailValid(email)) {
+			setFlagMessage({
+				isVisible: true,
+				message: "Insira um email válido!",
+				subMessage: "Impossível enviar um email de recuperação.",
+			});
+			return;
+		}
+
+		AuthServices.recoverPassword(email).then((response) => {
+			if (response instanceof ApiException) {
+				const subMessage = handleFirebaseErrors(response);
+				setFlagMessage({
+					isVisible: true,
+					message: "Erro ao enviar email de recuperação!",
+					subMessage,
+				});
+			} else {
+				setFlagMessage({
+					isVisible: true,
+					message: "Email de recuperação enviado!",
+					subMessage: "Verifique sua caixa de entrada.",
+				});
+			}
+		});
+	};
+
 	const submitLogin = () => {
 		if (flagMessage.isVisible) return;
 
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 
-		if (!email || !password) {
+		if (!isEmailValid(email)) {
 			setFlagMessage({
 				isVisible: true,
-				message: "Preencha todos os dados!",
-				subMessage: "Ainda existem informações faltando.",
+				message: "Erro no campo de Email!",
+				subMessage: "Insira um valor válido.",
 			});
 			return;
 		}
 
-		if (!validateEmail(email)) {
+		if (!password) {
 			setFlagMessage({
 				isVisible: true,
-				message: "Erro no campo Email!",
-				subMessage: "Digite um email válido.",
+				message: "Erro no campo de Senha",
+				subMessage: "Insira um valor válido.",
 			});
 			return;
 		}
 
 		AuthServices.login(email, password).then((response) => {
 			if (response instanceof ApiException) {
+				setIsLoggingIn(false);
 				const subMessage = handleFirebaseErrors(response);
 				setFlagMessage({
 					isVisible: true,
@@ -79,7 +116,7 @@ export const Login = () => {
 			}
 		});
 	};
-
+	
 	return !isConnected ? (
 		<section>
 			<h1>Bem-vindo de volta!</h1>
@@ -88,17 +125,6 @@ export const Login = () => {
 				culinário que reúne a autenticidade da cozinha italiana em um só lugar.{" "}
 				<span className="bold-italic">Entre em sua conta para prosseguir!</span>
 			</p>
-			<div className="form-container">
-				<h2>Entrar</h2>
-				<Form
-					formQuestions={loginForm}
-					handleClick={submitLogin}
-					submitText="Entrar"
-				/>
-				<Link to="/cadastrar">
-					Ainda não possui uma conta? Então cadastre-se.
-				</Link>
-			</div>
 		</section>
 	) : (
 		<SeePanel />

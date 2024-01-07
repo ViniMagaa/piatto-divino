@@ -19,6 +19,14 @@ button:hover {
   letter-spacing: 3px;
 }
 
+button.jungle-green {
+  background-color: var(--jungle-green);
+}
+
+button.jungle-green:hover {
+  background-color: var(--dark-gray);
+}
+
 .buttons-container button {
   flex: 1 1;
 }

@@ -24,7 +24,7 @@ form button {
 }
 
 form button:hover {
-  background-color: var(--jungle-green);
+  background-color: var(--dark-gray);
 }
 
 /* Media Query */

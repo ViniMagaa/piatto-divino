@@ -7,6 +7,7 @@
   --off-white: #F1EEE6;
   --light-gray: rgb(234, 227, 213);
   --gray: rgb(154, 154, 154);
+  --dark-gray: #323438;
   --naples-yellow: #f8e16cff;
   --raw-umber: #9e643cff;
   --jungle-green: #419d78ff;
@@ -78,15 +79,22 @@ span.bold-italic {
 .form-container {
   width: 100%;
   margin: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   font-size: 1.1rem;
   background-color: var(--black);
   color: var(--white);
-  padding: 1rem;
 }
 
 .form-container a {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--white);
+}
+
+.form-container button:hover {
+  background-color: var(--dark-gray);
 }
 
 /* Media Query */

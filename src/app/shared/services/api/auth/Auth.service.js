@@ -26,9 +26,14 @@ const logout = () => {
 
 const getLoggedUser = () => {
 	return new Promise((resolve) => {
-		firebaseAuth
-			.onAuthStateChanged(auth, (user) => resolve(user))
+		firebaseAuth.onAuthStateChanged(auth, (user) => resolve(user));
 	});
+};
+
+const recoverPassword = (email) => {
+	return firebaseAuth
+		.sendPasswordResetEmail(auth, email)
+		.catch((error) => new ApiException(error));
 };
 
 export const AuthServices = {
@@ -37,4 +42,5 @@ export const AuthServices = {
 	updateProfile,
 	logout,
 	getLoggedUser,
+	recoverPassword,
 };
