@@ -1,7 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { SeePanel } from "../../shared/components";
+import { LoadingPan, SeePanel } from "../../shared/components";
 import { Form } from "../../shared/components/layout";
 import { ApiException, AuthServices } from "../../shared/services/api";
 import { handleFirebaseErrors, validateEmail } from "../../shared/utils";
@@ -10,6 +10,8 @@ import { useAppContext } from "../../shared/hooks";
 export const Register = () => {
 	const { isConnected, flagMessage, setFlagMessage, setIsConnected, setUser } =
 		useAppContext();
+
+	const [isLoading, setIsLoading] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -97,7 +99,9 @@ export const Register = () => {
 			return;
 		}
 
+		setIsLoading(true);
 		AuthServices.register(email, password).then((response) => {
+			setIsLoading(false);
 			if (response instanceof ApiException) {
 				const subMessage = handleFirebaseErrors(response);
 				setFlagMessage({
@@ -107,7 +111,7 @@ export const Register = () => {
 				});
 			} else {
 				AuthServices.updateProfile({ displayName: name });
-				setUser(response.user);
+				setUser({ ...response.user, displayName: name });
 				setIsConnected(true);
 				navigate("/chef");
 				setFlagMessage({
@@ -130,15 +134,21 @@ export const Register = () => {
 				</span>
 				. Estamos ansiosos para receber suas deliciosas contribuições!
 			</p>
-			<div className="form-container">
-				<h2>Cadastre-se</h2>
-				<Form
-					formQuestions={registerForm}
-					handleClick={submitForm}
-					submitText="Cadastrar"
-				/>
-				<Link to="/entrar">Já possui cadastro? Então entre em sua conta.</Link>
-			</div>
+			{!isLoading ? (
+				<div className="form-container">
+					<h2>Cadastre-se</h2>
+					<Form
+						formQuestions={registerForm}
+						handleClick={submitForm}
+						submitText="Cadastrar"
+					/>
+					<Link to="/entrar">
+						Já possui cadastro? Então entre em sua conta.
+					</Link>
+				</div>
+			) : (
+				<LoadingPan />
+			)}
 		</section>
 	) : (
 		<SeePanel />

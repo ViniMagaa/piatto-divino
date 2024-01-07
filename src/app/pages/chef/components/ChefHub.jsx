@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import {
 	Button,
-	LoadingRecipesContainer,
-	RecipeContainer,
+	LoadingPan,
+	RecipeContainer
 } from "../../../shared/components";
 import { useAppContext } from "../../../shared/hooks";
 import { ApiException, RecipesService } from "../../../shared/services/api";
@@ -13,6 +13,7 @@ export const ChefHub = () => {
 	const { user, setFlagMessage } = useAppContext();
 
 	const [userRecipes, setUserRecipes] = useState([]);
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -43,9 +44,7 @@ export const ChefHub = () => {
 				</Button>
 				<h2>Suas receitas</h2>
 				{!userRecipes.length ? (
-					<div className="recipes-container">
-						<LoadingRecipesContainer amount={4} />
-					</div>
+					<LoadingPan />
 				) : userRecipes.length > 0 ? (
 					<div className="recipes-container">
 						{userRecipes.map((recipe) => (

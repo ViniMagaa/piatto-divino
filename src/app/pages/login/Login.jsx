@@ -13,6 +13,8 @@ export const Login = () => {
 
 	const navigate = useNavigate();
 
+	const [isLoading, setIsLoading] = useState(false);
+
 	const emailRef = useRef();
 	const passwordRef = useRef();
 
@@ -53,7 +55,9 @@ export const Login = () => {
 			return;
 		}
 
+		setIsLoading(true);
 		AuthServices.recoverPassword(email).then((response) => {
+			setIsLoading(false);
 			if (response instanceof ApiException) {
 				const subMessage = handleFirebaseErrors(response);
 				setFlagMessage({
@@ -95,9 +99,10 @@ export const Login = () => {
 			return;
 		}
 
+		setIsLoading(true);
 		AuthServices.login(email, password).then((response) => {
 			if (response instanceof ApiException) {
-				setIsLoggingIn(false);
+				setIsLoading(false);
 				const subMessage = handleFirebaseErrors(response);
 				setFlagMessage({
 					isVisible: true,
@@ -116,7 +121,7 @@ export const Login = () => {
 			}
 		});
 	};
-	
+
 	return !isConnected ? (
 		<section>
 			<h1>Bem-vindo de volta!</h1>
@@ -125,6 +130,29 @@ export const Login = () => {
 				culinário que reúne a autenticidade da cozinha italiana em um só lugar.{" "}
 				<span className="bold-italic">Entre em sua conta para prosseguir!</span>
 			</p>
+			{!isLoading ? (
+				<div className="form-container">
+					<h2>Entrar</h2>
+					<Form
+						formQuestions={loginForm}
+						handleClick={submitLogin}
+						submitText="Entrar"
+					/>
+					<div className="buttons-container">
+						<Button
+							handleClick={recoverPassword}
+							customClassName="jungle-green"
+						>
+							Recuperar senha
+						</Button>
+					</div>
+					<Link to="/cadastrar">
+						Ainda não possui uma conta? Então cadastre-se.
+					</Link>
+				</div>
+			) : (
+				<LoadingPan />
+			)}
 		</section>
 	) : (
 		<SeePanel />
