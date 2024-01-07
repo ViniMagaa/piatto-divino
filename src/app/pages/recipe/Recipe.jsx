@@ -15,13 +15,14 @@ export const Recipe = () => {
 
 	useEffect(() => {
 		RecipesService.getById(id).then((response) => {
-			if (response instanceof ApiException) {
+			if (response instanceof ApiException || response === undefined) {
 				navigate("/");
 				setFlagMessage({
 					isVisible: true,
-					message: "Erro ao encontrar a receita!",
-					subMessage: "Talvez ela não exista.",
+					message: "Erro ao buscar receita!",
+					subMessage: "Não foi possível encontrá-la.",
 				});
+				return;
 			} else {
 				setRecipe(response);
 			}
