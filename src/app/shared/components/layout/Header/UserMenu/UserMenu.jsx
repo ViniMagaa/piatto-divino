@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GiCook } from "react-icons/gi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { ApiException, AuthServices } from "../../../../services/api";
 import { useAppContext } from "../../../../hooks";
+import { ApiException, AuthServices } from "../../../../services/api";
 
 import "./UserMenu.css";
 
@@ -11,9 +11,32 @@ export const UserMenu = () => {
 	const { isConnected, setIsConnected, setFlagMessage, user, setUser } =
 		useAppContext();
 	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
-	const navigate = useNavigate();
+	const userMenuRef = useRef();
+
+	const closeUserMenu = () => {
+		setIsUserMenuActive(false);
+	};
+
+	useEffect(() => {
+		const handleDocumentClick = (e) => {
+			if (
+				userMenuRef.current &&
+				!userMenuRef.current.contains(e.target) &&
+				isUserMenuActive
+			) {
+				closeUserMenu();
+			}
+		};
+
+		document.addEventListener("mousedown", handleDocumentClick);
+
+		return () => {
+			document.removeEventListener("mousedown", handleDocumentClick);
+		};
+	}, [isUserMenuActive]);
 
 	const handleLogout = () => {
+		closeUserMenu();
 		AuthServices.logout().then((response) => {
 			if (response instanceof ApiException) {
 				setFlagMessage({
@@ -29,7 +52,6 @@ export const UserMenu = () => {
 				});
 				setUser({});
 				setIsConnected(false);
-				navigate("/");
 			}
 		});
 	};
@@ -37,14 +59,16 @@ export const UserMenu = () => {
 	return (
 		isConnected &&
 		user && (
-			<div className="user-menu">
+			<div className="user-menu" ref={userMenuRef}>
 				<GiCook onClick={() => setIsUserMenuActive(!isUserMenuActive)} />
 				<ul className={isUserMenuActive ? "active" : ""}>
 					<li>
 						<span className="bold-italic">{user.displayName}</span>
 					</li>
 					<li>
-						<Link to="/chef">Meu painel</Link>
+						<Link to="/chef" onClick={closeUserMenu}>
+							Meu painel
+						</Link>
 					</li>
 					<li>
 						<Link to="/" onClick={handleLogout}>
