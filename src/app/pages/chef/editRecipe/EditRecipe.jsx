@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Button, LoadingPan } from "../../../shared/components";
+import { Button, LoadingPan, PageNotFound } from "../../../shared/components";
 import { Form } from "../../../shared/components/layout";
 import { useAppContext } from "../../../shared/hooks";
 import { ApiException } from "../../../shared/services/api/ApiException";
 import { RecipesService } from "../../../shared/services/api/recipes/Recipes.service";
 
 export const EditRecipe = () => {
-	const { user, setFlagMessage } = useAppContext();
-	const [recipe, setRecipe] = useState({});
+	const { user, setFlagMessage, ADMIN_UID } = useAppContext();
+	const [recipe, setRecipe] = useState(null);
 
 	const { id } = useParams();
 	const navigate = useNavigate();
@@ -113,8 +113,8 @@ export const EditRecipe = () => {
 				ingredients: ingredientsRef.current.value.split(","),
 				instructions: instructionsRef.current.value.split(","),
 				author: {
-					uid: user.uid,
-					displayName: user.displayName,
+					uid: recipe.author.uid,
+					displayName: recipe.author.displayName,
 				},
 				createdAt: recipe.createdAt,
 				lastUpdate: new Date(),
@@ -138,25 +138,27 @@ export const EditRecipe = () => {
 		}
 	};
 
-	return user && recipe.author ? (
-		recipe.author.uid === user.uid ? (
-			<section>
-				<h1>Edite sua receita</h1>
-				<div className="form-container">
-					<Form
-						formQuestions={formQuestions}
-						handleClick={submitForm}
-						submitText="Editar"
-					/>
-				</div>
-			</section>
-		) : (
-			<section>
-				<h1>Essa receita não pode ser editada!</h1>
-				<Button handleClick={() => navigate("/chef")}>Voltar</Button>
-			</section>
-		)
+	if (!user || recipe === null) return <LoadingPan />;
+	if (recipe === undefined) return <PageNotFound />;
+
+	const isAuthor = recipe.author.uid === user.uid;
+	const isAdmin = user.uid === ADMIN_UID;
+
+	return isAuthor || isAdmin ? (
+		<section>
+			<h1>Edite sua receita</h1>
+			<div className="form-container">
+				<Form
+					formQuestions={formQuestions}
+					handleClick={submitForm}
+					submitText="Editar"
+				/>
+			</div>
+		</section>
 	) : (
-		<LoadingPan />
+		<section>
+			<h1>Essa receita não pode ser editada!</h1>
+			<Button handleClick={() => navigate("/chef")}>Voltar ao início</Button>
+		</section>
 	);
 };

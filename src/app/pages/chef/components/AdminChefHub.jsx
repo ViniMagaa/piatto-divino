@@ -6,16 +6,16 @@ import { useAppContext } from "../../../shared/hooks";
 import { ApiException, RecipesService } from "../../../shared/services/api";
 import { RecipesList } from "./RecipesList";
 
-export const ChefHub = () => {
+export const AdminChefHub = () => {
 	const { user, setFlagMessage } = useAppContext();
 
-	const [userRecipes, setUserRecipes] = useState(null);
+	const [recipes, setRecipes] = useState(null);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!user) return;
-		RecipesService.getAllByUserId(user.uid)
+		RecipesService.getAll()
 			.then((response) => {
 				if (response instanceof ApiException) {
 					setFlagMessage({
@@ -24,7 +24,7 @@ export const ChefHub = () => {
 						subMessage: "Ocorreu algo inesperado.",
 					});
 				} else {
-					setUserRecipes(response);
+					setRecipes(response);
 				}
 			})
 			.catch((error) => {
@@ -33,13 +33,21 @@ export const ChefHub = () => {
 	}, [user, setFlagMessage]);
 
 	return (
-		user && (
+		user &&
+		recipes && (
 			<section>
 				<h1>Olá, chef {user.displayName}!</h1>
 				<Button handleClick={() => navigate("/chef/criar")}>
 					Publicar uma receita
 				</Button>
-				<RecipesList title={"Suas Receitas"} recipes={userRecipes} />
+				<RecipesList
+					title={"Suas Receitas"}
+					recipes={recipes.filter((recipe) => recipe.author.uid === user.uid)}
+				/>
+				<RecipesList
+					title={"Receitas dos outros Chefs"}
+					recipes={recipes.filter((recipe) => recipe.author.uid !== user.uid)}
+				/>
 			</section>
 		)
 	);

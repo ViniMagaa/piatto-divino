@@ -1,10 +1,13 @@
 import { useAppContext } from "../../shared/hooks";
-import { ChefHub, ContributeRecipes } from "./components";
+import { AdminChefHub, ChefHub, ContributeRecipes } from "./components";
 
 export const Panel = () => {
-	const { isConnected, isLoadingConnectedUser } = useAppContext();
+	const { user, isConnected, isLoadingConnectedUser, ADMIN_UID } =
+		useAppContext();
 
 	if (!isLoadingConnectedUser) {
-		return !isConnected ? <ContributeRecipes /> : <ChefHub />;
+		const chefPanel = user.uid === ADMIN_UID ? <AdminChefHub /> : <ChefHub />;
+
+		return !isConnected ? <ContributeRecipes /> : chefPanel;
 	} else return undefined;
 };

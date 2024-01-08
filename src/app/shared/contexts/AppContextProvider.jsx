@@ -4,6 +4,8 @@ import { AuthServices } from "../services/api";
 import AppContext from "./AppContext";
 
 export const AppContextProvider = ({ children }) => {
+	const ADMIN_UID = "lStuRIC8PBZOnPt1aOKHuP3oefk1";
+
 	const [user, setUser] = useState({});
 	const [isLoadingConnectedUser, setIsLoadingConnectedUser] = useState(true);
 	const [isConnected, setIsConnected] = useState(false);
@@ -14,14 +16,13 @@ export const AppContextProvider = ({ children }) => {
 	});
 
 	useEffect(() => {
-		AuthServices.getLoggedUser()
-			.then((loggedUser) => {
-				if (loggedUser) {
-					setUser(loggedUser);
-					setIsConnected(true);
-				}
-				setIsLoadingConnectedUser(false);
-			})
+		AuthServices.getLoggedUser().then((loggedUser) => {
+			if (loggedUser) {
+				setUser(loggedUser);
+				setIsConnected(true);
+			}
+			setIsLoadingConnectedUser(false);
+		});
 	}, []);
 
 	return (
@@ -34,6 +35,7 @@ export const AppContextProvider = ({ children }) => {
 				isLoadingConnectedUser,
 				flagMessage,
 				setFlagMessage,
+				ADMIN_UID,
 			}}
 		>
 			{children}

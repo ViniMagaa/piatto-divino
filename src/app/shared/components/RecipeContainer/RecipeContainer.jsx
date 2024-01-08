@@ -12,7 +12,7 @@ import "./RecipeContainer.css";
 export const RecipeContainer = ({
 	recipe: { id, name, author, img, lastUpdate },
 }) => {
-	const { user, isConnected, flagMessage, setFlagMessage } = useAppContext();
+	const { user, flagMessage, setFlagMessage, ADMIN_UID } = useAppContext();
 	const navigate = useNavigate();
 
 	const handleRemoveRecipe = async () => {
@@ -37,6 +37,10 @@ export const RecipeContainer = ({
 
 	const newLastUpdate = convertTimestampToLocaleString(lastUpdate, "pt-br");
 
+	const isAuthor = author.uid === user.uid;
+	const isAdmin = user.uid === ADMIN_UID;
+	const canEdit = isAuthor || isAdmin;
+
 	return (
 		<div className="recipe-container">
 			<div className="image-container">
@@ -54,13 +58,9 @@ export const RecipeContainer = ({
 				</div>
 				<div className="buttons-container">
 					<Button handleClick={() => navigate(`/receitas/${id}`)}>
-						{isConnected && user && user.uid === author.uid ? (
-							<FaEye />
-						) : (
-							"Ver receita"
-						)}
+						{canEdit ? <FaEye /> : "Ver receita"}
 					</Button>
-					{isConnected && user && user.uid === author.uid && (
+					{canEdit && (
 						<>
 							<Button handleClick={() => navigate(`/chef/editar/${id}`)}>
 								<FaPencilAlt />
