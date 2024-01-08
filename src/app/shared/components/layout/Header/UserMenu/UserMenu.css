@@ -47,6 +47,7 @@
   }
   
   .user-menu ul {
+    width: max-content;
     position: absolute;
     top: 5.5rem;
   }
