@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-import { Button } from "../../../shared/components";
+import { Button } from "../../../../shared/components";
+
+import teamWorkImage from "../../../../shared/assets/img/team-work.svg";
+
+import "./ContributeRecipes.css";
 
 export const ContributeRecipes = () => {
 	const navigate = useNavigate();
@@ -17,11 +21,10 @@ export const ContributeRecipes = () => {
 				junte-se a nós nessa jornada culinária!
 			</p>
 			<div className="buttons-container">
-				<Button handleClick={() => navigate("/cadastrar")}>
-					Cadastrar
-				</Button>
+				<Button handleClick={() => navigate("/cadastrar")}>Cadastrar</Button>
 				<Button handleClick={() => navigate("/entrar")}>Entrar</Button>
 			</div>
+			<img className="contribute-recipes-image" src={teamWorkImage} alt="Trabalho em Equipe" />
 		</section>
 	);
 };

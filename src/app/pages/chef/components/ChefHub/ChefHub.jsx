@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button } from "../../../shared/components";
-import { useAppContext } from "../../../shared/hooks";
-import { ApiException, RecipesService } from "../../../shared/services/api";
-import { RecipesList } from "./RecipesList";
+import { Button } from "../../../../shared/components";
+import { useAppContext } from "../../../../shared/hooks";
+import { ApiException, RecipesService } from "../../../../shared/services/api";
+import { RecipesList } from "../";
 
 export const ChefHub = () => {
 	const { user, setFlagMessage } = useAppContext();

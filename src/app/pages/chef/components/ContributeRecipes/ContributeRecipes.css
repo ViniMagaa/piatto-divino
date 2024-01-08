@@ -1,0 +1,4 @@
+.contribute-recipes-image {
+  width: clamp(200px, 500px, 100%);
+  margin: auto;
+}

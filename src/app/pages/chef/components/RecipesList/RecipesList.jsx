@@ -1,4 +1,4 @@
-import { LoadingPan, RecipeContainer } from "../../../shared/components";
+import { LoadingPan, RecipeContainer } from "../../../../shared/components";
 
 export const RecipesList = ({ title, recipes }) => {
 	return (
