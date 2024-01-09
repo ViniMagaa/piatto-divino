@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { BiMenuAltLeft, BiX } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 
+import { useClickOutside } from "../../../../hooks";
 import "./NavBar.css";
 
 export const NavBar = () => {
 	const [isMenuActive, setIsMenuActive] = useState(false);
-	const menuRef = useRef();
 
 	const paths = [
 		{ path: "/", name: "Início" },
@@ -19,23 +19,7 @@ export const NavBar = () => {
 		setIsMenuActive(false);
 	};
 
-	useEffect(() => {
-		const handleDocumentClick = (e) => {
-			if (
-				menuRef.current &&
-				!menuRef.current.contains(e.target) &&
-				isMenuActive
-			) {
-				closeMenu();
-			}
-		};
-
-		document.addEventListener("mousedown", handleDocumentClick);
-
-		return () => {
-			document.removeEventListener("mousedown", handleDocumentClick);
-		};
-	}, [isMenuActive]);
+	const menuRef = useClickOutside(closeMenu);
 
 	return (
 		<nav>

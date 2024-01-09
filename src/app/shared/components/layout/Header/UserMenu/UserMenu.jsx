@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { GiCook } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
-import { useAppContext } from "../../../../hooks";
+import { useAppContext, useClickOutside } from "../../../../hooks";
 import { ApiException, AuthServices } from "../../../../services/api";
 
 import "./UserMenu.css";
@@ -11,29 +11,12 @@ export const UserMenu = () => {
 	const { isConnected, setIsConnected, setFlagMessage, user, setUser } =
 		useAppContext();
 	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
-	const userMenuRef = useRef();
 
 	const closeUserMenu = () => {
 		setIsUserMenuActive(false);
 	};
 
-	useEffect(() => {
-		const handleDocumentClick = (e) => {
-			if (
-				userMenuRef.current &&
-				!userMenuRef.current.contains(e.target) &&
-				isUserMenuActive
-			) {
-				closeUserMenu();
-			}
-		};
-
-		document.addEventListener("mousedown", handleDocumentClick);
-
-		return () => {
-			document.removeEventListener("mousedown", handleDocumentClick);
-		};
-	}, [isUserMenuActive]);
+	const userMenuRef = useClickOutside(closeUserMenu);
 
 	const handleLogout = () => {
 		closeUserMenu();

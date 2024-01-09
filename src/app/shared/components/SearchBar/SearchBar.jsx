@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 import { Button } from "../";
-import { useAppContext } from "../../hooks";
+import { useAppContext, useClickOutside } from "../../hooks";
 import { ApiException, RecipesService } from "../../services/api";
 import { SearchList } from "./SearchList/SearchList";
 
@@ -14,8 +14,6 @@ export const SearchBar = () => {
 	const [recipesList, setRecipesList] = useState(null);
 	const [searchValue, setSearchValue] = useState("");
 	const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
-
-	const searchBar = useRef();
 
 	const closeSearchBarList = () => {
 		setIsSearchBarVisible(false);
@@ -54,23 +52,7 @@ export const SearchBar = () => {
 		}
 	}, [searchValue.length, search]);
 
-	useEffect(() => {
-		const handleDocumentClick = (e) => {
-			if (
-				searchBar.current &&
-				!searchBar.current.contains(e.target) &&
-				isSearchBarVisible
-			) {
-				closeSearchBarList();
-			}
-		};
-
-		document.addEventListener("mousedown", handleDocumentClick);
-
-		return () => {
-			document.removeEventListener("mousedown", handleDocumentClick);
-		};
-	}, [isSearchBarVisible]);
+	const searchBar = useClickOutside(closeSearchBarList);
 
 	return (
 		<section className="search-bar" ref={searchBar}>
