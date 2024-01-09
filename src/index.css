@@ -33,7 +33,7 @@ body {
 
 h1 {
   font-family: 'Italiana', 'Poppins', 'Segoe UI', sans-serif;
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 3.5rem, 5vw);
 }
 
 h2 {
@@ -99,10 +99,6 @@ span.bold-italic {
 
 /* Media Query */
 @media (max-width: 500px) {
-  h1 {
-    font-size: 2.8rem;
-  }
-
   .buttons-container {
     flex-direction: column;
   }
