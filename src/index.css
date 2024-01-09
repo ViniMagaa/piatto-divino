@@ -45,6 +45,10 @@ span.bold-italic {
   font-style: italic;
 }
 
+input {
+  border-radius: 0;
+}
+
 .recipes-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

@@ -2,46 +2,53 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "../../shared/components";
 
+import "./About.css";
+
 export const About = () => {
 	const navigate = useNavigate();
 
 	return (
 		<section className="about">
 			<h1>Sobre nós</h1>
-			<p>
-				Bem-vindo ao <span className="bold-italic">Piatto Divino</span>, o
-				refúgio culinário que celebra a autenticidade da cozinha italiana. Em
-				nosso restaurante, mergulhe em uma experiência gastronômica que
-				transcende o comum, onde cada prato é uma jornada de sabores
-				cuidadosamente selecionados para transportar você diretamente para as
-				ensolaradas paisagens da Itália.
-			</p>
-			<p>
-				No <span className="bold-italic">Piatto Divino</span>, nossa paixão pela
-				culinária italiana se reflete em cada detalhe, desde os ingredientes
-				frescos e de alta qualidade até a preparação artesanal de nossos pratos.
-			</p>
-			<p>
-				Explore um cardápio diversificado que captura a essência da tradição
-				italiana, oferecendo desde as clássicas massas perfeitamente al dente
-				até deliciosas pizzas, além de outros tesouros culinários.
-			</p>
-			<p>
-				Nossa atmosfera acolhedora e elegante é um convite para momentos
-				especiais, seja desfrutando de um jantar romântico a dois, celebrando
-				ocasiões memoráveis com amigos e familiares, ou simplesmente apreciando
-				uma refeição excepcional em boa companhia.
-			</p>
-			<p>
-				No <span className="bold-italic">Piatto Divino</span> cada refeição é
-				uma celebração do prazer de comer bem. Explore as páginas do nosso menu
-				para descobrir os sabores autênticos da Itália, e sinta-se em casa em
-				nosso espaço dedicado a proporcionar momentos deliciosos e memoráveis.
-			</p>
-			<h3>
-				Bem-vindo ao <span className="bold-italic">Piatto Divino</span>, onde
-				cada prato conta uma história de sabor e tradição.
-			</h3>
+			<article>
+				<p>
+					<span className="bold-italic">Bem-vindo ao Piatto Divino</span>, sua
+					janela virtual para o mundo encantador da culinária italiana. Em nosso
+					site, você é convidado a mergulhar em uma experiência gastronômica que
+					vai além do comum, descobrindo receitas que oferecem uma viagem de
+					sabores diretamente para as ensolaradas paisagens da Itália.
+				</p>
+				<p>
+					No <span className="bold-italic">Piatto Divino</span>, celebramos a
+					paixão pela culinária italiana, refletida em cada receita compartilhada.
+					Desde os ingredientes frescos e de alta qualidade até a arte da
+					preparação, nosso site é um tesouro de conhecimento e inspiração
+					culinária.
+				</p>
+				<p>
+					Explore um cardápio diversificado, repleto de clássicos como massas
+					perfeitamente al dente, pizzas deliciosas e muito mais, todos
+					disponíveis ao alcance de um clique. Seja você um chef experiente ou um
+					entusiasta iniciante na cozinha, nossas receitas são projetadas para
+					inspirar e guiar você em cada etapa do processo de culinária.
+				</p>
+				<p>
+					O <span className="bold-italic">Piatto Divino</span> é mais do que um
+					site de receitas - é uma comunidade onde os amantes da cozinha italiana
+					podem compartilhar suas criações, experiências e paixão pela comida. Se
+					você tem uma receita especial para compartilhar ou está procurando por
+					novas ideias para o jantar, encontrará um lar acolhedor aqui.
+				</p>
+				<p>
+					Navegue pelas páginas do nosso menu, descubra os autênticos sabores da
+					Itália e junte-se a nós na celebração do prazer de cozinhar e comer bem.
+				</p>
+				<h3>
+					Seja bem-vindo ao <span className="bold-italic">Piatto Divino</span>,
+					onde cada receita é uma história de sabor e tradição à espera de ser
+					descoberta.
+				</h3>
+			</article>
 			<h1>Buon appetito!</h1>
 			<div className="buttons-container">
 				<Button handleClick={() => navigate("/receitas")}>Ver receitas</Button>

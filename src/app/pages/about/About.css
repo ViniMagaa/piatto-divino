@@ -1,0 +1,9 @@
+.about article {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about article p {
+  text-align: justify;
+}
