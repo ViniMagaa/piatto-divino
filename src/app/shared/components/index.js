@@ -6,4 +6,5 @@ export * from "./LoadingRecipesContainer/LoadingRecipesContainer";
 export * from "./MainRecipes/MainRecipes";
 export * from "./PageNotFound/PageNotFound";
 export * from "./RecipeContainer/RecipeContainer";
+export * from "./SearchBar/SearchBar";
 export * from "./SeePanel/SeePanel";

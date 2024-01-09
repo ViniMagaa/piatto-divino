@@ -45,6 +45,17 @@ const getAllByUserId = (userId) => {
 		);
 };
 
+const getNameAndId = () => {
+	return getDocs(collection(database, "recipes"))
+		.then((snapshot) =>
+			snapshot.docs.map((doc) => ({
+				name: doc.data().name,
+				id: doc.id,
+			}))
+		)
+		.catch((error) => new ApiException("Erro ao buscar as receitas:", error));
+};
+
 const create = (recipeToCreate) => {
 	return addDoc(collection(database, "recipes"), recipeToCreate)
 		.then((response) => {
@@ -73,6 +84,7 @@ export const RecipesService = {
 	getAll,
 	getById,
 	getAllByUserId,
+	getNameAndId,
 	create,
 	updateById,
 	deleteById,

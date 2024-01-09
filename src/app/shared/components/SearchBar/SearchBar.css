@@ -1,0 +1,26 @@
+.search-bar form {
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+}
+
+.search-bar form .input-container {
+  width: 80%;
+  position: relative;
+}
+
+.search-bar form input {
+  z-index: 1;
+  padding: 1rem;
+  outline: none;
+  border: none;
+}
+
+.search-bar form button {
+  flex: 1;
+  background-color: var(--raw-umber);
+}
+
+.search-bar form button:hover {
+  background-color: var(--dark-gray);
+}

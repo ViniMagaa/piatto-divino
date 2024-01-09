@@ -1,4 +1,4 @@
-import { MainRecipes } from "../../shared/components";
+import { MainRecipes, SearchBar } from "../../shared/components";
 
 export const Home = () => {
 	return (
@@ -10,6 +10,7 @@ export const Home = () => {
 					um só lugar.
 				</p>
 			</div>
+			<SearchBar />
 			<MainRecipes />
 		</section>
 	);

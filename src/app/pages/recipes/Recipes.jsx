@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+
 import {
 	LoadingRecipesContainer,
 	RecipeContainer,
+	SearchBar,
 } from "../../shared/components";
 import { useAppContext } from "../../shared/hooks";
 import { ApiException, RecipesService } from "../../shared/services/api";
@@ -31,6 +33,7 @@ export const Recipes = () => {
 	return (
 		<section>
 			<h1>Todas as receitas</h1>
+			<SearchBar />
 			<div className="recipes-container">
 				{recipes.length === 0 ? (
 					<LoadingRecipesContainer amount={8} />
