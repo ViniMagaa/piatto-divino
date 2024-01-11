@@ -1,9 +1,11 @@
+import "./InputLabel.css";
+
 export const InputLabel = ({
 	input: { id, title, type, autoComplete, placeholder, ref },
 }) => {
 	return (
-		<div>
-			<label htmlFor={id}>{title}</label>
+		<label htmlFor={id}>
+			{title}
 			<input
 				type={type}
 				name={id}
@@ -13,6 +15,6 @@ export const InputLabel = ({
 				ref={ref}
 				required
 			/>
-		</div>
+		</label>
 	);
 };

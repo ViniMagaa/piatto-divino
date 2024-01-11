@@ -39,7 +39,7 @@ nav .hamburger {
     transition: right 0.5s;
     position: fixed;
     top: 0;
-    right: 150%;
+    right: calc(100% + 5rem);
     padding: 6rem 1.5rem;
     height: 100vh;
     background-color: var(--light-gray);
@@ -47,12 +47,12 @@ nav .hamburger {
     justify-content: flex-start;
     align-items: end;
     font-size: 1.3rem;
-    box-shadow: 0 0 5em #0e111677;
+    box-shadow: 0 0 5rem #0e111677;
     z-index: 9;
   }
 
   nav ul.active {
-    right: 25%;
+    right: 20%;
   }
 
   nav .hamburger {

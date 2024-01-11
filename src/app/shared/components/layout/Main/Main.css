@@ -1,6 +1,6 @@
 main {
-  max-width: 1200px;
-  min-height: 50vh;
+  flex-grow: 1;
+  width: clamp(200px, 1100px, 100%);
   margin: auto;
   padding: 1rem 1rem 3rem;
   display: flex;

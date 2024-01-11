@@ -31,7 +31,7 @@ export const ViewRecipeContainer = ({ recipe }) => {
 				<List title="Ingredientes" list={ingredients} type="disc" />
 				<List title="Modo de preparo" list={instructions} type="number" />
 				<div className="information">
-					<h3>{name}</h3>
+					<h3>Informações da receita</h3>
 					<span className="small">
 						Por: <span className="bold-italic">{author.displayName}</span>
 					</span>

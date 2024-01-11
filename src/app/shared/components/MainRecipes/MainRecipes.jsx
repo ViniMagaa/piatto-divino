@@ -32,7 +32,7 @@ export const MainRecipes = () => {
 	}, [setFlagMessage]);
 
 	const mainRecipes = useMemo(() => {
-		return recipes.filter((element) => element.id !== id).slice(0, 4);
+		return recipes.filter((element) => element.id !== id).slice(0, 6);
 	}, [recipes, id]);
 
 	return (
@@ -40,7 +40,7 @@ export const MainRecipes = () => {
 			<h2>Principais receitas</h2>
 			<div className="recipes-container">
 				{recipes.length === 0 ? (
-					<LoadingRecipesContainer amount={4} />
+					<LoadingRecipesContainer amount={6} />
 				) : (
 					mainRecipes.map((recipe) => (
 						<RecipeContainer key={recipe.id} recipe={recipe} />

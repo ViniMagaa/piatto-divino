@@ -7,7 +7,7 @@
   --off-white: #F1EEE6;
   --light-gray: rgb(234, 227, 213);
   --gray: rgb(154, 154, 154);
-  --dark-gray: #323438;
+  --dark-gray: #444450;
   --naples-yellow: #f8e16cff;
   --raw-umber: #9e643cff;
   --jungle-green: #419d78ff;
@@ -29,6 +29,8 @@ body {
 
 #root {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {

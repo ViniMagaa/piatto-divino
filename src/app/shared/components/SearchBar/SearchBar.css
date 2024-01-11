@@ -1,15 +1,18 @@
 .search-bar form {
   display: flex;
   flex-wrap: nowrap;
+  gap: 1rem;
   font-size: 0.9rem;
 }
 
 .search-bar form .input-container {
-  width: 80%;
+  flex: 1;
+  display: flex;
   position: relative;
 }
 
 .search-bar form input {
+  width: 100%;
   z-index: 1;
   padding: 1rem;
   outline: none;
@@ -17,7 +20,7 @@
 }
 
 .search-bar form button {
-  flex: 1;
+  flex: 0.05;
   background-color: var(--raw-umber);
 }
 

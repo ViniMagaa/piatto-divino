@@ -1,35 +1,15 @@
-form {
+.form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
 }
 
-form div {
-  width: 48%;
-  display: flex;
-  flex-direction: column;
-}
-
-form div input {
-  font-size: 0.9rem;
-  padding: 1rem;
-  outline: none;
-  border: none;
-}
-
-form button {
+.form button {
   width: 100%;
   background-color: var(--raw-umber);
 }
 
-form button:hover {
+.form button:hover {
   background-color: var(--dark-gray);
-}
-
-/* Media Query */
-@media (max-width: 900px) {
-  form div {
-    width: 100%;
-  }
 }
