@@ -80,6 +80,13 @@ export const Comment = ({
   const deleteComment = async () => {
     if (flagMessage.isVisible) return;
 
+    if (
+      !window.confirm(
+        `Você tem certeza que deseja excluir o comentário: "${text}"?`
+      )
+    )
+      return;
+
     const response = await CommentsService.deleteById(id);
     if (response instanceof ApiException) {
       setFlagMessage({

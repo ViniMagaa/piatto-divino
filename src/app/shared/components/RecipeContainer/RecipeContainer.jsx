@@ -18,6 +18,13 @@ export const RecipeContainer = ({
 	const handleRemoveRecipe = async () => {
 		if (flagMessage.isVisible) return;
 
+		if (
+			!window.confirm(
+				`Você tem certeza que deseja excluir a receita: "${name}"?`
+			)
+		)
+			return;
+
 		const response = await RecipesService.deleteById(id);
 		if (response instanceof ApiException) {
 			setFlagMessage({
