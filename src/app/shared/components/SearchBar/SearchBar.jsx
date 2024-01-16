@@ -6,8 +6,6 @@ import { useAppContext, useClickOutside } from "../../hooks";
 import { ApiException, RecipesService } from "../../services/api";
 import { SearchList } from "./SearchList/SearchList";
 
-import "./SearchBar.css";
-
 export const SearchBar = () => {
 	const { setFlagMessage } = useAppContext();
 
@@ -55,7 +53,7 @@ export const SearchBar = () => {
 	const searchBar = useClickOutside(closeSearchBarList);
 
 	return (
-		<section className="search-bar" ref={searchBar}>
+		<section className="horizontal-form" ref={searchBar}>
 			<div className="form-container">
 				<form onSubmit={(e) => e.preventDefault()}>
 					<div className="input-container">

@@ -1,36 +1,34 @@
-button {
+.btn {
   padding: 0.6rem 0.8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: var(--black);
-  outline: none;
-  border: none;
   color: var(--off-white);
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 2px;
-  cursor: pointer;
-  transition: .15s;
 }
 
-button:hover {
+.btn:hover {
   background-color: var(--raw-umber);
   letter-spacing: 3px;
 }
 
-button.jungle-green {
+.btn.raw-umber {
+  background-color: var(--raw-umber);
+}
+
+.btn.jungle-green {
   background-color: var(--jungle-green);
 }
 
-button.jungle-green:hover {
+.btn.raw-umber:hover,
+.btn.jungle-green:hover {
   background-color: var(--dark-gray);
 }
 
-.buttons-container button {
+.buttons-container .btn {
   flex: 1 1;
 }
 
-.buttons-container button:hover {
+.buttons-container .btn:hover {
   flex: 1 5%;
 }

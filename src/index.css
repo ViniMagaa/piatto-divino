@@ -47,8 +47,23 @@ span.bold-italic {
   font-style: italic;
 }
 
-input {
+input,
+textarea {
   border-radius: 0;
+  outline: none;
+  border: none;
+}
+
+button {
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: .15s;
 }
 
 .recipes-container {
@@ -71,10 +86,6 @@ input {
 .information h3 {
   font-family: 'Italiana';
   margin-bottom: 0.5rem;
-}
-
-.information .small {
-  font-size: 0.85rem;
 }
 
 .buttons-container {
@@ -100,6 +111,36 @@ input {
 }
 
 .form-container button:hover {
+  background-color: var(--dark-gray);
+}
+
+.horizontal-form form {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.horizontal-form form .input-container {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.horizontal-form form input {
+  width: 100%;
+  z-index: 1;
+  padding: 1rem;
+  outline: none;
+  border: none;
+}
+
+.horizontal-form form button {
+  flex: 0.05;
+  background-color: var(--raw-umber);
+}
+
+.horizontal-form form button:hover {
   background-color: var(--dark-gray);
 }
 

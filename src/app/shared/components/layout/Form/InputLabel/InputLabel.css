@@ -1,0 +1,17 @@
+.form label {
+	flex: 1 0 48%;
+	display: flex;
+	flex-direction: column;
+}
+
+.form label input {
+	font-size: 0.9rem;
+	padding: 1rem;
+}
+
+/* Media Query */
+@media (max-width: 900px) {
+	.form label {
+		width: 100%;
+	}
+}

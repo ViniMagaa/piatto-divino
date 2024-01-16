@@ -1,0 +1,15 @@
+.comments-section .form-container form {
+  align-items: flex-end;
+}
+
+.comments-section .form-container textarea {
+  width: 100%;
+  padding: 1rem;
+  resize: vertical;
+  min-height: 3.25rem;
+}
+
+.comments-section .form-container button {
+  font-size: 1.5rem;
+  min-height: 3.25rem;
+}

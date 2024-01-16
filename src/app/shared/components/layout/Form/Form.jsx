@@ -1,5 +1,5 @@
 import { Button } from "../..";
-import { InputLabel } from "./InputLabel";
+import { InputLabel } from "./InputLabel/InputLabel";
 
 import "./Form.css";
 
