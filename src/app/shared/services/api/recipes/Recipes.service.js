@@ -7,12 +7,12 @@ import {
 	getDocs,
 	query,
 	setDoc,
-	where
+	where,
 } from "firebase/firestore";
 import { database } from "../../FirebaseConfig";
 import { ApiException } from "../ApiException";
 
-const getAll = () => {
+const getAll = async () => {
 	return getDocs(collection(database, "recipes"))
 		.then((snapshot) =>
 			snapshot.docs.map((doc) => ({
@@ -20,16 +20,16 @@ const getAll = () => {
 				id: doc.id,
 			}))
 		)
-		.catch((error) => new ApiException("Erro ao buscar as receitas:", error));
+		.catch((error) => new ApiException("Erro ao buscar as receitas:" + error));
 };
 
-const getById = (recipeId) => {
+const getById = async (recipeId) => {
 	return getDoc(doc(database, "recipes", recipeId))
 		.then((docSnapshot) => docSnapshot.data())
 		.catch((error) => new ApiException("Erro ao buscar a receita:", error));
 };
 
-const getAllByUserId = (userId) => {
+const getAllByUserId = async (userId) => {
 	return getDocs(
 		query(collection(database, "recipes"), where("author.uid", "==", userId))
 	)
@@ -45,7 +45,7 @@ const getAllByUserId = (userId) => {
 		);
 };
 
-const getNameAndId = () => {
+const getNameAndId = async () => {
 	return getDocs(collection(database, "recipes"))
 		.then((snapshot) =>
 			snapshot.docs.map((doc) => ({
@@ -56,7 +56,7 @@ const getNameAndId = () => {
 		.catch((error) => new ApiException("Erro ao buscar as receitas:", error));
 };
 
-const create = (recipeToCreate) => {
+const create = async (recipeToCreate) => {
 	return addDoc(collection(database, "recipes"), recipeToCreate)
 		.then((response) => {
 			return response;
@@ -64,7 +64,7 @@ const create = (recipeToCreate) => {
 		.catch((error) => new ApiException("Erro ao criar a receita:", error));
 };
 
-const updateById = (id, recipeToUpdate) => {
+const updateById = async (id, recipeToUpdate) => {
 	return setDoc(doc(database, "recipes", id), recipeToUpdate)
 		.then((response) => {
 			return response;
@@ -72,7 +72,7 @@ const updateById = (id, recipeToUpdate) => {
 		.catch((error) => new ApiException("Erro ao atualizar a receita:", error));
 };
 
-const deleteById = (id) => {
+const deleteById = async (id) => {
 	return deleteDoc(doc(database, "recipes", id))
 		.then((response) => {
 			return response;
