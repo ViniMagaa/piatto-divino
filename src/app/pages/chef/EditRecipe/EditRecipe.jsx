@@ -1,24 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Button, LoadingPan, PageNotFound } from "../../../shared/components";
-import { Form } from "../../../shared/components/layout";
 import { useAppContext } from "../../../shared/hooks";
 import { ApiException } from "../../../shared/services/api/ApiException";
 import { RecipesService } from "../../../shared/services/api/recipes/Recipes.service";
+import { RecipeForm } from "../components";
 
 export const EditRecipe = () => {
 	const { user, setFlagMessage, ADMIN_UID } = useAppContext();
 	const [recipe, setRecipe] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const { id } = useParams();
 	const navigate = useNavigate();
-
-	const nameRef = useRef(null);
-	const imgRef = useRef(null);
-	const descriptionRef = useRef(null);
-	const ingredientsRef = useRef(null);
-	const instructionsRef = useRef(null);
 
 	useEffect(() => {
 		RecipesService.getById(id)
@@ -39,121 +34,51 @@ export const EditRecipe = () => {
 			});
 	}, [id, navigate, setFlagMessage]);
 
-	const formQuestions = useMemo(() => {
-		return [
-			{
-				id: "name",
-				title: "Nome da receita",
-				type: "text",
-				autoComplete: "off",
-				placeholder: "Ex: Macarrão ao molho Presto",
-				ref: nameRef,
-			},
-			{
-				id: "img",
-				title: "Imagem",
-				type: "text",
-				autoComplete: "off",
-				placeholder: "Cole o link de uma imagem",
-				ref: imgRef,
-			},
-			{
-				id: "description",
-				title: "Descrição",
-				type: "text",
-				autoComplete: "off",
-				placeholder: "Escreva o que é a receita",
-				ref: descriptionRef,
-			},
-			{
-				id: "ingredients",
-				title: 'Ingredientes (separe por ",")',
-				type: "text",
-				autoComplete: "off",
-				placeholder: "Separe-os por vírgulas",
-				ref: ingredientsRef,
-			},
-			{
-				id: "instructions",
-				title: 'Instruções (separe por ",")',
-				type: "text",
-				autoComplete: "off",
-				placeholder: "Separe-as por vírgulas",
-				ref: instructionsRef,
-			},
-		];
-	}, []);
-
-	useEffect(() => {
-		if (formQuestions.some((question) => !question.ref.current)) return;
-		nameRef.current.value = recipe.name;
-		imgRef.current.value = recipe.img;
-		descriptionRef.current.value = recipe.description;
-		ingredientsRef.current.value = recipe.ingredients.join(",");
-		instructionsRef.current.value = recipe.instructions.join(",");
-	}, [recipe, formQuestions]);
-
-	const submitForm = async () => {
-		const hasEmptyValues = formQuestions.some(
-			(question) => question.ref.current.value === ""
-		);
-
-		if (hasEmptyValues) {
-			setFlagMessage({
-				isVisible: true,
-				message: "Preencha todos os dados!",
-				subMessage: "Ainda existem informações faltando.",
-			});
-		} else {
-			const editedRecipe = {
-				id: id,
-				name: nameRef.current.value,
-				img: imgRef.current.value,
-				description: descriptionRef.current.value,
-				ingredients: ingredientsRef.current.value.split(","),
-				instructions: instructionsRef.current.value.split(","),
-				author: {
-					uid: recipe.author.uid,
-					displayName: recipe.author.displayName,
-				},
-				createdAt: recipe.createdAt,
-				lastUpdate: new Date(),
-			};
-
-			const response = await RecipesService.updateById(id, editedRecipe);
-			if (response instanceof ApiException) {
-				setFlagMessage({
-					isVisible: true,
-					message: "Erro ao editar receita!",
-					subMessage: "Ocorreu algo inesperado ao tentar atualizá-la.",
-				});
-			} else {
-				setFlagMessage({
-					isVisible: true,
-					message: "Receita editada!",
-					subMessage: "Agora todos tem a versão atualizada. 😉",
-				});
-			}
-			navigate("/chef");
-		}
-	};
-
 	if (!user || recipe === null) return <LoadingPan />;
-	if (recipe === undefined) return <PageNotFound />;
+	if (!recipe.name) return <PageNotFound />;
 
 	const isAuthor = recipe.author.uid === user.uid;
 	const isAdmin = user.uid === ADMIN_UID;
 
+	const submitForm = async (recipeToUpdate) => {
+		setIsLoading(true);
+
+		const editedRecipe = {
+			...recipeToUpdate,
+			author: {
+				uid: recipe.author.uid,
+				displayName: isAdmin ? recipe.author.displayName : user.displayName,
+			},
+			createdAt: recipe.createdAt,
+			lastUpdate: new Date(),
+		};
+
+		const response = await RecipesService.updateById(id, editedRecipe);
+		if (response instanceof ApiException) {
+			setFlagMessage({
+				isVisible: true,
+				message: "Erro ao editar receita!",
+				subMessage: "Ocorreu algo inesperado ao tentar atualizá-la.",
+			});
+		} else {
+			setFlagMessage({
+				isVisible: true,
+				message: "Receita editada!",
+				subMessage: "Agora todos tem a versão atualizada. 😉",
+			});
+			navigate("/chef");
+		}
+		setIsLoading(false);
+	};
+
 	return isAuthor || isAdmin ? (
 		<section>
 			<h1>Edite sua receita</h1>
-			<div className="form-container">
-				<Form
-					formQuestions={formQuestions}
-					handleClick={submitForm}
-					submitText="Editar"
-				/>
-			</div>
+			{!isLoading ? (
+				<RecipeForm recipe={recipe} whenSubmited={submitForm} />
+			) : (
+				<LoadingPan />
+			)}
 		</section>
 	) : (
 		<section>

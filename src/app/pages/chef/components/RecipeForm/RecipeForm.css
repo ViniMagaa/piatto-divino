@@ -1,0 +1,101 @@
+.recipe-form-container {
+	--border: 1px solid rgba(0, 0, 0, 0.4);
+	--box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.recipe-form-container form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.recipe-form-container h2 {
+	color: var(--raw-umber);
+	text-transform: uppercase;
+	border-bottom: 1px solid var(--raw-umber);
+}
+
+.recipe-form-container input,
+.recipe-form-container select,
+.recipe-form-container textarea {
+	font-size: 0.9rem;
+	padding: 0.6rem;
+	border: var(--border);
+	transition: box-shadow 0.2s;
+}
+
+.recipe-form-container input[type="text"],
+.recipe-form-container input[type="url"],
+.recipe-form-container select,
+.recipe-form-container textarea {
+	width: 100%;
+}
+
+.recipe-form-container input:focus,
+.recipe-form-container select:focus,
+.recipe-form-container textarea:focus {
+	box-shadow: var(--box-shadow);
+}
+
+.recipe-form-container textarea#description {
+	height: 250px;
+}
+
+.recipe-form-container textarea {
+	resize: vertical;
+}
+
+.recipe-form-container .field {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+.recipe-form-container .field .col {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.recipe-form-container .field .col .image-container {
+	height: 250px;
+	border: var(--border);
+}
+
+.recipe-form-container .field .col .checkboxes {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5rem;
+}
+
+.recipe-form-container .field .col .checkboxes label {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.recipe-form-container .field .col .medium-time label {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.recipe-form-container .field .col .medium-time {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+}
+
+.recipe-form-container .field .col .medium-time input[type="number"] {
+	padding: 0.2rem 0.6rem;
+	width: 4rem;
+}
+
+/* Media Query */
+@media (max-width: 720px) {
+	.recipe-form-container .field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+}

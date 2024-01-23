@@ -1,0 +1,74 @@
+.recipe-form-container .field.recipe-form-lists {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+}
+
+.recipe-form-container .field.recipe-form-lists .col > button {
+	margin-left: 1.5rem;
+}
+
+.recipe-form-container .field.recipe-form-lists ul {
+	padding-left: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.recipe-form-container .field.recipe-form-lists ul li::marker {
+	font-size: 1.5rem;
+}
+
+.recipe-form-container .field.recipe-form-lists ul li > div {
+	display: flex;
+}
+
+.recipe-form-container .field.recipe-form-lists ul li > div label.input-label {
+	width: 100%;
+	display: flex;
+}
+
+.recipe-form-container .field.recipe-form-lists .instructions label.input-label textarea {
+	min-height: 100%;
+}
+
+.recipe-form-container
+	.field.recipe-form-lists
+	.instructions
+	ul
+	li
+	> div
+	.action-buttons-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.recipe-form-container
+	.field.recipe-form-lists
+	.ingredients
+	ul
+	li
+	> div
+	.action-buttons-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.recipe-form-container
+	.field.recipe-form-lists
+	ul
+	li
+	> div
+	button {
+	padding: 0.9rem;
+}
+
+/* Media Query */
+@media (max-width: 720px) {
+
+	.recipe-form-container .field.recipe-form-lists {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+}

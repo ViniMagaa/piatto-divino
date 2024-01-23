@@ -6,7 +6,7 @@ import {
 	getDoc,
 	getDocs,
 	query,
-	setDoc,
+	updateDoc,
 	where,
 } from "firebase/firestore";
 import { database } from "../../FirebaseConfig";
@@ -15,17 +15,14 @@ import { ApiException } from "../ApiException";
 const getAll = async () => {
 	return getDocs(collection(database, "recipes"))
 		.then((snapshot) =>
-			snapshot.docs.map((doc) => ({
-				...doc.data(),
-				id: doc.id,
-			}))
+			snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 		)
 		.catch((error) => new ApiException("Erro ao buscar as receitas:" + error));
 };
 
 const getById = async (recipeId) => {
 	return getDoc(doc(database, "recipes", recipeId))
-		.then((docSnapshot) => docSnapshot.data())
+		.then((docSnapshot) => ({ ...docSnapshot.data(), id: docSnapshot.id }))
 		.catch((error) => new ApiException("Erro ao buscar a receita:", error));
 };
 
@@ -34,10 +31,7 @@ const getAllByUserId = async (userId) => {
 		query(collection(database, "recipes"), where("author.uid", "==", userId))
 	)
 		.then((snapshot) =>
-			snapshot.docs.map((doc) => ({
-				...doc.data(),
-				id: doc.id,
-			}))
+			snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 		)
 		.catch(
 			(error) =>
@@ -48,10 +42,7 @@ const getAllByUserId = async (userId) => {
 const getNameAndId = async () => {
 	return getDocs(collection(database, "recipes"))
 		.then((snapshot) =>
-			snapshot.docs.map((doc) => ({
-				name: doc.data().name,
-				id: doc.id,
-			}))
+			snapshot.docs.map((doc) => ({ name: doc.data().name, id: doc.id }))
 		)
 		.catch((error) => new ApiException("Erro ao buscar as receitas:", error));
 };
@@ -64,8 +55,8 @@ const create = async (recipeToCreate) => {
 		.catch((error) => new ApiException("Erro ao criar a receita:", error));
 };
 
-const updateById = async (id, recipeToUpdate) => {
-	return setDoc(doc(database, "recipes", id), recipeToUpdate)
+const updateById = async (id, recipeDataToUpdate) => {
+	return updateDoc(doc(database, "recipes", id), recipeDataToUpdate)
 		.then((response) => {
 			return response;
 		})

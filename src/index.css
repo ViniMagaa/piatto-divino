@@ -48,6 +48,7 @@ span.bold-italic {
 }
 
 input,
+select,
 textarea {
   border-radius: 0;
   outline: none;
