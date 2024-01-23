@@ -22,36 +22,44 @@ export const Register = () => {
 
 	const registerForm = [
 		{
-			id: "name",
-			title: "Nome",
-			type: "text",
-			autoComplete: "name",
-			placeholder: "Seu nome",
-			ref: nameRef,
+			label: "Nome",
+			input: {
+				id: "name",
+				type: "text",
+				autoComplete: "name",
+				placeholder: "Seu nome",
+				ref: nameRef,
+			},
 		},
 		{
-			id: "email",
-			title: "Email",
-			type: "email",
-			autoComplete: "email",
-			placeholder: "Ex: user@exemplo.com",
-			ref: emailRef,
+			label: "Email",
+			input: {
+				id: "email",
+				type: "email",
+				autoComplete: "email",
+				placeholder: "Ex: exemplo@email.com",
+				ref: emailRef,
+			},
 		},
 		{
-			id: "password",
-			title: "Senha",
-			type: "password",
-			autoComplete: "off",
-			placeholder: "Sua senha",
-			ref: passwordRef,
+			label: "Senha",
+			input: {
+				id: "password",
+				type: "password",
+				autoComplete: "off",
+				placeholder: "No mínimo 6 caracteres",
+				ref: passwordRef,
+			},
 		},
 		{
-			id: "confirm-password",
-			title: "Confirmar senha",
-			type: "password",
-			autoComplete: "off",
-			placeholder: "Repita a senha",
-			ref: confirmPasswordRef,
+			label: "Confirmar senha",
+			input: {
+				id: "confirm-password",
+				type: "password",
+				autoComplete: "off",
+				placeholder: "Repita a senha",
+				ref: confirmPasswordRef,
+			},
 		},
 	];
 

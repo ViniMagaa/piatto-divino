@@ -1,5 +1,6 @@
 export * from "./Button/Button";
 export * from "./FlagMessage/FlagMessage";
+export * from "./InputLabel/InputLabel";
 export * from "./List/List";
 export * from "./LoadingPan/LoadingPan";
 export * from "./LoadingRecipesContainer/LoadingRecipesContainer";

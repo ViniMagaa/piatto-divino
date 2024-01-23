@@ -20,20 +20,24 @@ export const Login = () => {
 
 	const loginForm = [
 		{
-			id: "email",
-			title: "Email",
-			type: "email",
-			autoComplete: "email",
-			placeholder: "Ex: user@exemplo.com",
-			ref: emailRef,
+			label: "Email",
+			input: {
+				id: "email",
+				type: "email",
+				autoComplete: "email",
+				placeholder: "Ex: exemplo@email.com",
+				ref: emailRef,
+			},
 		},
 		{
-			id: "password",
-			title: "Senha",
-			type: "password",
-			autoComplete: "off",
-			placeholder: "Sua senha",
-			ref: passwordRef,
+			label: "Senha",
+			input: {
+				id: "password",
+				type: "password",
+				autoComplete: "off",
+				placeholder: "Sua senha",
+				ref: passwordRef,
+			},
 		},
 	];
 
