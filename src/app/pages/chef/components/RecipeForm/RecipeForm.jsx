@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import { Button, InputLabel } from "../../../../shared/components";
+import { Button, InputLabel, categories } from "../../../../shared/components";
 import { useAppContext } from "../../../../shared/hooks";
 import { validateURL } from "../../../../shared/utils";
 import { RecipeFormList } from "./RecipeFormList/RecipeFormList";
@@ -32,23 +32,6 @@ export const RecipeForm = ({ recipe = {}, whenSubmited }) => {
 		{ id: "medium", label: "Médio" },
 		{ id: "hard", label: "Difícil" },
 		{ id: "advanced", label: "Avançado" },
-	];
-
-	const categories = [
-		{ id: "sweet", label: "Doce" },
-		{ id: "salty", label: "Salgado" },
-		{ id: "big-meal", label: "Grande refeição" },
-		{ id: "small-meal", label: "Pequena refeição" },
-		{ id: "vegetarian", label: "Vegetariano" },
-		{ id: "vegan", label: "Vegano" },
-		{ id: "gluten-free", label: "Sem glúten" },
-		{ id: "low-calorie", label: "Baixa caloria" },
-		{ id: "quick", label: "Rápido" },
-		{ id: "healthy", label: "Saudável" },
-		{ id: "dessert", label: "Sobremesa" },
-		{ id: "gourmet", label: "Gourmet" },
-		{ id: "italian", label: "Prato italiano" },
-		{ id: "other", label: "Outro" },
 	];
 
 	const costs = [
@@ -94,7 +77,7 @@ export const RecipeForm = ({ recipe = {}, whenSubmited }) => {
 			categories: categoriesList,
 			time: {
 				hour: Number(timeHourRef.current.value),
-				minute: Number(timeMinuteRef.current.value)
+				minute: Number(timeMinuteRef.current.value),
 			},
 			ingredients: ingredientsList,
 			instructions: instructionsList,

@@ -1,32 +1,47 @@
 .view-recipe {
-  background-color: var(--white);
-  display: flex;
+	background-color: var(--white);
+	display: flex;
+}
+
+.view-recipe p,
+.view-recipe li {
+	word-wrap: break-word;
 }
 
 .view-recipe .image-container {
-  width: 100%;
+	width: 50%;
 }
 
 .view-recipe .view-recipe-description {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+	width: 50%;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
 .view-recipe .view-recipe-description ul {
-  padding-left: 1.5rem;
-  display: flex;
-  flex-direction: column;
+	padding-left: 1.5rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.view-recipe .view-recipe-description h3 {
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
 }
 
 /* Media Query */
 @media (max-width: 900px) {
-  .view-recipe {
-    flex-direction: column;
-  }
+	.view-recipe {
+		flex-direction: column;
+	}
 
-  .view-recipe .image-container {
-    width: 100%;
-  }
+	.view-recipe .image-container {
+		width: 100%;
+	}
+
+	.view-recipe .view-recipe-description {
+		width: 100%;
+	}
 }

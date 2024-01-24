@@ -1,0 +1,93 @@
+.categories-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.3rem;
+	--sweet: 255, 92, 247;
+	--salty: 228, 132, 6;
+	--big-meal: 255, 52, 79;
+	--small-meal: 20, 10, 170;
+	--vegetarian: 52, 236, 62;
+	--vegan: 141, 221, 71;
+	--gluten-free: 128, 128, 128;
+	--low-calorie: 61, 152, 158;
+	--quick: 33, 110, 255;
+	--healthy: 25, 182, 64;
+	--dessert: 160, 28, 221;
+	--gourmet: 190, 170, 10;
+	--italian: 32, 121, 66;
+	--other: 32, 32, 32;
+}
+
+.categories-container .category {
+	font-size: 0.8rem;
+	font-weight: 600;
+	padding: 0.3rem 0.6rem;
+	border-radius: 1rem;
+	display: flex;
+	align-items: center;
+}
+
+.categories-container .category::before {
+	content: "";
+	width: 0.4rem;
+	height: 0.4rem;
+	border-radius: 50%;
+	margin-right: 0.3rem;
+}
+
+.categories-container .category.sweet::before {
+	background-color: rgba(var(--sweet));
+}
+
+.categories-container .category.salty::before {
+	background-color: rgba(var(--salty));
+}
+
+.categories-container .category.big-meal::before {
+	background-color: rgba(var(--big-meal));
+}
+
+.categories-container .category.small-meal::before {
+	background-color: rgba(var(--small-meal));
+}
+
+.categories-container .category.vegetarian::before {
+	background-color: rgba(var(--vegetarian));
+}
+
+.categories-container .category.vegan::before {
+	background-color: rgba(var(--vegan));
+}
+
+.categories-container .category.gluten-free::before {
+	background-color: rgba(var(--gluten-free));
+}
+
+.categories-container .category.low-calorie::before {
+	background-color: rgba(var(--low-calorie));
+}
+
+.categories-container .category.quick::before {
+	background-color: rgba(var(--quick));
+}
+
+.categories-container .category.healthy::before {
+	background-color: rgba(var(--healthy));
+}
+
+.categories-container .category.dessert::before {
+	background-color: rgba(var(--dessert));
+}
+
+.categories-container .category.gourmet::before {
+	background-color: rgba(var(--gourmet));
+}
+
+.categories-container .category.italian::before {
+	background-color: rgba(var(--italian));
+}
+
+.categories-container .category.other::before {
+	background-color: rgba(var(--other));
+}

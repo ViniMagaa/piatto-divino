@@ -1,0 +1,24 @@
+.recipe-information-summary {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	--easy: 13, 56, 196;
+	--normal: 12, 145, 18;
+	--low: 12, 145, 18;
+	--medium: 170, 132, 6;
+	--hard: 190, 107, 11;
+	--advanced: 199, 5, 5;
+	--high: 199, 5, 5;
+}
+
+.recipe-information-summary div.rounded {
+	padding: 0.1rem 0.4rem;
+	border-radius: 0.5rem;
+}
+
+.recipe-information-summary div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.2rem;
+}

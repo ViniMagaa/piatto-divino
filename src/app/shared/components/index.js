@@ -1,4 +1,5 @@
 export * from "./Button/Button";
+export * from "./Categories/Categories";
 export * from "./FlagMessage/FlagMessage";
 export * from "./InputLabel/InputLabel";
 export * from "./List/List";
@@ -7,5 +8,6 @@ export * from "./LoadingRecipesContainer/LoadingRecipesContainer";
 export * from "./MainRecipes/MainRecipes";
 export * from "./PageNotFound/PageNotFound";
 export * from "./RecipeContainer/RecipeContainer";
+export * from "./RecipeInformationSummary/RecipeInformationSummary";
 export * from "./SearchBar/SearchBar";
 export * from "./SeePanel/SeePanel";
