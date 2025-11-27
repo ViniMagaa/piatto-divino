@@ -48,7 +48,7 @@ export const Footer = () => {
 			</section>
 			<section className="bottom-footer">
 				<div className="copy">
-					<span className="bold-italic">&copy; 2023 Piatto Divino</span> - Todos
+					<span className="bold-italic">&copy; Piatto Divino</span> - Todos
 					os direitos reservados
 				</div>
 				<div className="social-links">
